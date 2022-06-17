@@ -24,17 +24,17 @@ async function NEWmenu() {
         if (content.indexOf("/help") == 0) {
             if (content.endsWith("/help")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: QAM help is organized into categories. Use <b>/help</b> (category). List of categories:\n" +
-                    "<b>bondage</b> = commands related to bondage.\n" +
-                    "<b>character</b> = commands related to your character.\n" +
-                    "<b>chat</b> = commands with extra features in chat room.\n" +
-                    "<b>clothing</b> = commands related to the clothes.\n" +
-                    "<b>escape</b> = commands related to escape.\n" +
-                    "<b>fun</b> = commands related to fun, pain and pleasure.\n" +
-                    "<b>misc</b> = special commands.\n" +
-                    "<b>talking</b> = commands related to talking.\n" +
-                    "<b>visual</b> = commands related to animations and background.\n" +
-                    "<b>zones</b> = commands related to game zones."
+                    "<b>Quick-AccessMenu2</b>: QAM 帮助按类别进行组织。 Use <b>/help</b> (category). List of categories:\n" +
+                    "<b>bondage</b> = 与束缚有关的命令。\n" +
+                    "<b>character</b> = 与您的角色相关的命令。\n" +
+                    "<b>chat</b> = 在聊天室中具有额外功能的命令。\n" +
+                    "<b>clothing</b> = 与衣服有关的命令。\n" +
+                    "<b>escape</b> = 与逃生相关的命令。\n" +
+                    "<b>fun</b> = 与乐趣、痛苦和快乐有关的命令。\n" +
+                    "<b>misc</b> = 特殊命令。\n" +
+                    "<b>talking</b> = 与谈话有关的命令。\n" +
+                    "<b>visual</b> = 与动画和背景相关的命令。\n" +
+                    "<b>zones</b> = 与游戏区域相关的命令。"
                 );
             } else if (content.includes("bondage")) {
                 ChatRoomSendLocal(
