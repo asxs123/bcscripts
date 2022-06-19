@@ -34,7 +34,11 @@ async function NEWmenu() {
                     "<b>misc</b> = 特殊命令。\n" +
                     "<b>talking</b> = 与谈话有关的命令。\n" +
                     "<b>visual</b> = 与动画和背景相关的命令。\n" +
-                    "<b>zones</b> = 与游戏区域相关的命令。"
+                    "<b>zones</b> = 与游戏区域相关的命令。\n" +
+                    " \n" +
+		    "使用 <b>/help new</b> 获取有关当前 QAM 版本更改的信息。\n" +
+		    " \n" +
+		    "有几个命令需要指定一个目标。 可以是昵称，也可以是会员号。"	
                 );
             } else if (content.includes("bondage")) {
                 ChatRoomSendLocal(
@@ -88,7 +92,7 @@ async function NEWmenu() {
             } else if (content.includes("escape")) {
                 ChatRoomSendLocal(
                     "<b>Quick-AccessMenu2</b>: 逃生命令：\n" +
-                    "<b>/boost</b> = 提升技能，类似于女仆宿舍酒。\n" +
+                    "<b>/boost</b> = 提升技能，类似于女仆宿舍的咖啡。\n" +
                     "<b>/collarremove</b> = 删除奴隶/所有者项圈。 也可以是：/removecollar。\n" +
                     "<b>/frlist</b> = 允许在 15 秒内访问好友列表，其中包含指向其他房间的可点击链接。\n" +
                     "<b>/leave</b> = 离开房间，即使被阻止。\n" +
@@ -150,6 +154,14 @@ async function NEWmenu() {
                     "<b>/relog</b> = 重新登录。\n" +
                     "<b>/unrestrict</b> =  removes all restrictions from game. Can use maid drink tray/other stuff. Using will give more info. Submissives should use /unrestrict soft."
                 );
+            } else if (content.includes("new")) {
+                ChatRoomSendLocal(
+                    "<b>Quick-AccessMenu2</b>: v.1.4.2 的主要变化：\n" +
+                    "- 改进了宠物命令，具有更多随机外观和对任何玩家的扩展\n" +
+                    "- 通过添加对目标成员编号的支持，改进了所有带有目标名称的命令\n" +
+	            "- 在帮助命令中添加了“新”选项以获取有关当前 QAM 版本更改的信息\n" +
+                    "- 更新了 bg1 命令。"
+                );   	    
             } else if (content.includes("talking")) {
                 ChatRoomSendLocal(
                     "<b>Quick-AccessMenu2</b>: 谈话命令：\n" +
@@ -165,44 +177,44 @@ async function NEWmenu() {
                 );
             } else if (content.includes("unl")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: The unlock command:\n" +
+                    "<b>Quick-AccessMenu2</b>: 解锁命令：\n" +
                     "<b>/unlock</b> (targetname) (locktype).\n" +
-                    "All locks of any type will be removed if you don't specify the lock type.\n" +
+                    "如果您不指定锁类型，任何类型的所有锁都将被删除。\n" +
                     " \n" +
-                    "The lock types:\n" +
-                    "1 Metal - 2 Exclusive - 3 Intricate - 4 High Security\n" +
-                    "5 Pandora - 6 Mistress - 7 Lover - 8 Owner\n" +
-                    "9 Five Minutes - 10 Combination - 11 Safeword\n" +
-                    "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
-                    "15 Owner Timer - 16 Timer Password"
+                    "锁类型：\n" +
+                    "1 金属挂锁 - 2 专属挂锁 - 3 复杂的挂锁 - 4 高安全挂锁\n" +
+                    "5 潘多拉魔盒锁 - 6 女王锁 - 7 爱人锁 - 8 主人锁\n" +
+                    "9 五分钟计时锁 - 10 组合密码锁 - 11 安全词锁\n" +
+                    "12 密码锁 - 13 女王计时锁 - 14 爱人计时锁\n" +
+                    "15 主人计时锁 - 16 计时密码锁"
                 );
             } else if (content.includes("visual")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: Visual commands:\n" +
-                    "<b>/anim2</b> (animhere) = changes your facial expression. Using will give more info.\n" +
-                    "<b>/bg1</b> = adds hidden backgrounds to the admin selection screen. Tip for BCX users: activate BCX before login.\n" +
-                    "<b>/bg2</b> (number) = uses a hidden platform background. Number must be between 1 and 45. Use /bg2 0 to get the list.\n" +
-                    "<b>/colorchanger</b> (animhere) = gets an animation with color change. Using will give more info.\n" +
-                    "<b>/pose2</b> (posehere) (targetname) = changes the pose of any player. Using will give more info.\n" +
-                    "<b>/speak</b> = animates mouth when talking in chat. Can also: /mouth or /speech."
+                    "<b>Quick-AccessMenu2</b>: 视觉命令：\n" +
+                    "<b>/anim2</b> (animhere) = 改变你的面部表情。 使用将提供更多信息。\n" +
+                    "<b>/bg1</b> = 添加隐藏聊天室背景。 BCX 用户提示：登录前激活 BCX。\n" +
+                    "<b>/bg2</b> (number) = 使用隐藏的平聊天室背景。 数字必须介于 1 和 45 之间。使用 /bg2 0 获取列表。\n" +
+                    "<b>/colorchanger</b> (animhere) = 获得颜色变化的动画。 使用将提供更多信息。\n" +
+                    "<b>/pose2</b> (posehere) (targetname) = 改变任何玩家的姿势。 使用将提供更多信息。\n" +
+                    "<b>/speak</b> = 在聊天中说话时使嘴巴动起来。 也可以：/mouth 或 /speech。"
                 );
             } else if (content.includes("zones")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: Zones commands:\n" +
-                    "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
-                    "<b>/chess</b> (difficulty) = starts chess, must specify difficulty first (1 easy - 2 normal - 3 hard).\n" +
-                    "<b>/college</b> = enters college, bypasses requirements.\n" +
-                    "<b>/game</b> (minigamehere) = launches a minigame. Using will give more info.\n" +
-                    "<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n" +
-                    "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault.\n" +
+                    "<b>Quick-AccessMenu2</b>: 游戏区域命令：\n" +
+                    "<b>/asylum</b> (minutes) = 进入庇护所，绕过要求。 如果您是病人，请指定分钟。\n" +
+                    "<b>/chess</b> (difficulty) = 开始国际象棋，必须先指定难度（1 容易 - 2 普通 - 3 困难）。\n" +
+                    "<b>/college</b> = 进入大学，绕过要求。\n" +
+                    "<b>/game</b> (minigamehere) = 启动一个小游戏。 使用将提供更多信息。\n" +
+                    "<b>/ggts</b> (minutes) (level) = 在指定时间内进入 ggts 庇护培训。 级别必须在 1 到 6 之间。\n" +
+                    "<b>/keydeposit</b> (hours) = 将您的钥匙安全地保存在保险库中。\n" +
                     "<b>/kinkydungeon</b> = launches Kinky Dungeon. Options: devious to toggle deviouschallenge, cheat to start with cheats.\n" +
                     "<b>/patreoncheats</b> = changes settings of patreon cheats. All except college uniform, is auto toggled by default.\n" +
-                    "<b>/prison</b> (minutes) = stays in Pandora prison. More than 60 minutes is possible.\n" +
-                    "<b>/store</b> = leaves chatroom, goes to store. Shows hidden items.\n" +
-                    "<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible. Tip: use bondage commands before!"
+                    "<b>/prison</b> (minutes) = 进入潘多拉监狱。 超过 60 分钟是可能的。\n" +
+                    "<b>/store</b> = 离开聊天室，去商店。 显示隐藏的项目。\n" +
+                    "<b>/timercell</b> (minutes) = 留在隔离室。 超过 60 分钟是可能的。 提示：之前使用束缚命令！"
                 );
             }
-        } else if ((content.indexOf("/action ") == 0) || (content.indexOf("/a ") == 0)) {
+        } else if ((content.indexOf("/action ") == 0) || (content.indexOf("/a ") == 0)) { //插入一个动作。
             if (content.includes("/action") == true) {
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
@@ -222,7 +234,7 @@ async function NEWmenu() {
                     }]
                 });
             }
-        } else if (content.indexOf("/anim2") == 0) {
+        } else if (content.indexOf("/anim2") == 0) {  //改变你的面部表情。 使用将提供更多信息。
             CharacterResetFacialExpression(Player);
             CharacterResetFacialExpression(Player);
             if (content.includes("angry1")) {
@@ -703,7 +715,7 @@ async function NEWmenu() {
                 });
             } else if (content.endsWith("/anim2")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: The anim2 command must include an anim.\n" +
+                    "<b>Quick-AccessMenu2</b>: 面部表情命令必须包含一个表情\n" +
                     " \n" +
                     "Available anims:\n" +
                     "angry1, angry2, blink, blush1, blush2, blush3, blush4,\n" +
@@ -715,29 +727,31 @@ async function NEWmenu() {
                     "smirk, spanked, wink, worried."
                 );
             }
-        } else if (content.indexOf("/arousal") == 0) {
+        } else if (content.indexOf("/arousal") == 0) {  //设置兴奋水平。 级别必须在 0 到 100 之间。
             Player.ArousalSettings.Progress = content.substring(8);
             ServerPlayerSync();
             if (content.includes("100")) {
                 ActivityOrgasmRuined = false;
                 ActivityOrgasmStart(Player);
             }
-        } else if (content.indexOf("/asylum") == 0) {
+        } else if (content.indexOf("/asylum") == 0) {  //进入庇护，绕过要求。 如果您是病人，请指定分钟。
             var minutes = content.substring(7).trim();
-            ChatRoomSetLastChatRoom("");
-            ServerSend("ChatRoomLeave", "");
-            OnlineGameName = "";
-            CommonSetScreen("Room", "AsylumEntrance");
+            DialogLentLockpicks = false;
             ChatRoomClearAllElements();
+            ServerSend("ChatRoomLeave", "");
+            ChatRoomSetLastChatRoom("");
+            ChatRoomLeashPlayer = null;
+            CommonSetScreen("Room", "AsylumEntrance");
+            CharacterDeleteAllOnline();
             AsylumEntranceIsWearingNurseClothes = function() {
                 return true
             };
             if (ReputationGet("Asylum") < 0) {
                 LogAdd("Committed", "Asylum", CurrentTime + 60000 * minutes);
             }
-        } else if (content.indexOf("/autokick") == 0) {
+        } else if (content.indexOf("/autokick") == 0) {  //自动踢出 0 天的帐户。
             if (this.AutoKickOn == false || this.AutoKickOn == undefined) {
-                ChatRoomSendLocal("AutoKick: Ready.");
+                ChatRoomSendLocal("AutoKick：准备好了。");
                 AutoKickOn = true;
                 AutoKicker = function(data, days = 1, hours = 12, minutes = 0) {
                     minutes *= 60000;
@@ -754,7 +768,7 @@ async function NEWmenu() {
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "AutoKick: Account was 0 days old."
+                                Text: "AutoKick：帐户是 0 天。"
                             }]
                         });
                     };
@@ -763,9 +777,9 @@ async function NEWmenu() {
             } else {
                 AutoKickOn = false;
                 ServerSocket.off("ChatRoomMessage", AutoKicker);
-                ChatRoomSendLocal("AutoKick: Disabled.");
+                ChatRoomSendLocal("AutoKick：禁用。");
             }
-        } else if ((content.indexOf("/babytalk") == 0) || content.indexOf("/b ") == 0) {
+        } else if ((content.indexOf("/babytalk") == 0) || content.indexOf("/b ") == 0) {  //像婴儿一样说话。
             if (content.includes("/babytalk")) {
                 content = SpeechBabyTalk({
                     Effect: ["RegressedTalk"]
@@ -783,7 +797,7 @@ async function NEWmenu() {
                     "Type": "Chat"
                 });
             }
-        } else if (content.indexOf("/becomeownlover") == 0) {
+        } else if (content.indexOf("/becomeownlover") == 0) {  //成为自己的爱人。
             if (content.includes("yes")) {
                 ServerSend("AccountLovership", {
                     MemberNumber: Player.MemberNumber,
@@ -797,16 +811,16 @@ async function NEWmenu() {
                     MemberNumber: Player.MemberNumber,
                     Action: "CanBeginWedding" && "Accept"
                 });
-                ChatRoomSendLocal("Quick-AccessMenu2: Accomplished. Break-up is done via Club Management.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 完成。 分手是通过俱乐部管理完成的。");
             } else {
                 ChatRoomSendLocal(
-                    "<b>Warning</b>: Uncomfirmed glitch might occur when removing self as lover, during which a random/real lover will be taken\n" +
-                    "Use with risk in mind. Confirm by typing: <b>/becomeownlover yes</b>"
+                    "<b>警告</b>: 删除自己作为情人时可能会出现未经确认的故障，在此期间将随机删除一个情人\n" +
+                    "使用时要考虑到风险。 键入以下内容进行确认： <b>/becomeownlover yes</b>"
                 );
             }
-        }
-        //consider writing a lover break up code to compensate for glitch, if possible.
-        else if (content.indexOf("/becomeownowner") == 0) {
+            //ManagementBreakLover(L)删除第L个情人，从0开始
+        }//如果可能，考虑编写情人分手代码以弥补故障。
+        else if (content.indexOf("/becomeownowner") == 0) {   //成为你自己的主人。
             ServerSend("AccountOwnership", {
                 MemberNumber: Player.MemberNumber,
                 Action: "Propose" && "Accept"
@@ -819,11 +833,10 @@ async function NEWmenu() {
                 MemberNumber: Player.MemberNumber,
                 Action: "CanEndTrial" && "Accept"
             });
-            ChatRoomSendLocal("Quick-AccessMenu2: Accomplished. Break-up is done via Club Management.");
-        }
-        //can't end free from owner, due to club's extreme mode preventing yet not allowing owner to break. Stupid...
-        else if (content.indexOf("/bg1") == 0) {
-            var BackgroundsTagList = [
+            ChatRoomSendLocal("Quick-AccessMenu2: 完成。 分手是通过俱乐部管理完成的。");
+        }//由于俱乐部的极端模式阻止但不允许所有者破坏，因此无法摆脱所有者。 愚蠢的...
+        else if (content.indexOf("/bg1") == 0) {  //添加隐藏聊天室背景。
+            var BackgroundsTagList = [   //创建在线聊天室的所有标签列表
                 BackgroundsTagNone,
                 BackgroundsTagIndoor,
                 BackgroundsTagOutdoor,
@@ -836,7 +849,7 @@ async function NEWmenu() {
                 BackgroundsTagAsylum
             ];
             BackgroundsList.push({
-                Name: "Pandora/Ground/Entrance",
+                Name: "Pandora/Ground/Entrance",   //潘多拉地面入口
                 Tag: [BackgroundsTagIndoor]
             });
             BackgroundsList.push({
@@ -1072,6 +1085,10 @@ async function NEWmenu() {
                 Tag: [BackgroundsTagIndoor]
             });
             BackgroundsList.push({
+                Name: "CraftingWorkshop",
+                Tag: [BackgroundsTagIndoor]
+            });
+            BackgroundsList.push({
                 Name: "Dressing",
                 Tag: [BackgroundsTagIndoor]
             });
@@ -1172,25 +1189,25 @@ async function NEWmenu() {
                 Tag: [BackgroundsTagIndoor]
             });
             ChatCreateBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
-            ChatRoomSendLocal("Quick-AccessMenu2: You can use more backgrounds now.");
-        } else if (content.indexOf("/bg2") == 0) {
+            ChatRoomSendLocal("Quick-AccessMenu2: 您现在可以使用更多背景。");
+        } else if (content.indexOf("/bg2") == 0) {  //使用隐藏的平台背景。
             var bg = content.substring(4).trim();
             if (bg == 0) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: List of hidden platform backgrounds:\n" +
-                    "1 and 2 Balcony - 3 Ballroom\n" +
-                    "4, 5, 6 Bathroom Olivia\n" +
-                    "7 Bedroom Dungeon - 8 Bedroom Edward\n" +
-                    "9 and 10 Bedroom Isabella - 11 Bedroom Melody\n" +
-                    "12, 13, 14 Bedroom Olivia - 15 Black\n" +
-                    "16 Castle Hall - 17 College Art 1\n" +
-                    "18 College Class 1 - 19 College Hall 1\n" +
-                    "20, 21, 22 Countess Hall\n" +
-                    "23 and 24 Dungeon 1\n" +
-                    "25 and 26 Dungeon Cell\n" +
-                    "27, 28, 29 Dungeon Storage\n" +
-                    "30 to 40 Hall (1 to 4) - 41 Maid Bed\n" +
-                    "42 and 43 Terrace - 44 and 45 Wine Cell"
+                    "<b>Quick-AccessMenu2</b>: 隐藏平台背景列表：\n" +
+                    "1 和 2 露台 - 3 舞厅\n" +
+                    "4, 5, 6 奥利维亚的浴室\n" +
+                    "7 地堡卧室 - 8 爱德华的卧室\n" +
+                    "9 和 10 伊莎贝拉的卧室 - 11 梅洛迪的卧室\n" +
+                    "12, 13, 14 奥利维亚的卧室 - 15 黑\n" +
+                    "16 城堡大厅 - 17 学院艺术1\n" +
+                    "18 学院教室1 - 19 学院大厅 1\n" +
+                    "20, 21, 22 伯爵夫人大厅\n" +
+                    "23 和 24 地堡1\n" +
+                    "25 和 26 地堡牢房\n" +
+                    "27, 28, 29 地堡储藏室\n" +
+                    "30 到 40 大厅 (1 to 4) - 41 女仆床\n" +
+                    "42 和 43 露台 - 44 和 45 酒窖"
                 );
             } else if (bg == 1) {
                 ChatCreateBackgroundSelect = '../Screens/Room/Platform/Background/Castle/Balcony';
@@ -1328,11 +1345,11 @@ async function NEWmenu() {
                 ChatCreateBackgroundSelect = '../Screens/Room/PlatformDialog/Background/WineCellar';
                 updateBackground();
             }
-        } else if (content.indexOf("/boost") == 0) {
+        } else if (content.indexOf("/boost") == 0) {  //提升技能，类似于女仆宿舍酒。
             LogAdd("ModifierLevel", "SkillModifier", 105);
             LogAdd("ModifierDuration", "SkillModifier", CurrentTime + 3600000);
-            ChatRoomSendLocal("Quick-AccessMenu2: You feel your senses heightened(bondage/evasion). Can see change in information panel.");
-        } else if (content.indexOf("/chess") == 0) {
+            ChatRoomSendLocal("Quick-AccessMenu2: 你觉得你的技能提高了（束缚/逃避）。 可以在信息面板中看到变化。");
+        } else if (content.indexOf("/chess") == 0) {  //开始国际象棋，必须先指定难度（1 容易 - 2 普通 - 3 困难）。
             CollegeChessGameEndALT = function() {
                 document.removeEventListener("chessOnMove", CollegeChessGameProgress);
                 MiniGameEnded = true;
@@ -1375,6 +1392,10 @@ async function NEWmenu() {
             };
             var targetfinder = new RegExp('^' + targetname + '', 'i');
             var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                var targetnumber = parseInt(targetname);
+                target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+            };
             if (target[0] != null) {
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
@@ -1385,11 +1406,8 @@ async function NEWmenu() {
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Quick-Access Menu2: " + Player.Name + " has used console to alter appearance. If this is undesired, blacklist player.",
-                        Type: "Whisper",
-                        Target: target[0].MemberNumber
-                    })
+                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                    consoleWhisper();
                 };
                 CharacterAppearanceFullRandom(target[0], true);
                 ChatRoomCharacterUpdate(target[0]);
@@ -1608,6 +1626,10 @@ async function NEWmenu() {
                 };
                 var targetfinder = new RegExp('^' + targetname + '', 'i');
                 var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                };
                 if (target[0] != null) {
                     if ((target[0].Name == Player.Name) == false) {
                         ServerSend("ChatRoomChat", {
@@ -1627,6 +1649,10 @@ async function NEWmenu() {
                 };
                 var targetfinder = new RegExp('^' + targetname + '', 'i');
                 var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                };
                 if (target[0] != null) {
                     if ((target[0].Name == Player.Name) == false) {
                         ServerSend("ChatRoomChat", {
@@ -1646,6 +1672,10 @@ async function NEWmenu() {
                 };
                 var targetfinder = new RegExp('^' + targetname + '', 'i');
                 var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                };
                 if (target[0] != null) {
                     if ((target[0].Name == Player.Name) == false) {
                         ServerSend("ChatRoomChat", {
@@ -1749,9 +1779,9 @@ async function NEWmenu() {
                     "<b>/diaper tick</b> to force a tick\n" +
                     " \n" +
                     "To get new clean diapers:\n" +
-                    "<b>/diaper change1</b> (targetname) for normal diapers\n" +
-                    "<b>/diaper change2</b> (targetname) for chastity diapers\n" +
-                    "<b>/diaper change3</b> (targetname) for both diapers\n" +
+                    "<b>/diaper change1</b> (target) for normal diapers\n" +
+                    "<b>/diaper change2</b> (target) for chastity diapers\n" +
+                    "<b>/diaper change3</b> (target) for both diapers\n" +
                     " \n" +
                     "Customisation (before using /diaper start):\n" +
                     "Use <b>/diaper custom</b> for detailed info"
@@ -2430,6 +2460,10 @@ async function NEWmenu() {
             var targetname = stringLock2[1];
             var targetfinder = new RegExp('^' + targetname + '', 'i');
             var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                var targetnumber = parseInt(targetname);
+                target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+            };
             if (target[0] != null) {
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
@@ -2440,11 +2474,8 @@ async function NEWmenu() {
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Quick-Access Menu2: " + Player.Name + " has used console to alter appearance. If this is undesired, blacklist player.",
-                        Type: "Whisper",
-                        Target: target[0].MemberNumber
-                    })
+                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                    consoleWhisper();
                 };
                 mn = Player.MemberNumber;
                 if ((InventoryGet(target[0], "ItemAddon") != null) && (InventoryGet(target[0], "ItemAddon").Asset.AllowLock == true)) {
@@ -3144,6 +3175,10 @@ async function NEWmenu() {
             };
             var targetfinder = new RegExp('^' + targetname + '', 'i');
             var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                var targetnumber = parseInt(targetname);
+                target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);              
+            };
             if (target[0] != null) {
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
@@ -3154,11 +3189,8 @@ async function NEWmenu() {
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Quick-Access Menu2: " + Player.Name + " has used console to alter appearance. If this is undesired, blacklist player.",
-                        Type: "Whisper",
-                        Target: target[0].MemberNumber
-                    })
+                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                    consoleWhisper();
                 };
                 CharacterNaked(target[0]);
                 ChatRoomCharacterUpdate(target[0]);
@@ -3255,21 +3287,44 @@ async function NEWmenu() {
                 document.getElementById("TextAreaChatLog").style.display = "inline";
             }
         } else if (content.indexOf("/pet") == 0) {
-            ServerSend("ChatRoomChat", {
-                Content: "Beep",
-                Type: "Action",
-                Dictionary: [{
-                    Tag: "Beep",
-                    Text: "" + Player.Name + " becomes a cute pet girl."
-                }]
-            });
-            DailyJobPuppyLoad(0);
-            CharacterRefresh(Player);
-            ChatRoomCharacterUpdate(Player);
+            var targetname = content.substring(4).trim();
+            if (targetname == undefined) {
+                targetname = Player.Name
+            };
+            var targetfinder = new RegExp('^' + targetname + '', 'i');
+            var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+            };
+            if (target[0] != null) {
+                ServerSend("ChatRoomChat", {
+                    Content: "Beep",
+                    Type: "Action",
+                    Dictionary: [{
+                        Tag: "Beep",
+                        Text: "" + target[0].Name + " becomes a cute pet girl."
+                    }]
+                });
+                if ((target[0].Name == Player.Name) == false) {
+                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                    consoleWhisper();
+                };
+                CharacterNaked(target[0]);
+                InventoryWearRandom(target[0], "ItemArms", 8, null, false, true, ["ArmbinderJacket", "BitchSuit", "BitchSuitExposed", "Bolero", "BoxTieArmbinder", "Chains", "FullLatexSuit", "HempRope", "InflatableStraightLeotard", "LatexBoxtieLeotard", "LatexButterflyLeotard", "LatexSleevelessLeotard", "LeatherStraitJacket", "StraitLeotard", "StrictLeatherPetCrawler"], true);
+                InventoryWearRandom(target[0], "HairAccessory1", 8, null, false, true, ["Antennae", "BunnyEars1", "BunnyEars2", "CowHorns", "Ears1", "Ears2", "ElfEars", "FoxEars1", "FoxEars2", "FoxEars3", "KittenEars1", "KittenEars2", "MouseEars1", "MouseEars2", "PonyEars1", "PuppyEars1", "PuppyEars2", "RaccoonEars1", "WolfEars1", "WolfEars2"], true);
+                InventoryWearRandom(target[0], "TailStraps", 8, null, false, true, ["CowtailStrap", "FoxTailsStrap", "FoxTailStrap1", "FoxTailStrap2", "HorseTailStrap", "HorseTailStrap1", "KittenTailStrap1", "KittenTailStrap2", "MouseTailStrap1", "MouseTailStrap2", "PuppyTailStrap", "PuppyTailStrap1", "RaccoonStrap", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"], true);
+                if (InventoryGet(target[0], "ItemMouth") == null) InventoryWearRandom(target[0], "ItemMouth", 8);
+                if (InventoryGet(target[0], "ItemNeck") == null) InventoryWearRandom(target[0], "ItemNeck", 8);
+                if (InventoryGet(target[0], "ItemNeckRestraints") == null) InventoryWear(target[0], "ChainLeash", "ItemNeckRestraints", null, 8);
+                CharacterSetActivePose(target[0], "Kneel", true);
+                CharacterRefresh(target[0]);
+                ChatRoomCharacterUpdate(target[0]);
+            };
         } else if (content.indexOf("/pose2") == 0) {
             if (content.endsWith("/pose2")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: The pose2 command must be followed by a pose and optionally a targetname.\n" +
+                    "<b>Quick-AccessMenu2</b>: The pose2 command must be followed by a pose and optionally a target.\n" +
                     " \n" +
                     "Available poses:\n" +
                     "armsfree, belly, boxtied, cuffed, elbowtied, exercise,\n" +
@@ -3277,7 +3332,8 @@ async function NEWmenu() {
                     "sleep, spreadarms1, spreadarms2, spreadeagle1\n" +
                     "spreadeagle2, spreadlegs, stand, suspension,\n" +
                     "tapedhands. Only on yourself: jump, roof.\n" +
-                    "Use <b>/pose2 reset</b> (targetname) to back to neutral pose."
+                    "Use <b>/pose2 reset</b> (target) to back to neutral pose.\n" + 
+		            "If BCE is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails."
                 );
             } else {
                 var stringPose1 = content;
@@ -3288,6 +3344,10 @@ async function NEWmenu() {
                 };
                 var targetfinder = new RegExp('^' + targetname + '', 'i');
                 var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+                if (target[0] == null) {
+                    var targetnumber = parseInt(targetname);
+                    target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+                };
                 if (target[0] != null) {
                     //poses for any player
                     if (content.includes("armsfree")) {
@@ -3933,9 +3993,8 @@ async function NEWmenu() {
                     else if (content.includes("reset")) {
                         CharacterSetActivePose(target[0], null);
                         delete InventoryGet(target[0], 'Emoticon').Property.OverrideHeight;
-                        CurrentScreen === 'ChatRoom' ?
-                            ChatRoomCharacterUpdate(target[0]) :
-                            CharacterRefresh(target[0]);
+                        ChatRoomCharacterUpdate(target[0]);
+                        CharacterRefresh(target[0]);
                     }
                 }
             }
@@ -3964,6 +4023,10 @@ async function NEWmenu() {
             };
             var targetfinder = new RegExp('^' + targetname + '', 'i');
             var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                var targetnumber = parseInt(targetname);
+                target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+            };
             if (target[0] != null) {
                 InformationSheetLoadCharacter(target[0]);
                 OnlineProfileRun();
@@ -3978,6 +4041,10 @@ async function NEWmenu() {
             };
             var targetfinder = new RegExp('^' + targetname + '', 'i');
             var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                var targetnumber = parseInt(targetname);
+                target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+            };
             if (target[0] != null) {
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
@@ -3988,11 +4055,8 @@ async function NEWmenu() {
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Quick-Access Menu2: " + Player.Name + " has used console to alter appearance. If this is undesired, blacklist player.",
-                        Type: "Whisper",
-                        Target: target[0].MemberNumber
-                    })
+                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                    consoleWhisper();
                 };
                 CharacterNaked(target[0]);
                 CharacterRandomUnderwear(target[0]);
@@ -4007,6 +4071,10 @@ async function NEWmenu() {
             };
             var targetfinder = new RegExp('^' + targetname + '', 'i');
             var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                var targetnumber = parseInt(targetname);
+                target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+            };
             if (target[0] != null) {
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
@@ -4017,11 +4085,8 @@ async function NEWmenu() {
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Quick-Access Menu2: " + Player.Name + " has used console to alter appearance. If this is undesired, blacklist player.",
-                        Type: "Whisper",
-                        Target: target[0].MemberNumber
-                    })
+                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                    consoleWhisper();
                 };
                 CharacterRelease(target[0]);
                 ChatRoomCharacterUpdate(target[0]);
@@ -4114,6 +4179,10 @@ async function NEWmenu() {
             };
             var targetfinder = new RegExp('^' + targetname + '', 'i');
             var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                var targetnumber = parseInt(targetname);
+                target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+            };
             if (target[0] != null) {
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
@@ -4124,11 +4193,8 @@ async function NEWmenu() {
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Quick-Access Menu2: " + Player.Name + " has used console to alter appearance. If this is undesired, blacklist player.",
-                        Type: "Whisper",
-                        Target: target[0].MemberNumber
-                    })
+                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                    consoleWhisper();
                 };
                 CharacterFullRandomRestrain(target[0], "ALL");
                 ChatRoomCharacterUpdate(target[0]);
@@ -4823,6 +4889,10 @@ async function NEWmenu() {
             };
             var targetfinder = new RegExp('^' + targetname + '', 'i');
             var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                var targetnumber = parseInt(targetname);
+                target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+            };
             if (target[0] != null) {
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
@@ -4833,11 +4903,8 @@ async function NEWmenu() {
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Quick-Access Menu2: " + Player.Name + " has used console to alter appearance. If this is undesired, blacklist player.",
-                        Type: "Whisper",
-                        Target: target[0].MemberNumber
-                    })
+                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                    consoleWhisper();
                 };
                 CharacterReleaseTotal(target[0]);
                 ChatRoomCharacterUpdate(target[0]);
@@ -4849,6 +4916,10 @@ async function NEWmenu() {
             };
             var targetfinder = new RegExp('^' + targetname + '', 'i');
             var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                var targetnumber = parseInt(targetname);
+                target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+            };
             if (target[0] != null) {
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
@@ -4859,11 +4930,8 @@ async function NEWmenu() {
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Quick-Access Menu2: " + Player.Name + " has used console to alter appearance. If this is undesired, blacklist player.",
-                        Type: "Whisper",
-                        Target: target[0].MemberNumber
-                    })
+                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                    consoleWhisper();
                 };
                 CharacterRandomUnderwear(target[0]);
                 ChatRoomCharacterUpdate(target[0]);
@@ -4878,6 +4946,10 @@ async function NEWmenu() {
             };
             var targetfinder = new RegExp('^' + targetname + '', 'i');
             var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                var targetnumber = parseInt(targetname);
+                target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+            };
             if (target[0] != null) {
                 ServerSend("ChatRoomChat", {
                     Content: "Beep",
@@ -4888,11 +4960,8 @@ async function NEWmenu() {
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
-                    ServerSend("ChatRoomChat", {
-                        Content: "Quick-Access Menu2: " + Player.Name + " has used console to alter appearance. If this is undesired, blacklist player.",
-                        Type: "Whisper",
-                        Target: target[0].MemberNumber
-                    })
+                    ChatRoomTargetMemberNumber = target[0].MemberNumber;
+                    consoleWhisper();
                 };
                 if (lk == null) {
                     CharacterReleaseFromLock(target[0], "CombinationPadlock");
@@ -5276,6 +5345,10 @@ async function NEWmenu() {
             var targetname = content.substring(10).trim();
             var targetfinder = new RegExp('^' + targetname + '', 'i');
             var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                var targetnumber = parseInt(targetname);
+                target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+            };
             if (target[0] != null) {
                 target[0].OnlineSharedSettings.AllowFullWardrobeAccess = true;
                 target[0].OnlineSharedSettings.BlockBodyCosplay = false;
@@ -5286,6 +5359,10 @@ async function NEWmenu() {
             var targetname = content.substring(8).trim();
             var targetfinder = new RegExp('^' + targetname + '', 'i');
             var target = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+            if (target[0] == null) {
+                var targetnumber = parseInt(targetname);
+                target[0] = ChatRoomCharacter.find((x) => x.MemberNumber === targetnumber);
+            };
             if (target[0] != null) {
                 ChatRoomTargetMemberNumber = target[0].MemberNumber;
             }
@@ -5419,7 +5496,11 @@ var ChatRoomSendChat = NEWmenu;
 //greeting message.
 ChatCommandGreeting = function(data) {
     if (CurrentScreen == "ChatRoom" && data.Content == "ServerEnter") {
-        ChatRoomSendLocal("Quick-AccessMenu2.1: Ready, type /help. For any inquiries, join https://discord.gg/YukepB6RVp");
+        ChatRoomSendLocal(
+            "Quick-AccessMenu2 - version 1.4.2: Ready, type <b>/help</b> for general menu.\n" +
+            "Use <b>/help new</b> to get info about changes in current QAM version.\n" +
+            "For any inquiries, join https://discord.gg/YukepB6RVp"
+        );
         ServerSocket.off('ChatRoomMessage', ChatCommandGreeting)
     }
 }
@@ -5486,6 +5567,15 @@ function AutoRelog() {
         Password: LoginPassword
     });
 }
+
+//Other functions
+function consoleWhisper() {
+    ServerSend("ChatRoomChat", {
+        Content: "Quick-Access Menu2: " + Player.Name + " has used console to alter appearance. If this is undesired, blacklist player.",
+        Type: "Whisper",
+        Target: ChatRoomTargetMemberNumber
+    })
+};
 
 function updateBackground() {
     var UpdatedRoom = {
@@ -5710,7 +5800,7 @@ function verboseControl(commande) {
     showM_MOANER_verboseStatus();
 }
 
-//controle sur les gÃ©missements quand on parle
+//controle sur les gÃƒÂ©missements quand on parle
 function talkControl(commande) {
     if (commande == "on") {
         M_MOANER_talkActive = true;
@@ -5720,7 +5810,7 @@ function talkControl(commande) {
     showM_MOANER_talkStatus();
 }
 
-//controle sur les gÃ©missements Ã  l'orgasme
+//controle sur les gÃƒÂ©missements ÃƒÂ  l'orgasme
 function orgasmControl(commande) {
     if (commande == "on") {
         M_MOANER_orgasmActive = true;
@@ -5730,7 +5820,7 @@ function orgasmControl(commande) {
     showM_MOANER_orgasmStatus();
 }
 
-//controle sur les gÃ©missements au lancement d'un vibrateur
+//controle sur les gÃƒÂ©missements au lancement d'un vibrateur
 function vibeControl(commande) {
     if (commande == "on") {
         M_MOANER_vibratorActive = true;
@@ -5740,7 +5830,7 @@ function vibeControl(commande) {
     showM_MOANER_vibratorStatus();
 }
 
-//controle sur les gÃ©missements Ã  la fessÃ©e
+//controle sur les gÃƒÂ©missements ÃƒÂ  la fessÃƒÂ©e
 function spankControl(commande) {
     if (commande == "on") {
         M_MOANER_spankActive = true;
@@ -5896,7 +5986,7 @@ async function MoanerLoginListener() {
                 await new Promise(r => setTimeout(r, 2000));
             }
             //console.log("window.CurrentScreen="+window.CurrentScreen);
-            //console.log("MoanerIsLoaded trouvÃ©");
+            //console.log("MoanerIsLoaded trouvÃƒÂ©");
             MoanerIsLoaded = true;
             M_MOANER_MoanerInitAlteredFns();
             M_MOANER_initControls();
@@ -6046,7 +6136,7 @@ var factor1Moans = [];
 var PROPORTION_MAX = 40;
 
 /******************************************************************/
-//rÃ©agir au chat
+//rÃƒÂ©agir au chat
 /******************************************************************/
 function M_MOANER_reactionExcitation(C, CD) {
 
@@ -6110,8 +6200,8 @@ function M_MOANER_reactionTrigger(data) {
 
 function M_MOANER_reactionSpankWithChat(data) {
     if (M_MOANER_spankActive && M_MOANER_isSpank(data)) {
-        //rÃ©cupÃ©rer le gÃ©missement Ã  appliquer
-        //datas pour gÃ©nÃ©ration des gÃ©missements
+        //rÃƒÂ©cupÃƒÂ©rer le gÃƒÂ©missement ÃƒÂ  appliquer
+        //datas pour gÃƒÂ©nÃƒÂ©ration des gÃƒÂ©missements
         var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
         var moan = getSpankMoan(Factor, Math.random() * 300);
         var msg = ElementValue("InputChat");
@@ -6125,8 +6215,8 @@ function M_MOANER_reactionSpankWithChat(data) {
 
 function M_MOANER_reactionSpankWithoutChat(data) {
     if (M_MOANER_spankActive && M_MOANER_isSpank(data)) {
-        //rÃ©cupÃ©rer le gÃ©missement Ã  appliquer
-        //datas pour gÃ©nÃ©ration des gÃ©missements
+        //rÃƒÂ©cupÃƒÂ©rer le gÃƒÂ©missement ÃƒÂ  appliquer
+        //datas pour gÃƒÂ©nÃƒÂ©ration des gÃƒÂ©missements
         var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
         var moan = getSpankMoan(Factor, Math.random() * 300);
         var msg = ElementValue("InputChat");
@@ -6141,8 +6231,8 @@ function M_MOANER_reactionSpankWithoutChat(data) {
 
 function M_MOANER_reactionVibeWithoutChat(data) {
     if (M_MOANER_vibratorActive && M_MOANER_isVibes(data)) {
-        //rÃ©cupÃ©rer le gÃ©missement Ã  appliquer
-        //datas pour gÃ©nÃ©ration des gÃ©missements
+        //rÃƒÂ©cupÃƒÂ©rer le gÃƒÂ©missement ÃƒÂ  appliquer
+        //datas pour gÃƒÂ©nÃƒÂ©ration des gÃƒÂ©missements
         var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
         var moan = getMoan(Factor, true, Math.random() * 300);
         var msg = ElementValue("InputChat");
@@ -6157,8 +6247,8 @@ function M_MOANER_reactionVibeWithoutChat(data) {
 
 function M_MOANER_reactionVibeWithChat(data) {
     if (M_MOANER_vibratorActive && M_MOANER_isVibes(data)) {
-        //rÃ©cupÃ©rer le gÃ©missement Ã  appliquer
-        //datas pour gÃ©nÃ©ration des gÃ©missements
+        //rÃƒÂ©cupÃƒÂ©rer le gÃƒÂ©missement ÃƒÂ  appliquer
+        //datas pour gÃƒÂ©nÃƒÂ©ration des gÃƒÂ©missements
         var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
         var moan = getMoan(Factor, true, Math.random() * 300);
         var msg = ElementValue("InputChat");
@@ -6206,8 +6296,8 @@ function M_MOANER_isPlayerTarget(data) {
 }
 
 function M_MOANER_applyMoanToMsg(C, CD) {
-    //dÃ©terminer le nombre de gÃ©missements
-    //calculer Ã§a en fonction du nombre de mots
+    //dÃƒÂ©terminer le nombre de gÃƒÂ©missements
+    //calculer ÃƒÂ§a en fonction du nombre de mots
     //proportion: PROPORTION_MAX*niveauExcitation
     //PROPORTION_MAX=40%
     var proportion = C.ArousalSettings.Progress * PROPORTION_MAX / 10000;
@@ -6218,11 +6308,11 @@ function M_MOANER_applyMoanToMsg(C, CD) {
     var stop = false;
     var finalTextList = [];
 
-    //rÃ©cupÃ©rer les gÃ©missements Ã  appliquer
-    //datas pour gÃ©nÃ©ration des gÃ©missements
+    //rÃƒÂ©cupÃƒÂ©rer les gÃƒÂ©missements ÃƒÂ  appliquer
+    //datas pour gÃƒÂ©nÃƒÂ©ration des gÃƒÂ©missements
     var Factor = Math.floor(C.ArousalSettings.Progress / 20);
     while (currentIndex < CDList.length) {
-        //si le prochain mot contient une parenthÃ¨se, on arrÃ¨te la rÃ©partission des gÃ©missements)
+        //si le prochain mot contient une parenthÃƒÂ¨se, on arrÃƒÂ¨te la rÃƒÂ©partission des gÃƒÂ©missements)
         var currentWord = CDList[currentIndex++];
         var presenceParenthese = M_MOANER_detectParentheses(currentWord);
         if (presenceParenthese == 1) {
@@ -6279,13 +6369,13 @@ function getMoan(Factor, isStimulated, seed) {
     //M_MOANER_logDebug("getMoan: factor="+Factor);
     //M_MOANER_logDebug("getMoan: isStimulated="+isStimulated);
     if (!isStimulated) return "";
-    //sÃ©lectionner un gÃ©missement
+    //sÃƒÂ©lectionner un gÃƒÂ©missement
     return " " + selectMoan(Factor, seed);
 }
 
 function getSpankMoan(Factor, seed) {
     let gemissement;
-    //selon le niveau de fetichisme fessÃ©e
+    //selon le niveau de fetichisme fessÃƒÂ©e
     let activity = getActivityTaste("Spank");
     if (activity == undefined) return "";
     let activityTaste = activity.Self;
