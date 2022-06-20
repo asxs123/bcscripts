@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Quick-AccessMenu2.1
 // @namespace https://www.bondageprojects.com/
-// @version 1.4.1
+// @version 1.4.2
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -1355,7 +1355,7 @@ async function NEWmenu() {
                 MiniGameEnded = true;
                 ChessEndStatus = "Draw";
                 ElementRemove("DivChessBoard");
-                CommonDynamicFunction(MiniGameReturnFunction + "()");
+                //CommonDynamicFunction(MiniGameReturnFunction + "()");
                 CommonSetScreen("Online", "ChatRoom");
                 CurrentScreen = "ChatRoom";
                 ChatRoomDrawCharacter();
@@ -1369,7 +1369,7 @@ async function NEWmenu() {
                 const playerStarts = Math.random() < 0.5;
                 ChessCharacterWhite = playerStarts ? Player : CollegeChessOpponent;
                 ChessCharacterBlack = playerStarts ? CollegeChessOpponent : Player;
-                MiniGameStart("Chess", CollegeChessDifficulty, "CollegeChessGameEndALT");
+                MiniGameStart("Chess", CollegeChessDifficulty, "CollegeChessGameEndALT");//以设定的难度开始给定的迷你游戏并保持
                 document.addEventListener("chessOnMove", CollegeChessGameProgress);
             };
             var chessdifficulty = content.substring(6).trim();
@@ -1379,13 +1379,13 @@ async function NEWmenu() {
                 CollegeChessGameStartALT(chessdifficulty);
                 setTimeout(function() {
                     CommonSetScreen("Online", "ChatRoom");
-                    ElementPositionFix("DivChessBoard", null, -1000, 0);
+                    //ElementPositionFix("DivChessBoard", null, -1000, 0);
                 }, 2000);
             } else {
                 ChessOn = false;
                 CollegeChessGameEndALT();
             }
-        } else if (content.indexOf("/clothes") == 0) {
+        } else if (content.indexOf("/clothes") == 0) {//改变衣服。
             var targetname = content.substring(8).trim();
             if (targetname == undefined) {
                 targetname = Player.Name
@@ -1402,7 +1402,7 @@ async function NEWmenu() {
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers put random clothes on " + target[0].Name + " body."
+                        Text: "魔法激光使 " + target[0].Name + " 换装。"
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
@@ -1412,9 +1412,9 @@ async function NEWmenu() {
                 CharacterAppearanceFullRandom(target[0], true);
                 ChatRoomCharacterUpdate(target[0]);
             }
-        } else if (content.indexOf("/clubhelp") == 0) {
+        } else if (content.indexOf("/clubhelp") == 0) {//显示游戏的标准命令（以及可选的 BCE 命令）
             CommandPrintHelpFor(Commands);
-        } else if ((content.indexOf("/collarremove") == 0) || (content.indexOf("/removecollar") == 0)) {
+        } else if ((content.indexOf("/collarremove") == 0) || (content.indexOf("/removecollar") == 0)) {//删除奴隶/所有者项圈。 也可以是：/removecollar。
             ServerSend("ChatRoomChat", {
                 Content: "PlayerOwnerCollarRelease",
                 Type: "Action",
@@ -1427,7 +1427,7 @@ async function NEWmenu() {
             LogAdd("Released.Collar", "OwnerRule");
             InventoryRemove(Player, "ItemNeck");
             ChatRoomCharacterItemUpdate(Player, "ItemNeck");
-        } else if (content.indexOf("/college") == 0) {
+        } else if (content.indexOf("/college") == 0) {//进入大学，绕过要求。
             ChatRoomSetLastChatRoom("");
             ServerSend("ChatRoomLeave", "");
             OnlineGameName = "";
@@ -1445,10 +1445,10 @@ async function NEWmenu() {
             CollegeEntranceCanGoTeacher = function() {
                 return true;
             }
-        } else if (content.indexOf("/colorchanger") == 0) {
+        } else if (content.indexOf("/colorchanger") == 0) {//获得颜色变化的动画。 使用将提供更多信息。
 
             if (content.includes("custom") || content.includes("set") || content.includes("select")) {
-                ChatRoomSendLocal("Quick-AccessMenu2: You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 您有 5 秒钟的时间点击目标，选择区域。 如果成功，将返回。 如果没有，请重试。");
                 setTimeout(function() {
                     if (CurrentCharacter.FocusGroup.Name) {
                         var RandomColor = null;
@@ -5800,7 +5800,7 @@ function verboseControl(commande) {
     showM_MOANER_verboseStatus();
 }
 
-//controle sur les gÃƒÂ©missements quand on parle
+//controle sur les gÃ©missements quand on parle
 function talkControl(commande) {
     if (commande == "on") {
         M_MOANER_talkActive = true;
@@ -5810,7 +5810,7 @@ function talkControl(commande) {
     showM_MOANER_talkStatus();
 }
 
-//controle sur les gÃƒÂ©missements ÃƒÂ  l'orgasme
+//controle sur les gÃ©missements Ã  l'orgasme
 function orgasmControl(commande) {
     if (commande == "on") {
         M_MOANER_orgasmActive = true;
@@ -5820,7 +5820,7 @@ function orgasmControl(commande) {
     showM_MOANER_orgasmStatus();
 }
 
-//controle sur les gÃƒÂ©missements au lancement d'un vibrateur
+//controle sur les gÃ©missements au lancement d'un vibrateur
 function vibeControl(commande) {
     if (commande == "on") {
         M_MOANER_vibratorActive = true;
@@ -5830,7 +5830,7 @@ function vibeControl(commande) {
     showM_MOANER_vibratorStatus();
 }
 
-//controle sur les gÃƒÂ©missements ÃƒÂ  la fessÃƒÂ©e
+//controle sur les gÃ©missements Ã  la fessÃ©e
 function spankControl(commande) {
     if (commande == "on") {
         M_MOANER_spankActive = true;
@@ -5986,7 +5986,7 @@ async function MoanerLoginListener() {
                 await new Promise(r => setTimeout(r, 2000));
             }
             //console.log("window.CurrentScreen="+window.CurrentScreen);
-            //console.log("MoanerIsLoaded trouvÃƒÂ©");
+            //console.log("MoanerIsLoaded trouvÃ©");
             MoanerIsLoaded = true;
             M_MOANER_MoanerInitAlteredFns();
             M_MOANER_initControls();
@@ -6136,7 +6136,7 @@ var factor1Moans = [];
 var PROPORTION_MAX = 40;
 
 /******************************************************************/
-//rÃƒÂ©agir au chat
+//rÃ©agir au chat
 /******************************************************************/
 function M_MOANER_reactionExcitation(C, CD) {
 
@@ -6200,8 +6200,8 @@ function M_MOANER_reactionTrigger(data) {
 
 function M_MOANER_reactionSpankWithChat(data) {
     if (M_MOANER_spankActive && M_MOANER_isSpank(data)) {
-        //rÃƒÂ©cupÃƒÂ©rer le gÃƒÂ©missement ÃƒÂ  appliquer
-        //datas pour gÃƒÂ©nÃƒÂ©ration des gÃƒÂ©missements
+        //rÃ©cupÃ©rer le gÃ©missement Ã  appliquer
+        //datas pour gÃ©nÃ©ration des gÃ©missements
         var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
         var moan = getSpankMoan(Factor, Math.random() * 300);
         var msg = ElementValue("InputChat");
@@ -6215,8 +6215,8 @@ function M_MOANER_reactionSpankWithChat(data) {
 
 function M_MOANER_reactionSpankWithoutChat(data) {
     if (M_MOANER_spankActive && M_MOANER_isSpank(data)) {
-        //rÃƒÂ©cupÃƒÂ©rer le gÃƒÂ©missement ÃƒÂ  appliquer
-        //datas pour gÃƒÂ©nÃƒÂ©ration des gÃƒÂ©missements
+        //rÃ©cupÃ©rer le gÃ©missement Ã  appliquer
+        //datas pour gÃ©nÃ©ration des gÃ©missements
         var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
         var moan = getSpankMoan(Factor, Math.random() * 300);
         var msg = ElementValue("InputChat");
@@ -6231,8 +6231,8 @@ function M_MOANER_reactionSpankWithoutChat(data) {
 
 function M_MOANER_reactionVibeWithoutChat(data) {
     if (M_MOANER_vibratorActive && M_MOANER_isVibes(data)) {
-        //rÃƒÂ©cupÃƒÂ©rer le gÃƒÂ©missement ÃƒÂ  appliquer
-        //datas pour gÃƒÂ©nÃƒÂ©ration des gÃƒÂ©missements
+        //rÃ©cupÃ©rer le gÃ©missement Ã  appliquer
+        //datas pour gÃ©nÃ©ration des gÃ©missements
         var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
         var moan = getMoan(Factor, true, Math.random() * 300);
         var msg = ElementValue("InputChat");
@@ -6247,8 +6247,8 @@ function M_MOANER_reactionVibeWithoutChat(data) {
 
 function M_MOANER_reactionVibeWithChat(data) {
     if (M_MOANER_vibratorActive && M_MOANER_isVibes(data)) {
-        //rÃƒÂ©cupÃƒÂ©rer le gÃƒÂ©missement ÃƒÂ  appliquer
-        //datas pour gÃƒÂ©nÃƒÂ©ration des gÃƒÂ©missements
+        //rÃ©cupÃ©rer le gÃ©missement Ã  appliquer
+        //datas pour gÃ©nÃ©ration des gÃ©missements
         var Factor = Math.floor(Player.ArousalSettings.Progress / 20);
         var moan = getMoan(Factor, true, Math.random() * 300);
         var msg = ElementValue("InputChat");
@@ -6296,8 +6296,8 @@ function M_MOANER_isPlayerTarget(data) {
 }
 
 function M_MOANER_applyMoanToMsg(C, CD) {
-    //dÃƒÂ©terminer le nombre de gÃƒÂ©missements
-    //calculer ÃƒÂ§a en fonction du nombre de mots
+    //dÃ©terminer le nombre de gÃ©missements
+    //calculer Ã§a en fonction du nombre de mots
     //proportion: PROPORTION_MAX*niveauExcitation
     //PROPORTION_MAX=40%
     var proportion = C.ArousalSettings.Progress * PROPORTION_MAX / 10000;
@@ -6308,11 +6308,11 @@ function M_MOANER_applyMoanToMsg(C, CD) {
     var stop = false;
     var finalTextList = [];
 
-    //rÃƒÂ©cupÃƒÂ©rer les gÃƒÂ©missements ÃƒÂ  appliquer
-    //datas pour gÃƒÂ©nÃƒÂ©ration des gÃƒÂ©missements
+    //rÃ©cupÃ©rer les gÃ©missements Ã  appliquer
+    //datas pour gÃ©nÃ©ration des gÃ©missements
     var Factor = Math.floor(C.ArousalSettings.Progress / 20);
     while (currentIndex < CDList.length) {
-        //si le prochain mot contient une parenthÃƒÂ¨se, on arrÃƒÂ¨te la rÃƒÂ©partission des gÃƒÂ©missements)
+        //si le prochain mot contient une parenthÃ¨se, on arrÃ¨te la rÃ©partission des gÃ©missements)
         var currentWord = CDList[currentIndex++];
         var presenceParenthese = M_MOANER_detectParentheses(currentWord);
         if (presenceParenthese == 1) {
@@ -6369,13 +6369,13 @@ function getMoan(Factor, isStimulated, seed) {
     //M_MOANER_logDebug("getMoan: factor="+Factor);
     //M_MOANER_logDebug("getMoan: isStimulated="+isStimulated);
     if (!isStimulated) return "";
-    //sÃƒÂ©lectionner un gÃƒÂ©missement
+    //sÃ©lectionner un gÃ©missement
     return " " + selectMoan(Factor, seed);
 }
 
 function getSpankMoan(Factor, seed) {
     let gemissement;
-    //selon le niveau de fetichisme fessÃƒÂ©e
+    //selon le niveau de fetichisme fessÃ©e
     let activity = getActivityTaste("Spank");
     if (activity == undefined) return "";
     let activityTaste = activity.Self;
@@ -7412,6 +7412,34 @@ function ChatRoomSyncItem(data) {
             }
             return;
         }
+}
+
+function DialogExtendItem(Item, SourceItem) {
+    const C = CharacterGetCurrent();
+    StruggleProgress = -1;
+    StruggleLockPickOrder = null;
+    DialogLockMenu = false;
+    DialogCraftingMenu = false;
+    DialogColor = null;
+    DialogFocusItem = Item;
+    DialogFocusSourceItem = SourceItem;
+    CommonDynamicFunction("Inventory" + Item.Asset.Group.Name + Item.Asset.Name + "Load()");
+}
+
+function CharacterRefresh(C, Push, RefreshDialog = true) {
+    CharacterLoadEffect(C);
+    CharacterLoadPose(C);
+    CharacterLoadCanvas(C);
+    C.RunScripts = (!C.AccountName.startsWith('Online-') || !(Player.OnlineSettings && Player.OnlineSettings.DisableAnimations)) && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1);
+    C.HasScriptedAssets = !!C.Appearance.find(CA => CA.Asset.DynamicScriptDraw);
+    if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) {
+        ChatRoomRefreshChatSettings();
+        ServerPlayerAppearanceSync();
+    }
+    var Current = CharacterGetCurrent();
+    if (Current && C.ID == Current.ID && RefreshDialog) {
+        CharacterRefreshDialog(C);
+    }
 }
 
 function CharacterNickname(C) {
