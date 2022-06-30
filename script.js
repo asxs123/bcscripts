@@ -45,7 +45,7 @@ async function NEWmenu() {
                     "<b>Quick-AccessMenu2</b>: 束缚命令：\n" +
                     "<b>/lock</b> = 在所有可锁定的项目上添加锁。 使用 /help lock 获取更多信息。\n" +
                     "<b>/pet</b> = 变成一个完全约束宠物女孩。\n" +
-                    "<b>/randomize</b> (targetname) = 裸体+内衣+衣服+约束命令。\n" +
+                    "<b>/randomize</b> (targetname) = 添加随机约束和衣服。\n" +
                     "<b>/restrain</b> (targetname) = 添加随机约束。\n" +
                     "<b>/solidity</b> (value) = 改变大多数当前约束的可靠性。 值必须介于 1 和 99 之间。使用高值使逃生成为不可能！"
                 );
@@ -55,9 +55,9 @@ async function NEWmenu() {
                     "<b>/becomeownlover</b> = 成为自己的爱人。\n" +
                     "<b>/becomeownowner</b> = 成为你自己的主人。\n" +
                     "<b>/difficulty</b> (number) = 改变游戏难度。 0 角色扮演 - 1 常规 - 2 硬核 - 3 极端 **\n" +
-                    "<b>/giveeverything</b> = 获得所有项目。\n" +
+                    "<b>/giveeverything</b> = 获得所有物品（包括隐藏物品）。\n" +
                     "<b>/maxstatistics</b> = 获得最大金钱声望技能。\n" +
-                    "<b>/money</b> (value) = 给予或接受金钱。\n" +
+                    "<b>/money</b> (value) = 修改金钱数量。\n" +
                     "<b>/name</b> (newnamehere) = 选择一个临时的新昵称。\n" +
                     "<b>/reputation</b> (reputation) (level) = 改变声望。 *\n" +
                     "<b>/resetinventory</b> = 清空你的库存。 会先发出警告。\n" +
@@ -71,7 +71,7 @@ async function NEWmenu() {
                 ChatRoomSendLocal(
                     "<b>Quick-AccessMenu2</b>: 聊天命令：\n" +
                     "<b>/autokick</b> = 自动踢出 0 天的帐户。\n" +
-                    "<b>/erase</b> = 删除聊天。\n" +
+                    "<b>/erase</b> = 删除聊天记录。\n" +
                     "<b>/font</b> (newfont) (size) = 更改 BC 中的字体。 使用将提供更多信息。\n" +
                     "<b>/frlist</b> = 允许在 15 秒内访问好友列表，其中包含指向其他房间的可点击链接。\n" +
                     "<b>/hiddenmessages</b> = 切换显示游戏隐藏的消息。\n" +
@@ -169,7 +169,7 @@ async function NEWmenu() {
                     "<b>/babytalk</b> (stuffhere) = 像婴儿一样说话。 也可以：/b\n" +
                     "<b>/gagheavy</b> (stuffhere) = 像严重堵嘴一样说话。也可以: /gv\n" +
                     "<b>/gaglight</b> (stuffhere) = 像堵嘴一样说话。 也可以: /gl\n" +
-                    "<b>/gagtalk</b> = 切换以解码/不解码堵嘴的人说话。\n" +
+                    "<b>/gagtalk</b> = 解码/不解码被堵嘴人的谈话。\n" +
                     "<b>/moaner</b> = 性欲和刺激时呻吟。 使用将提供更多信息。\n" +
                     "<b>/talkbaby</b> = 切换堵嘴（ADBL）。 记住一次只能使用一个。\n" +
                     "<b>/talkgag light/heavy</b> = 切换堵嘴(轻/重)。 记住一次只能使用一个。\n" +
@@ -204,11 +204,11 @@ async function NEWmenu() {
                     "<b>/asylum</b> (minutes) = 进入庇护所，绕过要求。 如果您是病人，请指定分钟。\n" +
                     "<b>/chess</b> (difficulty) = 开始国际象棋，必须先指定难度（1 容易 - 2 普通 - 3 困难）。\n" +
                     "<b>/college</b> = 进入大学，绕过要求。\n" +
-                    "<b>/game</b> (minigamehere) = 启动一个小游戏。 使用将提供更多信息。\n" +
+                    "<b>/game</b> (minigamehere) = 启动一个小游戏,会离开当前聊天室。 使用将提供更多信息。\n" +
                     "<b>/ggts</b> (minutes) (level) = 在指定时间内进入 ggts 庇护培训。 级别必须在 1 到 6 之间。\n" +
-                    "<b>/keydeposit</b> (hours) = 将您的钥匙安全地保存在保险库中。\n" +
-                    "<b>/kinkydungeon</b> = launches Kinky Dungeon. Options: devious to toggle deviouschallenge, cheat to start with cheats.\n" +
-                    "<b>/patreoncheats</b> = changes settings of patreon cheats. All except college uniform, is auto toggled by default.\n" +
+                    "<b>/keydeposit</b> (hours) = 将您的钥匙安全地保存在钥匙保管出中。\n" +
+                    "<b>/kinkydungeon</b> = 开始淫靡地城。 推出变态地牢。选项：devious 切换迂回挑战，cheat 以开始作弊。\n" +
+                    "<b>/patreoncheats</b> = 更改作弊的设置。 除了大学制服外，所有的都是默认自动切换的。\n" +
                     "<b>/prison</b> (minutes) = 进入潘多拉监狱。 超过 60 分钟是可能的。\n" +
                     "<b>/store</b> = 离开聊天室，去商店。 显示隐藏的项目。\n" +
                     "<b>/timercell</b> (minutes) = 留在隔离室。 超过 60 分钟是可能的。 提示：之前使用束缚命令！"
@@ -1455,7 +1455,7 @@ async function NEWmenu() {
                         var ColorTargetNameCustom = CurrentCharacter;
                         if (ColorTargetNameCustom !== Player) {
                             ServerSend("ChatRoomChat", {
-                                Content: "Quick-Access Menu2: " + Player.Name + " has used colorchanger on you. If this is undesired, blacklist player.",
+                                Content: "Quick-Access Menu2: " + Player.Name + " 在你身上使用了换色器。 如果这是不希望的，将她列入黑名单。",
                                 Type: "Whisper",
                                 Target: ColorTargetNameCustom.MemberNumber
                             })
@@ -1535,7 +1535,7 @@ async function NEWmenu() {
                     }
                 }, 5000);
             } else if (content.includes("eyes")) {
-                ChatRoomSendLocal("Quick-AccessMenu2: You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 您有 5 秒钟的时间点击目标，选择区域。 如果成功，将返回。 如果没有，请重试。");
                 setTimeout(function() {
                     if (CurrentCharacter) {
                         var ColorTargetNameEyes = CurrentCharacter;
@@ -1554,7 +1554,7 @@ async function NEWmenu() {
                         DialogLeave();
                         if (ColorTargetNameEyes !== Player) {
                             ServerSend("ChatRoomChat", {
-                                Content: "Quick-Access Menu2: " + Player.Name + " has used colorchanger on you. If this is undesired, blacklist player.",
+                                Content: "Quick-Access Menu2: " + Player.Name + " 在你身上使用了换色器。 如果这是不希望的，将她列入黑名单。",
                                 Type: "Whisper",
                                 Target: ColorTargetNameEyes.MemberNumber
                             })
@@ -1562,7 +1562,7 @@ async function NEWmenu() {
                     }
                 }, 5000);
             } else if (content.includes("hair")) {
-                ChatRoomSendLocal("Quick-AccessMenu2: You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 您有 5 秒钟的时间点击目标，选择区域。 如果成功，将返回。 如果没有，请重试。");
                 setTimeout(function() {
                     if (CurrentCharacter) {
                         var ColorTargetNameHair = CurrentCharacter;
@@ -1581,7 +1581,7 @@ async function NEWmenu() {
                         DialogLeave();
                         if (ColorTargetNameHair !== Player) {
                             ServerSend("ChatRoomChat", {
-                                Content: "Quick-Access Menu2: " + Player.Name + " has used colorchanger on you. If this is undesired, blacklist player.",
+                                Content: "Quick-Access Menu2: " + Player.Name + " 在你身上使用了换色器。 如果这是不希望的，将她列入黑名单。",
                                 Type: "Whisper",
                                 Target: ColorTargetNameHair.MemberNumber
                             })
@@ -1605,18 +1605,18 @@ async function NEWmenu() {
                 this.ColorTargetNameCustom = undefined;
             } else if (content.endsWith("/colorchanger")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: The colorchanger command:\n" +
-                    "To preselect, two choices exist, type: <b>/colorchanger hair</b> or <b>/colorchanger eyes</b>\n" +
-                    "To manually select area, type: <b>/colorchanger set</b> or <b>/colorchanger select</b> or <b>/colorchanger custom</b>\n" +
-                    "Manual selection can only target 10 areas at a time,\n" +
-                    "then requires to be reset to reuse, type: <b>/colorchanger stop</b> or <b>/colorchanger reset</b>\n" +
-                    "Only 1 target can be active at a time"
+                    "<b>Quick-AccessMenu2</b>: 换色器命令：\n" +
+                    "要预先选择，存在两个选项，请键入： <b>/colorchanger hair</b> or <b>/colorchanger eyes</b>\n" +
+                    "要手动选择区域，请键入：<b>/colorchanger set</b> or <b>/colorchanger select</b> or <b>/colorchanger custom</b>\n" +
+                    "手动选择一次只能针对10个区域，\n" +
+                    "然后需要重置以重用，键入： <b>/colorchanger stop</b> or <b>/colorchanger reset</b>\n" +
+                    "一次只能激活 1 个目标"
                 );
             }
-        } else if (content.indexOf("/cum") == 0) {
+        } else if (content.indexOf("/cum") == 0) {//引起高潮。
             ActivityOrgasmRuined = false;
             ActivityOrgasmStart(Player);
-        } else if (content.indexOf("/diaper") == 0) {
+        } else if (content.indexOf("/diaper") == 0) { //玩尿布（ABDL 游戏）。 使用将提供更多信息。
             if (content.includes("change1")) {
                 var stringChange1 = content;
                 var stringChange2 = stringChange1.split(/[ ,]+/);
@@ -1633,7 +1633,7 @@ async function NEWmenu() {
                 if (target[0] != null) {
                     if ((target[0].Name == Player.Name) == false) {
                         ServerSend("ChatRoomChat", {
-                            Content: "Quick-Access Menu2: " + Player.Name + " will change your normal diapers and allows you to use the /diaper change1 command.",
+                            Content: "Quick-Access Menu2: " + Player.Name + " 将更换您的普通尿布并允许您使用 /diaper change1 命令。",
                             Type: "Whisper",
                             Target: target[0].MemberNumber
                         })
@@ -1656,7 +1656,7 @@ async function NEWmenu() {
                 if (target[0] != null) {
                     if ((target[0].Name == Player.Name) == false) {
                         ServerSend("ChatRoomChat", {
-                            Content: "Quick-Access Menu2: " + Player.Name + " will change your chastity diapers and allows you to use the /diaper change2 command.",
+                            Content: "Quick-Access Menu2: " + Player.Name + " 将更换您的贞操尿布并允许您使用 /diaper change2 命令。",
                             Type: "Whisper",
                             Target: target[0].MemberNumber
                         })
@@ -1679,7 +1679,7 @@ async function NEWmenu() {
                 if (target[0] != null) {
                     if ((target[0].Name == Player.Name) == false) {
                         ServerSend("ChatRoomChat", {
-                            Content: "Quick-Access Menu2: " + Player.Name + " will change all your diapers and allows you to use the /diaper change3 command.",
+                            Content: "Quick-Access Menu2: " + Player.Name + " 将更换您所有的尿布，并允许您使用 /diaper change3 命令。",
                             Type: "Whisper",
                             Target: target[0].MemberNumber
                         })
@@ -1691,13 +1691,13 @@ async function NEWmenu() {
                 var stringSet2 = stringSet1.split(/[ ,]+/);
                 var setchange = stringSet2[2];
                 diaperDefaultValues.desperationLevel = setchange;
-                ChatRoomSendLocal("Quick-AccessMenu2: Your desperation level has been changed.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 你的绝望程度已经改变。");
             } else if (content.includes("setmesschance")) {
                 var stringSet1 = content;
                 var stringSet2 = stringSet1.split(/[ ,]+/);
                 var setchange = stringSet2[2];
                 diaperDefaultValues.messChance = setchange;
-                ChatRoomSendLocal("Quick-AccessMenu2: Your chance to mess diapers has been changed.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 你弄脏尿布的机会已经改变。");
             } else if (content.includes("setmess1")) {
                 if (InventoryGet(Player, "Panties") != null) {
                     if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
@@ -1706,7 +1706,7 @@ async function NEWmenu() {
                         var setchange = stringSet2[2];
                         if (setchange < diaperDefaultValues.wetLevelInner) {
                             diaperDefaultValues.messLevelInner = setchange;
-                            ChatRoomSendLocal("Quick-AccessMenu2: Your mess level for normal diapers has been changed.");
+                            ChatRoomSendLocal("Quick-AccessMenu2: 更改了普通尿布的混乱程度。");
                         }
                     }
                 }
@@ -1718,7 +1718,7 @@ async function NEWmenu() {
                         var setchange = stringSet2[2];
                         if (setchange < diaperDefaultValues.wetLevelOuter) {
                             diaperDefaultValues.messLevelOuter = setchange;
-                            ChatRoomSendLocal("Quick-AccessMenu2: Your mess level for chastity diapers has been changed.");
+                            ChatRoomSendLocal("Quick-AccessMenu2: 更改了贞操尿布的混乱程度。");
                         }
                     }
                 }
@@ -1727,19 +1727,19 @@ async function NEWmenu() {
                 var stringSet2 = stringSet1.split(/[ ,]+/);
                 var setchange = stringSet2[2];
                 diaperDefaultValues.regressionLevel = setchange;
-                ChatRoomSendLocal("Quick-AccessMenu2: Your regression level has been changed.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 你的回归水平已经改变。");
             } else if (content.includes("settimer")) {
                 var stringSet1 = content;
                 var stringSet2 = stringSet1.split(/[ ,]+/);
                 var setchange = stringSet2[2];
                 diaperDefaultValues.baseTimer = setchange;
-                ChatRoomSendLocal("Quick-AccessMenu2: Your wet/mess timer has been changed.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 您的湿/脏计时器已更改。");
             } else if (content.includes("setwetchance")) {
                 var stringSet1 = content;
                 var stringSet2 = stringSet1.split(/[ ,]+/);
                 var setchange = stringSet2[2];
                 diaperDefaultValues.wetChance = setchange;
-                ChatRoomSendLocal("Quick-AccessMenu2: Your chance to wet diapers has been changed.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 您弄湿尿布的机会已更改。");
             } else if (content.includes("setwet1")) {
                 if (InventoryGet(Player, "Panties") != null) {
                     if (InventoryGet(Player, "Panties").Asset.Name == "BulkyDiaper" || InventoryGet(Player, "Panties").Asset.Name === "PoofyDiaper") {
@@ -1748,7 +1748,7 @@ async function NEWmenu() {
                         var setchange = stringSet2[2];
                         if (setchange > diaperDefaultValues.messLevelInner) {
                             diaperDefaultValues.wetLevelInner = setchange;
-                            ChatRoomSendLocal("Quick-AccessMenu2: Your wet level for normal diapers has been changed.");
+                            ChatRoomSendLocal("Quick-AccessMenu2: 你的普通纸尿裤的湿润度已更改。");
                         }
                     }
                 }
@@ -1760,7 +1760,7 @@ async function NEWmenu() {
                         var setchange = stringSet2[2];
                         if (setchange > diaperDefaultValues.messLevelOuter) {
                             diaperDefaultValues.wetLevelOuter = setchange;
-                            ChatRoomSendLocal("Quick-AccessMenu2: Your wet level for chastity diapers has been changed.");
+                            ChatRoomSendLocal("Quick-AccessMenu2: 你的贞操尿布的湿润度已经改变。");
                         }
                     }
                 }
@@ -1772,36 +1772,36 @@ async function NEWmenu() {
                 diaperTick();
             } else if (content.endsWith("/diaper")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: The diaper command must include an action.\n" +
-                    "You need to wear one or two layers of diapers (only bulky and poofy versions)\n" +
-                    "<b>/diaper start</b> to enable the script\n" +
-                    "<b>/diaper stop</b> to disable the script\n" +
-                    "<b>/diaper tick</b> to force a tick\n" +
+                    "<b>Quick-AccessMenu2</b>: 尿布命令必须包含一个动作。\n" +
+                    "您需要穿一层或两层尿布（仅限笨重和蓬松版）\n" +
+                    "<b>/diaper start</b> 启用脚本\n" +
+                    "<b>/diaper stop</b> 禁用脚本\n" +
+                    "<b>/diaper tick</b> 强制勾选\n" +
                     " \n" +
-                    "To get new clean diapers:\n" +
-                    "<b>/diaper change1</b> (target) for normal diapers\n" +
-                    "<b>/diaper change2</b> (target) for chastity diapers\n" +
-                    "<b>/diaper change3</b> (target) for both diapers\n" +
+                    "要获得新的干净尿布：\n" +
+                    "<b>/diaper change1</b> (target) 普通纸尿裤\n" +
+                    "<b>/diaper change2</b> (target)贞操尿布\n" +
+                    "<b>/diaper change3</b> (target) 两个尿布\n" +
                     " \n" +
-                    "Customisation (before using /diaper start):\n" +
-                    "Use <b>/diaper custom</b> for detailed info"
+                    "自定义（在使用 /diaper start 之前）：\n" +
+                    "使用 <b>/diaper custom</b> 获取详细信息"
                 );
             } else if (content.includes("custom")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: Diaper customisation (before using /diaper start):\n" +
-                    "<b>/diaper setdesperation</b> (value between 0 and 3) for desperation level, normally controlled by having a milk bottle used on you\n" +
-                    "<b>/diaper setregression</b> (value between 0 and 3) for regression level, normally controlled by wearing Nursery Milk for an extended period of time\n" +
-                    "<b>/diaper settimer</b> (minutes) to change the wet/mess timer\n" +
-                    "<b>/diaper setwetchance</b> (value between 0 and 1) to control how often you will wet\n" +
-                    "<b>/diaper setmesschance</b> (value between 0 and 1) to control how often you will mess. Make sure this is lower than wetchance.\n" +
-                    "<b>/diaper setwet1</b> (value)* for wet level of normal diapers\n" +
-                    "<b>/diaper setwet2</b> (value)* for wet level of chastity diapers\n" +
-                    "<b>/diaper setmess1</b> (value)* for mess level of normal diapers\n" +
-                    "<b>/diaper setmess2</b> (value)* for mess level of chastity diapers\n" +
-                    "* = value between 0 and 2"
+                    "<b>Quick-AccessMenu2</b>: 尿布定制（在使用 /diaper start 之前）：\n" +
+                    "<b>/diaper setdesperation</b> (value between 0 and 3) 绝望程度，通常通过在你身上使用奶瓶来控制\n" +
+                    "<b>/diaper setregression</b> (value between 0 and 3) 用于回归水平，通常通过长时间饮用婴儿奶粉来控制\n" +
+                    "<b>/diaper settimer</b> (minutes) 更改湿/脏计时器\n" +
+                    "<b>/diaper setwetchance</b> (value between 0 and 1) 控制你多久弄湿一次\n" +
+                    "<b>/diaper setmesschance</b> (value between 0 and 1) 控制你弄脏的频率。 确保这低于wetchance。\n" +
+                    "<b>/diaper setwet1</b> (value)* 普通纸尿裤的湿润度\n" +
+                    "<b>/diaper setwet2</b> (value)* 贞洁纸尿裤湿润度\n" +
+                    "<b>/diaper setmess1</b> (value)* 普通纸尿裤的混乱程度\n" +
+                    "<b>/diaper setmess2</b> (value)* 贞洁纸尿裤的混乱程度\n" +
+                    "* = 0 到 2 之间的值"
                 );
             }
-        } else if (content.indexOf("/difficulty") == 0) {
+        } else if (content.indexOf("/difficulty") == 0) {//改变游戏难度。
             if (content.endsWith("/difficulty")) {
                 PreferenceDifficultyLevel = Player.Difficulty.Level;
             } else {
@@ -1817,18 +1817,18 @@ async function NEWmenu() {
                 PreferenceInitPlayer();
                 LoginDifficulty(true);
             }
-        } else if (content.indexOf("/erase") == 0) {
+        } else if (content.indexOf("/erase") == 0) {//删除聊天记录。
             ElementRemove("TextAreaChatLog");
-        } else if (content.indexOf("/font") == 0) {
+        } else if (content.indexOf("/font") == 0) {//更改 BC 中的字体。 使用将提供更多信息。
             if (content.endsWith("/font")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: The font command must be followed by a font number and optionally a size number.\n" +
-                    "The effect will be visible in the chat after an automatic relog.\n" +
-                    "Supported fonts: 0 Arial - 1 Times New Roman\n" +
+                    "<b>Quick-AccessMenu2</b>: 字体命令必须是后跟一个字体编号和字体的大小编号。\n" +
+                    "自动重新登录后效果将在聊天中可见。\n" +
+                    "支持的字体： 0 Arial - 1 Times New Roman\n" +
                     "2 Papyrus - 3 Comic Sans - 4 Impact\n" +
                     "5 Helvetica Neue - 6 Verdana - 7 Century Gothic\n" +
                     "8 Georgia - 9 Courrier New - 10 Copperplate\n" +
-                    "Sizes: 0 Small - 1 Medium - 2 Large"
+                    "大小 0 Small - 1 Medium - 2 Large"
                 );
             } else {
                 var stringFont1 = content;
@@ -1852,7 +1852,7 @@ async function NEWmenu() {
                 ServerSocket.close();
                 ServerSocket.open();
             }
-        } else if (content.indexOf("/frlist") == 0) {
+        } else if (content.indexOf("/frlist") == 0) {//允许在 15 秒内访问好友列表，其中包含指向其他房间的可点击链接。
             setTimeout(function() {
                 ChatRoomSpace = "";
                 CommonSetScreen("Online", "ChatSearch");
@@ -1872,23 +1872,23 @@ async function NEWmenu() {
                 document.getElementById("InputChat").style.display = "inline";
                 document.getElementById("TextAreaChatLog").style.display = "inline";
             }, 15000);
-        } else if (content.indexOf("/gagheavy") == 0) {
+        } else if (content.indexOf("/gagheavy") == 0) {//像严重堵嘴一样说话。也可以: /gv
             content = SpeechGarbleByGagLevel(6, content.substring(9).trim());
             ServerSend("ChatRoomChat", {
                 "Content": content,
                 "Type": "Chat"
             });
-        } else if (content.indexOf("/gaglight") == 0) {
+        } else if (content.indexOf("/gaglight") == 0) { //像堵嘴一样说话。 也可以: /gl
             content = SpeechGarbleByGagLevel(1, content.substring(9).trim());
             ServerSend("ChatRoomChat", {
                 "Content": content,
                 "Type": "Chat"
             });
-        } else if (content.indexOf("/gagtalk") == 0) {
+        } else if (content.indexOf("/gagtalk") == 0) {//解码/不解码被堵嘴人的谈话。
             if (this.GagTalkOff == undefined | this.GagTalkOff == false) {
                 SpeechGagLevelLookup = {};
                 GagTalkOff = true;
-                ChatRoomSendLocal("Quick-AccessMenu2: Gag-talk toggled off.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 堵嘴关掉了。");
             } else {
                 SpeechGagLevelLookup = {
                     GagTotal4: 20,
@@ -1904,13 +1904,13 @@ async function NEWmenu() {
                     GagVeryLight: 1,
                 };
                 GagTalkOff = false;
-                ChatRoomSendLocal("Quick-AccessMenu2: Gag-talk toggled on.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 堵嘴打开了。");
             }
-        } else if (content.indexOf("/game") == 0) {
+        } else if (content.indexOf("/game") == 0) {//启动一个小游戏。 使用将提供更多信息。
             if (content.endsWith("/game")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: The game command must include a minigame.\n" +
-                    "Available minigames:\n" +
+                    "<b>Quick-AccessMenu2</b>: 游戏命令必须包含一个小游戏。\n" +
+                    "可用的小游戏：\n" +
                     "carrot, cleaning, dojo, drinks, hurdle, kidnap, puppy,\n" +
                     "rhythm, training, whippony.\n" +
                     "Training is the trainer version of the hurdle game.\n" +
@@ -1967,27 +1967,34 @@ async function NEWmenu() {
                     MiniGameStart("HorseWalk", "WhipPony", "StableTrainerEnd");
                 }
             }
-        } else if (content.indexOf("/ggts") == 0) {
-            var stringGgts1 = content;
-            var stringGgts2 = stringGgts1.split(/[ ,]+/);
-            var minutes = stringGgts2[1];
-            var level = stringGgts2[2];
-            ServerSend("ChatRoomChat", {
-                Content: "Beep",
-                Type: "Action",
-                Dictionary: [{
-                    Tag: "Beep",
-                    Text: "" + Player.Name + " gets grabbed by two maids and locked in the asylum for " + minutes + " minutes of training with the Good Girl Training System Level " + level + "."
-                }]
-            });
-            DialogLentLockpicks = false;
-            ChatRoomClearAllElements();
-            ServerSend("ChatRoomLeave", "");
-            CharacterDeleteAllOnline();
-            AsylumGGTSLock(minutes, TextGet("GGTSIntro"));
-            AsylumGGTSStartLevel(level);
-        } else if (content.indexOf("/giveeverything") == 0) {
-            ChatRoomSendLocal("Quick-AccessMenu2: Every item in the game now added.");
+        } else if (content.indexOf("/ggts") == 0) {//在指定时间内进入 ggts 庇护培训。 级别必须在 1 到 6 之间。
+            if (content.endsWith("/ggts")) {
+                ChatRoomSendLocal(
+                    "<b>Quick-AccessMenu2</b>: /ggts命令必须包含时间和等级\n" +
+                    "级别必须在 1 到 6 之间。"
+                );
+            } else {
+                var stringGgts1 = content;
+                var stringGgts2 = stringGgts1.split(/[ ,]+/);
+                var minutes = stringGgts2[1];
+                var level = stringGgts2[2];
+                ServerSend("ChatRoomChat", {
+                    Content: "Beep",
+                    Type: "Action",
+                    Dictionary: [{
+                        Tag: "Beep",
+                        Text: "" + Player.Name + " 被两个女仆抓住，关进了收容,所用好女孩训练系统 " + level + "级训练" + minutes + "分钟。"
+                    }]
+                });
+                DialogLentLockpicks = false;
+                ChatRoomClearAllElements();
+                ServerSend("ChatRoomLeave", "");
+                CharacterDeleteAllOnline();
+                AsylumGGTSLock(minutes, TextGet("GGTSIntro"));
+                AsylumGGTSStartLevel(level);
+            }
+        } else if (content.indexOf("/giveeverything") == 0) {//获得所有项目。
+            ChatRoomSendLocal("Quick-AccessMenu2: 现在添加了游戏中的所有物品。");
             AssetFemale3DCG.forEach(group => group.Asset.forEach(item => InventoryAdd(Player, item.Name, group.Group)));
             ServerPlayerInventorySync();
         } else if (content.indexOf("/gl") == 0) {
@@ -2002,15 +2009,15 @@ async function NEWmenu() {
                 "Content": content,
                 "Type": "Chat"
             });
-        } else if (content.indexOf("/hiddenmessages") == 0) {
+        } else if (content.indexOf("/hiddenmessages") == 0) {//切换显示游戏隐藏的消息。
             if (this.HiddenMessagesOn == undefined || this.HiddenMessagesOn == false) {
                 HiddenMessagesOn = true;
-                ChatRoomSendLocal("Quick-AccessMenu2: Hidden messages revealed.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 隐藏的信息被揭露。");
                 (typeof oldChatRoomMessage !== 'undefined') && (ChatRoomMessage = oldChatRoomMessage); //reset
                 newChatRoomMessage = function(data) {
                     if (data.Type == "Hidden") {
                         ChatRoomMessage({
-                            Content: "HiddenMessage:" + data.Content,
+                            Content: "隐藏的信息:" + data.Content,
                             Type: "LocalMessage",
                             Sender: Player.MemberNumber
                         });
@@ -2021,18 +2028,18 @@ async function NEWmenu() {
                 window.ChatRoomMessage = newChatRoomMessage;
             } else {
                 HiddenMessagesOn = false;
-                ChatRoomSendLocal("Quick-AccessMenu2: Hidden messages hidden.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 隐藏的信息被隐藏。");
                 (typeof oldChatRoomMessage !== 'undefined') && (ChatRoomMessage = oldChatRoomMessage); //reset
                 newChatRoomMessage = function(data) {}
             }
-        } else if (content.indexOf("/keydeposit") == 0) {
+        } else if (content.indexOf("/keydeposit") == 0) {//将您的钥匙安全地保存在钥匙保管出中。
             var hours = content.substring(11).trim();
             ServerSend("ChatRoomChat", {
                 Content: "Beep",
                 Type: "Action",
                 Dictionary: [{
                     Tag: "Beep",
-                    Text: "" + Player.Name + " keys are now safe in the vault for " + hours + " hours."
+                    Text: "" + Player.Name + " 钥匙现在可以在钥匙保管处安全保存 " + hours + " 小时。"
                 }]
             });
             CellDepositKeys(hours);
@@ -2048,27 +2055,30 @@ async function NEWmenu() {
                     DeviousOn = true;
                     ArcadeDeviousChallenge = true;
                     LogAdd("DeviousChallenge", "Arcade", 1, true);
-                    ChatRoomSendLocal("Quick-AccessMenu2: DeviousChallenge enabled");
+                    ChatRoomSendLocal("Quick-AccessMenu2: 启用了狡猾的挑战");
                 } else {
                     DeviousOn = false;
                     ArcadeDeviousChallenge = false;
                     LogDelete("DeviousChallenge", "Arcade", true);
-                    ChatRoomSendLocal("Quick-AccessMenu2: DeviousChallenge disabled");
+                    ChatRoomSendLocal("Quick-AccessMenu2: 狡猾的挑战已禁用");
                 }
             } else if (content.includes("cheat")) {
-                ChatRoomSendLocal("Quick-AccessMenu2: If cheats aren't loaded first time, quit and restart.");
-                ArcadeRun();
-                ArcadeKinkyDungeonStart(ReputationChange("Gaming"));
+                ChatRoomSendLocal("Quick-AccessMenu2: 如果第一次未加载作弊，请退出并重新启动。");
+                ArcadeRun();//运行街机室并绘制角色。
+                ArcadeKinkyDungeonStart(ReputationGet("Gaming"));//开始古怪的地牢游戏
                 document.getElementById("InputChat").style.display = "none";
                 document.getElementById("TextAreaChatLog").style.display = "none";
                 setTimeout(function() {
                     KinkyDungeonRedKeys += 999;
-                    KinkyDungeonGreenKeys += 999;
+                    //KinkyDungeonGreenKeys += 999;
                     KinkyDungeonBlueKeys += 999;
                     KinkyDungeonLockpicks += 999;
                     KinkyDungeonAddGold(999999);
-                    KinkyDungeonEnchantedBlades += 999;
-                    KinkyDungeonNormalBlades += 999;
+                    //KinkyDungeonEnchantedBlades += 999;
+                    //KinkyDungeonNormalBlades += 999;
+                    KinkyDungeonStatManaLowRegen = 20;
+                    KinkyDungeonStatManaRegen = 15;
+                    KinkyDungeonStatStaminaRegen = 10;
                     var KinkyDungeonMysticSeals = 999;
                     var KinkyDungeonSpells = [{
                             name: "Firebolt",
@@ -2124,7 +2134,7 @@ async function NEWmenu() {
                             playerEffect: {
                                 name: "Damage"
                             }
-                        }, // Throws a fireball in a direction that moves 1 square each turn
+                        }, // 向每回合移动 1 格的方向投掷火球
                         {
                             name: "Icebolt",
                             exhaustion: 4,
@@ -2374,23 +2384,23 @@ async function NEWmenu() {
                 document.getElementById("TextAreaChatLog").style.display = "none";
                 setTimeout(function() {
                     KinkyDungeonRedKeys += 0;
-                    KinkyDungeonGreenKeys += 0;
+                    //KinkyDungeonGreenKeys += 0;
                     KinkyDungeonBlueKeys += 0;
                     KinkyDungeonLockpicks += 0;
                     KinkyDungeonAddGold(0);
-                    KinkyDungeonEnchantedBlades += 0;
-                    KinkyDungeonNormalBlades += 0;
+                    //KinkyDungeonEnchantedBlades += 0;
+                    //KinkyDungeonNormalBlades += 0;
                     var KinkyDungeonMysticSeals = 0;
                     var KinkyDungeonSpells = [];
                 }, 5000);
             }
-        } else if (content.indexOf("/leave") == 0) {
+        } else if (content.indexOf("/leave") == 0) {//离开房间，即使被阻止。
             ChatRoomSetLastChatRoom("");
             ServerSend("ChatRoomLeave", "");
             CommonSetScreen("Online", "ChatSearch");
             ChatRoomClearAllElements();
             OnlineGameName = "";
-        } else if (content.indexOf("/lock") == 0) {
+        } else if (content.indexOf("/lock") == 0) {//在所有可锁定的项目上添加锁。 使用 /help lock 获取更多信息。
             var stringLock1 = content;
             var stringLock2 = stringLock1.split(/[ ,]+/);
             var lk = stringLock2[2];
@@ -2470,7 +2480,7 @@ async function NEWmenu() {
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers make appear locks on " + target[0].Name + " body."
+                        Text: "魔法激光使 " + target[0].Name + " 身体出现锁。"
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
@@ -3078,7 +3088,7 @@ async function NEWmenu() {
                 }
                 ChatRoomCharacterUpdate(target[0]);
             }
-        } else if (content.indexOf("/login") == 0) {
+        } else if (content.indexOf("/login") == 0) {//登录一个新帐户。
             var stringLogin1 = content;
             var stringLogin2 = stringLogin1.split(/[ ,]+/);
             this.LoginName = SpeechGarbleByGagLevel(6, stringLogin2[1]);
@@ -3092,7 +3102,7 @@ async function NEWmenu() {
             setTimeout(function() {
                 ChatRoomClearAllElements();
             }, 3000);
-        } else if (content.indexOf("/maxstatistics") == 0) {
+        } else if (content.indexOf("/maxstatistics") == 0) {//获得最大金钱声望技能。
             Player.Money = 9999999999;
             SkillChange("Infiltration", 10);
             SkillChange("SelfBondage", 10);
@@ -3106,26 +3116,26 @@ async function NEWmenu() {
             ReputationChange("LARP", 100);
             ReputationChange("Maid", 100);
             ReputationChange("ABDL", 100);
-            ReputationChange("Nurse", 100);
-            GameLARPLevelProgress(10000); //fix might be needed
+            //ReputationChange("Nurse", 100);
+            GameLARPLevelProgress(50); //可能需要修复
             CheatAllow = true;
             LogAdd("BondageCollege", "Import");
             LogAdd("KidnapSophie", "Sarah");
-            ChatRoomSendLocal("Quick-AccessMenu2: 有些东西必须手动设置。 请参阅 /roleplay 和 /rolequit 命令。");
-        } else if (content.indexOf("/moaner") == 0) {
+            ChatRoomSendLocal("Quick-AccessMenu2: 修改成功，有些东西必须手动设置。 请参阅 /roleplay 和 /rolequit 命令。");
+        } else if (content.indexOf("/moaner") == 0) {//性欲和刺激时呻吟。 使用将提供更多信息。
             if (content.endsWith("/moaner")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: Several actions are possible with the moaner command:\n" +
-                    "<b>/moaner on</b> = starts the moaner\n" +
-                    "<b>/moaner off</b> = stops the moaner\n" +
+                    "<b>Quick-AccessMenu2</b>: 使用 moaner 命令可以执行以下操作：\n" +
+                    "<b>/moaner on</b> = 启用呻吟\n" +
+                    "<b>/moaner off</b> = 禁用呻吟\n" +
                     "<b>/moaner profile</b> (profilename) =  selects a moaner profile. Without profilename, access to moaner profile help\n" +
-                    "<b>/moaner status</b> = displays current moaner status\n" +
-                    "<b>/moaner verbose</b> (on/off) = enable/disable verbose mode\n" +
+                    "<b>/moaner status</b> = 显示当前的moaner状态\n" +
+                    "<b>/moaner verbose</b> (on/off) = 启用/禁用详细模式\n" +
                     " \n" +
-                    "You can also enable/disable parts of the Moaner with:\n" +
-                    "<b>/moaner orgasm</b> (on/off): moans when you cum\n" +
-                    "<b>/moaner spank</b> (on/off): moans when you are spanked\n" +
-                    "<b>/moaner talk</b> (on/off): moans when talking if vibed\n" +
+                    "您还可以通过以下方式启用/禁用 Moaner 的某些部分：\n" +
+                    "<b>/moaner orgasm</b> (on/off): 高潮时呻吟\n" +
+                    "<b>/moaner spank</b> (on/off): 被打屁股时呻吟\n" +
+                    "<b>/moaner talk</b> (on/off): 如果有振动，说话时会呻吟\n" +
                     "<b>/moaner vibe</b> (on/off): moans when vibes settings changed"
                 );
             } else {
@@ -3165,10 +3175,11 @@ async function NEWmenu() {
                     }
                 }
             }
-        } else if (content.indexOf("/money") == 0) {
+        } else if (content.indexOf("/money") == 0) {//修改金钱数量
             Player.Money = content.substring(6);
             ServerPlayerSync();
-        } else if (content.indexOf("/naked") == 0) {
+            ChatRoomSendLocal("Quick-AccessMenu2: 修改金钱数量为 " + Player.Money + " 。");
+        } else if (content.indexOf("/naked") == 0) {//去除衣服
             var targetname = content.substring(6).trim();
             if (targetname == undefined) {
                 targetname = Player.Name
@@ -3185,7 +3196,7 @@ async function NEWmenu() {
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers make disappear the clothes on " + target[0].Name + " body."
+                        Text: "魔法激光使 " + target[0].Name + " 身上的衣服消失。"
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
@@ -3195,7 +3206,7 @@ async function NEWmenu() {
                 CharacterNaked(target[0]);
                 ChatRoomCharacterUpdate(target[0]);
             }
-        } else if (content.indexOf("/name") == 0) {
+        } else if (content.indexOf("/name") == 0) {//选择一个临时的新昵称。
             var NewName = content.substring(5).trim();
             var LS = /[/\p{L}\p{N}\p{Z}'-]/gu;
             var tmpname = Player.Nickname;
@@ -3213,9 +3224,9 @@ async function NEWmenu() {
                 Player.Nickname = NewName;
                 var tmpname = NewName;
             }
-        } else if (content.indexOf("/outfit") == 0) {
+        } else if (content.indexOf("/outfit") == 0) {//恢复/保存/加载装备。 使用将提供更多信息。
             if (content.includes("load1")) {
-                ChatRoomSendLocal("Quick-AccessMenu2: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 你有 5 秒的时间来点击目标。 如果成功，将加载该服装。 如果没有，请重试。");
                 setTimeout(function() {
                     CurrentCharacter.Appearance = this.savedoutfit1.slice(0);
                     CharacterRefresh(CurrentCharacter);
@@ -3223,15 +3234,15 @@ async function NEWmenu() {
                     DialogLeave();
                 }, 5000);
             } else if (content.includes("load2")) {
-                ChatRoomSendLocal("Quick-AccessMenu2: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 你有 5 秒的时间来点击目标。 如果成功，将加载该服装。 如果没有，请重试。");
                 setTimeout(function() {
                     CurrentCharacter.Appearance = savedoutfit2.slice(0);
                     CharacterRefresh(CurrentCharacter);
                     ChatRoomCharacterUpdate(CurrentCharacter);
                     DialogLeave();
-                }, 8000);
+                }, 5000);
             } else if (content.includes("load3")) {
-                ChatRoomSendLocal("Quick-AccessMenu2: You have 5 seconds to click on target. If successful, the outfit will be loaded. If not, retry.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 你有 5 秒的时间来点击目标。 如果成功，将加载该服装。 如果没有，请重试。");
                 setTimeout(function() {
                     CurrentCharacter.Appearance = savedoutfit3.slice(0);
                     CharacterRefresh(CurrentCharacter);
@@ -3244,31 +3255,31 @@ async function NEWmenu() {
                 CharacterRefresh(Player);
                 ChatRoomCharacterUpdate(Player);
             } else if (content.includes("save1")) {
-                ChatRoomSendLocal("Quick-AccessMenu2: You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 您有 5 秒钟的时间点击目标。 如果成功，服装将被保存。 如果没有，请重试。");
                 setTimeout(function() {
                     this.savedoutfit1 = CurrentCharacter.Appearance.slice(0);
                     DialogLeave();
                 }, 5000);
             } else if (content.includes("save2")) {
-                ChatRoomSendLocal("Quick-AccessMenu2: You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 您有 5 秒钟的时间点击目标。 如果成功，服装将被保存。 如果没有，请重试。");
                 setTimeout(function() {
                     this.savedoutfit2 = CurrentCharacter.Appearance.slice(0);
                     DialogLeave();
                 }, 5000);
             } else if (content.includes("save3")) {
-                ChatRoomSendLocal("Quick-AccessMenu2: You have 5 seconds to click on target. If successful, the outfit will be saved. If not, retry.");
+                ChatRoomSendLocal("Quick-AccessMenu2: 您有 5 秒钟的时间点击目标。 如果成功，服装将被保存。 如果没有，请重试。");
                 setTimeout(function() {
                     this.savedoutfit3 = CurrentCharacter.Appearance.slice(0);
                     DialogLeave();
                 }, 5000);
             } else if (content.endsWith("/outfit")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: Options for outfit command:\n" +
-                    "To restore your outfit to what it was before entering room, type: <b>/outfit reset</b> or <b>/outfit restore</b> or <b>/outfit revert</b>\n" +
-                    "Three outfits can be saved by using <b>/outfit save1</b> or <b>/outfit save2</b> or <b>/outfit save3</b>\n" +
-                    "To load saved outfits, type: <b>/outfit load1</b> or <b>/outfit load2</b> or <b>/outfit load3</b>\n" +
-                    "You will have 5 seconds to click on target. Retry if the saving/loading was unsuccessful\n" +
-                    "Saves last only 1 login session."
+                    "<b>Quick-AccessMenu2</b>: 服装命令选项：\n" +
+                    "要将您的装备恢复到进入房间之前的状态，请输入：<b>/outfit reset</b> 或 <b>/outfit restore</b> 或 <b>/outfit revert</b>\n" +
+                    "使用 <b>/outfit save1</b> 或 <b>/outfit save2</b> 或 <b>/outfit save3</b> 可以保存三套服装\n" +
+                    "要加载已保存的服装，请输入：<b>/outfit load1</b> 或 <b>/outfit load2</b> 或 <b>/outfit load3</b>\n" +
+                    "您将有 5 秒钟的时间点击目标。 如果保存/加载不成功，请重试\n" +
+                    "重新登陆后失效。"
                 );
             }
         } else if (content.indexOf("/patreoncheats") == 0) {
@@ -3286,7 +3297,7 @@ async function NEWmenu() {
                 document.getElementById("InputChat").style.display = "inline";
                 document.getElementById("TextAreaChatLog").style.display = "inline";
             }
-        } else if (content.indexOf("/pet") == 0) {
+        } else if (content.indexOf("/pet") == 0) {//变成一个完全约束宠物女孩。
             var targetname = content.substring(4).trim();
             if (targetname == undefined) {
                 targetname = Player.Name
@@ -3303,7 +3314,7 @@ async function NEWmenu() {
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "" + target[0].Name + " becomes a cute pet girl."
+                        Text: "" + target[0].Name + " 变成了可爱的宠物少女。"
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
@@ -3321,19 +3332,19 @@ async function NEWmenu() {
                 CharacterRefresh(target[0]);
                 ChatRoomCharacterUpdate(target[0]);
             };
-        } else if (content.indexOf("/pose2") == 0) {
+        } else if (content.indexOf("/pose2") == 0) {//改变任何玩家的姿势。 使用将提供更多信息。
             if (content.endsWith("/pose2")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: The pose2 command must be followed by a pose and optionally a target.\n" +
+                    "<b>Quick-AccessMenu2</b>: pose2 命令后面必须跟一个姿势和一个目标。\n" +
                     " \n" +
-                    "Available poses:\n" +
+                    "可用姿势：\n" +
                     "armsfree, belly, boxtied, cuffed, elbowtied, exercise,\n" +
                     "kneel1, kneel2, legsclosed, legsopen, pet,\n" +
                     "sleep, spreadarms1, spreadarms2, spreadeagle1\n" +
                     "spreadeagle2, spreadlegs, stand, suspension,\n" +
-                    "tapedhands. Only on yourself: jump, roof.\n" +
-                    "Use <b>/pose2 reset</b> (target) to back to neutral pose.\n" + 
-		            "If BCE is enabled, use <b>/pose baseupper</b> only on yourself when /pose2 reset fails."
+                    "tapedhands. 只对你自己可用： jump, roof.\n" +
+                    "使用 <b>/pose2 reset</b> (target) 回到默认姿势。\n" + 
+		            "如果启用了 BCE，请在 /pose2 reset 重置失败时仅对自己使用 <b>/pose baseupper</b>。"
                 );
             } else {
                 var stringPose1 = content;
@@ -3359,7 +3370,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " relaxes her arms."
+                                    Text: "" + Player.Name + " 放松她的手臂。"
                                 }]
                             });
                         } else {
@@ -3368,11 +3379,11 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " lets " + target[0].Name + " relax her arms."
+                                    Text: "" + Player.Name + " 让 " + target[0].Name + " 放松她的手臂。"
                                 }]
                             });
                         }
-                    } else if (content.includes("belly")) {
+                    } else if (content.includes("belly")) {//驷马
                         CharacterSetActivePose(target[0], "Hogtied");
                         ChatRoomCharacterUpdate(target[0]);
                         if (target[0].Name == Player.Name) {
@@ -3381,7 +3392,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " relaxes on her belly."
+                                    Text: "" + Player.Name + " 变换驷马姿势"
                                 }]
                             });
                         } else {
@@ -3390,7 +3401,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " forces " + target[0].Name + " to stay on her belly."
+                                    Text: "" + Player.Name + " 强制 " + target[0].Name + " 驷马姿势"
                                 }]
                             });
                         }
@@ -3403,7 +3414,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " puts the arms behind her back."
+                                    Text: "" + Player.Name + " 把手臂放在她背后。"
                                 }]
                             });
                         } else {
@@ -3412,7 +3423,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " forces " + target[0].Name + " to put the arms behind her back."
+                                    Text: "" + Player.Name + " 强制 " + target[0].Name + " 将手臂放在背后。"
                                 }]
                             });
                         }
@@ -3425,7 +3436,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " puts her arms out like she's handcuffed."
+                                    Text: "" + Player.Name + " 像戴上手铐一样伸出双臂。"
                                 }]
                             });
                         } else {
@@ -3434,7 +3445,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " forces " + target[0].Name + " to put the arms out like she's handcuffed."
+                                    Text: "" + Player.Name + " 强制 " + target[0].Name + " 像戴上手铐一样伸出手臂。"
                                 }]
                             });
                         }
@@ -3447,7 +3458,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " puts the arms behind her back, elbows almost touching."
+                                    Text: "" + Player.Name + " 将手臂放在背后，肘部几乎接触。"
                                 }]
                             });
                         } else {
@@ -3456,7 +3467,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " forces " + target[0].Name + " to put the arms behind her back, elbows almost touching."
+                                    Text: "" + Player.Name + " 强制 " + target[0].Name + " 将手臂放在背后，肘部几乎接触。"
                                 }]
                             });
                         }
@@ -3469,7 +3480,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " kneels down."
+                                    Text: "" + Player.Name + " 跪了下来。"
                                 }]
                             });
                         } else {
@@ -3478,7 +3489,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " helps " + target[0].Name + " to kneel down."
+                                    Text: "" + Player.Name + " 帮助 " + target[0].Name + " 跪下。"
                                 }]
                             });
                         }
@@ -3491,7 +3502,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " kneels down and opens her legs."
+                                    Text: "" + Player.Name + " 跪下来，张开双腿。"
                                 }]
                             });
                         } else {
@@ -3500,7 +3511,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " helps " + target[0].Name + " to kneel down, forcing her legs open."
+                                    Text: "" + Player.Name + " 帮助 " + target[0].Name + " 跪下，迫使她的双腿张开。"
                                 }]
                             });
                         }
@@ -3513,7 +3524,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " stands up and closes her legs."
+                                    Text: "" + Player.Name + " 站起来并合上她的腿。"
                                 }]
                             });
                         } else {
@@ -3522,7 +3533,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " helps " + target[0].Name + " to stand up with her legs closed."
+                                    Text: "" + Player.Name + " 帮助 " + target[0].Name + " 站起来并合上她的腿。"
                                 }]
                             });
                         }
@@ -3535,7 +3546,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " stands up normally on her feet."
+                                    Text: "" + Player.Name + " 正常站立。"
                                 }]
                             });
                         } else {
@@ -3544,7 +3555,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " helps " + target[0].Name + " to stand up normally on her feet."
+                                    Text: "" + Player.Name + " 帮助 " + target[0].Name + " 正常站立。"
                                 }]
                             });
                         }
@@ -3557,7 +3568,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " relaxes on all fours."
+                                    Text: "" + Player.Name + " 像宠物一样四肢着地。"
                                 }]
                             });
                         } else {
@@ -3566,7 +3577,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " forces " + target[0].Name + " on all fours."
+                                    Text: "" + Player.Name + " 强制 " + target[0].Name + " 像宠物一样四肢着地。"
                                 }]
                             });
                         }
@@ -3579,7 +3590,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " raises her hands."
+                                    Text: "" + Player.Name + " 举起她的手。"
                                 }]
                             });
                         } else {
@@ -3588,7 +3599,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " helps " + target[0].Name + " to raise her hands."
+                                    Text: "" + Player.Name + " 帮助 " + target[0].Name + " 举起她的手。"
                                 }]
                             });
                         }
@@ -3601,7 +3612,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " raises the hands above her head."
+                                    Text: "" + Player.Name + " 将双手举过头顶。"
                                 }]
                             });
                         } else {
@@ -3610,7 +3621,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " forces " + target[0].Name + " to raise the hands above her head."
+                                    Text: "" + Player.Name + " 强制 " + target[0].Name + " 将双手举过头顶。"
                                 }]
                             });
                         }
@@ -3624,7 +3635,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " raises her hands and spreads her legs."
+                                    Text: "" + Player.Name + " 举起双手并张开双腿。"
                                 }]
                             });
                         } else {
@@ -3633,7 +3644,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " forces " + target[0].Name + " to raise their hands and spread her legs."
+                                    Text: "" + Player.Name + " 强制 " + target[0].Name + " 举起双手并张开双腿。"
                                 }]
                             });
                         }
@@ -3647,7 +3658,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " raises the hands above her head and spreads her legs."
+                                    Text: "" + Player.Name + " 将双手举过头顶并张开双腿。"
                                 }]
                             });
                         } else {
@@ -3656,7 +3667,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " forces " + target[0].Name + " to raise the hands above their head and spread her legs."
+                                    Text: "" + Player.Name + " 强制 " + target[0].Name + " 将双手举过头顶并张开双腿。"
                                 }]
                             });
                         }
@@ -3669,7 +3680,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " spreads her legs."
+                                    Text: "" + Player.Name + " 张开她的腿。"
                                 }]
                             });
                         } else {
@@ -3678,7 +3689,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " forces " + target[0].Name + " to spread her legs."
+                                    Text: "" + Player.Name + " 强制 " + target[0].Name + " 张开她的腿。"
                                 }]
                             });
                         }
@@ -3691,7 +3702,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " stands up."
+                                    Text: "" + Player.Name + " 起立。"
                                 }]
                             });
                         } else {
@@ -3700,7 +3711,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " helps " + target[0].Name + " to stand up."
+                                    Text: "" + Player.Name + " 帮助 " + target[0].Name + " 起立。"
                                 }]
                             });
                         }
@@ -3713,7 +3724,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " is now in an acrobatic pose in suspension."
+                                    Text: "" + Player.Name + " 以杂技姿势悬挂。"
                                 }]
                             });
                         } else {
@@ -3722,7 +3733,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " forces " + target[0].Name + " in an acrobatic pose in suspension."
+                                    Text: "" + Player.Name + " 强制 " + target[0].Name + " 以杂技姿势悬挂。"
                                 }]
                             });
                         }
@@ -3735,7 +3746,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " puts her arms out like her hands are taped."
+                                    Text: "" + Player.Name + " 伸出她的手臂，就像她的手被胶带缠住一样。"
                                 }]
                             });
                         } else {
@@ -3744,7 +3755,7 @@ async function NEWmenu() {
                                 Type: "Action",
                                 Dictionary: [{
                                     Tag: "Beep",
-                                    Text: "" + Player.Name + " forces " + target[0].Name + " to put the arms out like her hands are taped."
+                                    Text: "" + Player.Name + " 强制 " + target[0].Name + " 伸出的手臂，就像她的手被胶带缠住一样。"
                                 }]
                             });
                         }
@@ -3756,7 +3767,7 @@ async function NEWmenu() {
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + Player.Name + " jumps with joy."
+                                Text: "" + Player.Name + " 高兴得跳起来。"
                             }]
                         });
                         CharacterSetActivePose(Player, null);
@@ -3798,7 +3809,7 @@ async function NEWmenu() {
                             Type: "Action",
                             Dictionary: [{
                                 Tag: "Beep",
-                                Text: "" + Player.Name + " jumps to the ceiling."
+                                Text: "" + Player.Name + " 跳到天花板上。"
                             }]
                         });
                         CharacterSetFacialExpression(Player, "Emoticon", "Annoyed", 1);
@@ -3998,14 +4009,14 @@ async function NEWmenu() {
                     }
                 }
             }
-        } else if (content.indexOf("/prison") == 0) {
+        } else if (content.indexOf("/prison") == 0) {//进入潘多拉监狱。 超过 60 分钟是可能的。
             var minutes = content.substring(7).trim();
             ServerSend("ChatRoomChat", {
                 Content: "Beep",
                 Type: "Action",
                 Dictionary: [{
                     Tag: "Beep",
-                    Text: "" + Player.Name + " gets grabbed by two maids and sent to Pandora prison for " + minutes + " minutes."
+                    Text: "" + Player.Name + " 被两个女仆抓住，送到潘多拉监狱 " + minutes + " 分钟。"
                 }]
             });
             DialogLentLockpicks = false;
@@ -4016,7 +4027,7 @@ async function NEWmenu() {
             PandoraRestrainPlayer();
             PandoraPunishmentSentence(minutes);
             PandoraPunishmentStart();
-        } else if (content.indexOf("/profile") == 0) {
+        } else if (content.indexOf("/profile") == 0) {//可以直接访问聊天室中任何玩家的个人资料描述。
             var targetname = content.substring(8).trim();
             if (targetname == undefined) {
                 targetname = Player.Name
@@ -4034,7 +4045,7 @@ async function NEWmenu() {
                 document.getElementById("TextAreaChatLog").style.display = "none";
                 CommonSetScreen("Character", "OnlineProfile");
             }
-        } else if (content.indexOf("/randomize") == 0) {
+        } else if (content.indexOf("/randomize") == 0) {//添加随机约束和衣服
             var targetname = content.substring(10).trim();
             if (targetname == undefined) {
                 targetname = Player.Name
@@ -4051,7 +4062,7 @@ async function NEWmenu() {
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers apply random clothes and bindings on " + target[0].Name + " body."
+                        Text: "魔法激光在 " + target[0].Name + " 身体上施加随机衣服和约束。"
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
@@ -4064,7 +4075,7 @@ async function NEWmenu() {
                 CharacterFullRandomRestrain(target[0], "ALL");
                 ChatRoomCharacterUpdate(target[0]);
             }
-        } else if (content.indexOf("/release") == 0) {
+        } else if (content.indexOf("/release") == 0) {//删除所有约束。
             var targetname = content.substring(8).trim();
             if (targetname == undefined) {
                 targetname = Player.Name
@@ -4081,7 +4092,7 @@ async function NEWmenu() {
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers make disappear the bindings on " + target[0].Name + " body."
+                        Text: "魔法激光使 " + target[0].Name + " 身体上的约束消失。"
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
@@ -4091,27 +4102,27 @@ async function NEWmenu() {
                 CharacterRelease(target[0]);
                 ChatRoomCharacterUpdate(target[0]);
             }
-        } else if (content.indexOf("/relog") == 0) {
+        } else if (content.indexOf("/relog") == 0) {//重新登录。
             ServerSocket.close();
             ServerSocket.open();
-        } else if (content.indexOf("/reputation") == 0) {
+        } else if (content.indexOf("/reputation") == 0) {//改变声望。
             if (content.endsWith("/reputation")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: The reputation command must be followed by a reputation and a level.\n" +
-                    "You will be able to check the change in your profile.\n" +
+                    "<b>Quick-AccessMenu2</b>: reputation 命令后面必须跟一个声望和一个等级。\n" +
+                    "更改能够在你的个人资料中查看。\n" +
                     " \n" +
-                    "Available reputations:\n" +
-                    "abdl, amplector, corporis, dominant, gambling,\n" +
+                    "可用声望：\n" +
+                    "恋尿布, amplector, corporis, dominant, gambling,\n" +
                     "gaming, kidnap, larp, maid, maiestas, nurse,\n" +
                     "patient, submissive, vincula.\n" +
-                    "Level must be between 0 and 100."
+                    "级别必须介于 0 和 100 之间。"
                 );
             } else {
                 var stringReputation1 = content;
                 var stringReputation2 = stringReputation1.split(/[ ,]+/);
                 var reputation = stringReputation2[1];
                 var level = stringReputation2[2];
-                if (reputation == "abdl") {
+                if (reputation == "恋尿布") {
                     DialogSetReputation("ABDL", level);
                 } else if (reputation == "amplector") {
                     DialogSetReputation("HouseCorporis", 0);
@@ -5568,10 +5579,10 @@ function AutoRelog() {
     });
 }
 
-//Other functions
+//其他功能
 function consoleWhisper() {
     ServerSend("ChatRoomChat", {
-        Content: "Quick-Access Menu2: " + Player.Name + " has used console to alter appearance. If this is undesired, blacklist player.",
+        Content: "Quick-Access Menu2: " + Player.Name + " 已使用控制台更改外观。 如果这是不希望的，将她列入黑名单。",
         Type: "Whisper",
         Target: ChatRoomTargetMemberNumber
     })
@@ -5780,7 +5791,7 @@ function M_MOANER_deleteControls() {
     }
 }
 
-//controle sur le script entier
+//控制整个脚本
 function scriptControl(commande) {
     if (commande == "on") {
         M_MOANER_scriptOn = true;
