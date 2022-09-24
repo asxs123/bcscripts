@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Quick-AccessMenu2.1
 // @namespace https://www.bondageprojects.com/
-// @version 1.4.2
+// @version 1.7.0
 // @description Everything you'll ever need for BC
 // @author Nemesea
 // @match https://bondageprojects.elementfx.com/*
@@ -16,7 +16,11 @@
 (typeof OLDmenu !== "undefined") && (ChatRoomSendChat = OLDmenu); //reset
 async function NEWmenu() {
     var content = ElementValue("InputChat").trim();
-    //var tmpname = Player.Nickname;
+    if (Player.Nickname == '') { 
+        var tmpname = Player.Name;
+    } else {
+        var tmpname = Player.Nickname;
+    }
 
     //chatcommand
     if (CurrentScreen == "ChatRoom") {
@@ -24,34 +28,38 @@ async function NEWmenu() {
         if (content.indexOf("/help") == 0) {
             if (content.endsWith("/help")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: QAM 帮助按类别进行组织。 使用 <b>/help</b> (类别)。 类别列表：\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: QAM 帮助按类别进行组织。 使用 <b>/help</b> (类别)。 类别列表：\n" +
                     "<b>bondage</b> = 与束缚有关的命令。\n" +
                     "<b>character</b> = 与您的角色相关的命令。\n" +
                     "<b>chat</b> = 在聊天室中具有额外功能的命令。\n" +
                     "<b>clothing</b> = 与衣服有关的命令。\n" +
                     "<b>escape</b> = 与逃生相关的命令。\n" +
+                    "<b>features</b> = automatic features without command.\n" +
                     "<b>fun</b> = 与乐趣、痛苦和快乐有关的命令。\n" +
+                    "<b>kd</b> = info about kd command (for Kinky Dungeon).\n" +
                     "<b>misc</b> = 特殊命令。\n" +
                     "<b>talking</b> = 与谈话有关的命令。\n" +
                     "<b>visual</b> = 与动画和背景相关的命令。\n" +
                     "<b>zones</b> = 与游戏区域相关的命令。\n" +
-                    " \n" +
-		    "使用 <b>/help new</b> 获取有关当前 QAM 版本更改的信息。\n" +
-		    " \n" +
-		    "有几个命令需要指定一个目标。 可以是昵称，也可以是会员号。"	
+                    "Several commands require to specify a target. It can be a real name or a member number.\n" +
+		            "使用 <b>/help new</b> 获取有关当前 QAM 版本更改的信息。\n" +
+		            " \n" +
+		            "有几个命令需要指定一个目标。 可以是昵称，也可以是会员号。\n" +
+                    "Visit also our <a href='https://github.com/tetris245/tetris245/wiki' target='_blank'>Wiki</a></p>"
                 );
             } else if (content.includes("bondage")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: 束缚命令：\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 束缚命令：\n" +
                     "<b>/lock</b> = 在所有可锁定的项目上添加锁。 使用 /help lock 获取更多信息。\n" +
+                    "<b>/outfit</b> = restores/saves/loads outfit (including restraints). Using will give more info.\n" +
                     "<b>/pet</b> = 变成一个完全约束宠物女孩。\n" +
                     "<b>/randomize</b> (targetname) = 添加随机约束和衣服。\n" +
                     "<b>/restrain</b> (targetname) = 添加随机约束。\n" +
-                    "<b>/solidity</b> (value) = 改变大多数当前约束的可靠性。 值必须介于 1 和 99 之间。使用高值使逃生成为不可能！"
+                    "<b>/solidity</b> (value) = 改变大多数当前约束的可靠性。 值必须介于 1 和 99 之间。使用高值使逃生成为不可能！</p>"
                 );
             } else if (content.includes("character")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: 角色命令——  *更多使用信息，  **更改可以在您的个人资料中看到\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 角色命令——  *更多使用信息，  **更改可以在您的个人资料中看到\n" +
                     "<b>/becomeownlover</b> = 成为自己的爱人。\n" +
                     "<b>/becomeownowner</b> = 成为你自己的主人。\n" +
                     "<b>/difficulty</b> (number) = 改变游戏难度。 0 角色扮演 - 1 常规 - 2 硬核 - 3 极端 **\n" +
@@ -59,25 +67,30 @@ async function NEWmenu() {
                     "<b>/maxstatistics</b> = 获得最大金钱声望技能。\n" +
                     "<b>/money</b> (value) = 修改金钱数量。\n" +
                     "<b>/name</b> (newnamehere) = 选择一个临时的新昵称。\n" +
+                    "<b>/npcpunish</b> = enables/disables NPC punishments.\n" +
+		            "<b>/permission</b> (number) = changes your item permission *\n" +
                     "<b>/reputation</b> (reputation) (level) = 改变声望。 *\n" +
                     "<b>/resetinventory</b> = 清空你的库存。 会先发出警告。\n" +
                     "<b>/roleplay</b> (rolehere) = 添加一个称号。 *\n" +
                     "<b>/rolequit</b> (role or clubarea here) = 去掉一个称号。 *\n" +
                     "<b>/savename</b> (newnamehere) = 为临时昵称赋予确定的地位。可能有问题。\n" +
                     "<b>/skill</b> (skill) (level) = 改变一个技能。 *\n" +
-                    "<b>/title</b> (newtitlehere) = 选择一个新标题。 *"
+                    "<b>/title</b> (newtitlehere) = 选择一个新标题。 *</p>"
                 );
             } else if (content.includes("chat")) {
                 ChatRoomSendLocal(
-                    "<b>Quick-AccessMenu2</b>: 聊天命令：\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 聊天命令：\n" +
+                    "<b>/action</b> (stuffhere) = inserts an action. Can also: /a.\n" +
                     "<b>/autokick</b> = 自动踢出 0 天的帐户。\n" +
+                    "<b>/bio</b> (target) = gives direct access to the profile description of any player in the chat room.\n" +
                     "<b>/erase</b> = 删除聊天记录。\n" +
                     "<b>/font</b> (newfont) (size) = 更改 BC 中的字体。 使用将提供更多信息。\n" +
                     "<b>/frlist</b> = 允许在 15 秒内访问好友列表，其中包含指向其他房间的可点击链接。\n" +
                     "<b>/hiddenmessages</b> = 切换显示游戏隐藏的消息。\n" +
                     "<b>/profile</b> (targetname) = 可以直接访问聊天室中任何玩家的个人资料描述。\n" +
+                    "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
                     "<b>/search</b> (areaname) = 打开房间搜索，区域是：俱乐部或庇护。\n" +
-                    "<b>/theme</b> (number) = 自动重新登录后更改聊天主题颜色。 数字必须介于 0 和 3 之间。"
+                    "<b>/theme</b> (number) = 自动重新登录后更改聊天主题颜色。 数字必须介于 0 和 3 之间。</p>"
                 );
             } else if (content.includes("clothing")) {
                 ChatRoomSendLocal(
