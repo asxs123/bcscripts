@@ -25,8 +25,8 @@ async function NEWmenu() {
     //chatcommand
     if (CurrentScreen == "ChatRoom") {
 
-        if (content.indexOf("/帮助") == 0) {
-            if (content.endsWith("/帮助")) {
+        if (content.indexOf("/help") == 0) {
+            if (content.endsWith("/help")) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: QAM help is organized into categories. Use <b>/help</b> (category). List of categories:\n" +
                     "<b>bondage</b> = 与束缚有关的命令。\n" +
@@ -45,78 +45,384 @@ async function NEWmenu() {
 		            "使用 <b>/help new</b> 获取有关当前 QAM 版本更改的信息。\n" +
 		            "也请访问我们的 <a href='https://github.com/tetris245/tetris245/wiki' target='_blank'>维基</a></p>"	
                 );
-            }else if (content.indexOf("/外观") == 0) {
-                if (content.includes("重置") || content.includes("revert") || content.includes("restore")) {
-                    Player.Appearance = ChatSearchSafewordAppearance.slice(0);
-                    // Player.ActivePose = ChatSearchSafewordPose; should not be needed
-                    CharacterRefresh(Player);
-                    ChatRoomCharacterUpdate(Player);
-                } else if (content.includes("导出")) {
-                    var target = content.substring(4).trim();
-                    if (!target) {
-						targetMember = Player;
-					} else {
-						targetMember = Character.find((c) => c.MemberNumber === parseInt(target));
-					}
-                    if (!targetMember) {
-						var targetfinder = new RegExp('^' + target + '', 'i');
-                        var targetMember = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)))[0];
-					}
-
-                    const includeBinds = window.confirm(displayText("包括束缚?"));
-					const includeLocks = includeBinds && window.confirm(displayText("包括锁?"));
-					const includeBase = window.confirm(displayText("包括身高、体型、头发等?"));
-
-					const base = targetMember.Appearance.filter(
-						(a) => a.Asset.Group.IsDefault && !a.Asset.Group.Clothing
-					);
-					const clothes = targetMember.Appearance.filter(
-						(a) => a.Asset.Group.Category === "Appearance" && a.Asset.Group.Clothing
-					);
-					const binds = targetMember.Appearance.filter(
-						(a) => a.Asset.Group.Category === "Item" && !["ItemNeck", "ItemNeckAccessories"].includes(a.Asset.Group.Name) && !a.Asset.Group.BodyCosplay
-					);
-
-					const appearance = [...clothes];
-					if (includeBinds) {
-						appearance.push(...binds);
-					}
-					if (includeBase) {
-						appearance.push(...base);
-					}
-
-					/** @type {ItemBundle[]} */
-					const looks = appearance.map((i) => {
-						const property = i.Property ? { ...i.Property } : {};
-						if (!includeLocks && property.LockedBy) {
-							delete property.LockedBy;
-							delete property.LockMemberNumber;
-						}
-						if (property?.LockMemberNumber) {
-							property.LockMemberNumber = Player.MemberNumber;
-						}
-						return {
-							Group: i.Asset.Group.Name,
-							Name: i.Asset.Name,
-							Color: i.Color,
-							Difficulty: i.Difficulty,
-							Property: property,
-							Craft: i.Craft,
-						};
-					});
-
-					const targetName = targetMember.IsPlayer()
-						? "yourself"
-						: CharacterNickname(targetMember);
-
-					await navigator.clipboard.writeText(
-						LZString.compressToBase64(JSON.stringify(looks))
-					);
+            }
+        } else if (content.indexOf("/外观") == 0) {
+            if (content.includes("重置") || content.includes("revert") || content.includes("restore")) {
+                Player.Appearance = ChatSearchSafewordAppearance.slice(0);
+                // Player.ActivePose = ChatSearchSafewordPose; should not be needed
+                CharacterRefresh(Player);
+                ChatRoomCharacterUpdate(Player);
+            } else if (content.includes("导出")) {
+                var target = content.substring(4).trim();
+                if (!target) {
+                    targetMember = Player;
+                } else {
+                    targetMember = Character.find((c) => c.MemberNumber === parseInt(target));
                 }
+                if (!targetMember) {
+                    var targetfinder = new RegExp('^' + target + '', 'i');
+                    var targetMember = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)))[0];
+                }
+
+                const includeBinds = window.confirm(displayText("包括束缚?"));
+                const includeLocks = includeBinds && window.confirm(displayText("包括锁?"));
+                const includeBase = window.confirm(displayText("包括身高、体型、头发等?"));
+
+                const base = targetMember.Appearance.filter(
+                    (a) => a.Asset.Group.IsDefault && !a.Asset.Group.Clothing
+                );
+                const clothes = targetMember.Appearance.filter(
+                    (a) => a.Asset.Group.Category === "Appearance" && a.Asset.Group.Clothing
+                );
+                const binds = targetMember.Appearance.filter(
+                    (a) => a.Asset.Group.Category === "Item" && !["ItemNeck", "ItemNeckAccessories"].includes(a.Asset.Group.Name) && !a.Asset.Group.BodyCosplay
+                );
+
+                const appearance = [...clothes];
+                if (includeBinds) {
+                    appearance.push(...binds);
+                }
+                if (includeBase) {
+                    appearance.push(...base);
+                }
+
+                /** @type {ItemBundle[]} */
+                const looks = appearance.map((i) => {
+                    const property = i.Property ? { ...i.Property } : {};
+                    if (!includeLocks && property.LockedBy) {
+                        delete property.LockedBy;
+                        delete property.LockMemberNumber;
+                    }
+                    if (property?.LockMemberNumber) {
+                        property.LockMemberNumber = Player.MemberNumber;
+                    }
+                    return {
+                        Group: i.Asset.Group.Name,
+                        Name: i.Asset.Name,
+                        Color: i.Color,
+                        Difficulty: i.Difficulty,
+                        Property: property,
+                        Craft: i.Craft,
+                    };
+                });
+
+                const targetName = targetMember.IsPlayer()
+                    ? "yourself"
+                    : CharacterNickname(targetMember);
+
+                await navigator.clipboard.writeText(
+                    LZString.compressToBase64(JSON.stringify(looks))
+                );
             }
         }
+
+        //	DO NOT add new commands past this point.
+
+
+
+        //IDEAS
+        // -make an auto change background and select 10 of which should cycle
+        //-make code to auto promote admin lovers, owner, sub,
+        //-make a background rezier that can be seen by others and restorer
+        //-make a "move closer togheter" code that can be seen by others and restorer
+        //-move speech over toa a "random gestures" that will do yawn and post in chat, use emotes randomly, stick on stuff randomly, detects afk and does stuff, eventually sleeping, perhaps even testing restrains and such
+        //-add special safeword If on extreme, add a cooldown after each ue.
+
+        //3 beep leash code, can be used by any
+        //add code to be comitted to asylum, can be used by any
+        //add code to be added to jail, to be used by any
+        //add code to forced work as maid, to be used by any
+        //MERGE ALL ABOVE INTO ONE, JUST ADD A SPECIAL CUSTOM CHOSEN WORD NEEDD IN ORDER TO USE that's auto generated adn whsipered to palyer at command
+
+        //add improvestruddle code
+
+
+        //-make a mid sentence gag talk, rather than looking for double whitespace
+        //add game room scripts
+        //fix highlights
+        //make a group whisper chatREQUIRES JUST "SERVERSEND WHISPER? NO OTHER WAY
+        //add auto NPC grab code
+        //add code to remove safeties like validation
+        //rewrite code to change name and add
+        //change whisper code to not just set target but rather /whipser name texthere
+        //join room, create room code, from within a room. Seems unecessary since /search code can already accomplish.
+        //make safeword total for non hardcore/extrene. Seems unecessary, real asfeword already exist.
+        else { //check which speech mode should be used
+            if (this.BabyTalkOn == true) {
+                content = SpeechBabyTalk({
+                    Effect: ["RegressedTalk"]
+                }, content);
+		if (ChatRoomTargetMemberNumber == null) {
+                    ServerSend("ChatRoomChat", {
+                        "Content": content,
+                        "Type": "Chat"
+                    }); 
+                } else {
+                    ServerSend("ChatRoomChat", { 
+                        "Content": content, 
+                        "Type": "Whisper", 
+                        "Target": ChatRoomTargetMemberNumber
+                    });
+                    for (let C = 0; C < ChatRoomCharacter.length; C++)
+                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+		            TargetName = ChatRoomCharacter[C].Name;
+		            break;
+	                }
+	            ChatRoomMessage({ 
+                        Content: "Whisper to "+TargetName+": "+ content, 
+                        Type: "LocalMessage", 
+                        Sender: Player.MemberNumber 
+                    });
+		    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";	
+		    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                }                         
+                ElementValue("InputChat", "");
+            } if (this.GagTalkOn == true) {
+                content = SpeechGarbleByGagLevel(gl, content);
+		if (ChatRoomTargetMemberNumber == null) {
+                    ServerSend("ChatRoomChat", {
+                        "Content": content,
+                        "Type": "Chat"
+                    }); 
+                } else {
+                    ServerSend("ChatRoomChat", { 
+                        "Content": content, 
+                        "Type": "Whisper", 
+                        "Target": ChatRoomTargetMemberNumber
+                    });
+                    for (let C = 0; C < ChatRoomCharacter.length; C++)
+                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+		            TargetName = ChatRoomCharacter[C].Name;
+		            break;
+	                }
+	            ChatRoomMessage({ 
+                        Content: "Whisper to "+TargetName+": "+ content, 
+                        Type: "LocalMessage", 
+                        Sender: Player.MemberNumber 
+                    });
+		    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";	
+		    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                }                      		
+                ElementValue("InputChat", "");
+            } if (this.Stutter1On == true) {
+                content = StutterTalk1(content);
+		if (ChatRoomTargetMemberNumber == null) {
+                    ServerSend("ChatRoomChat", {
+                        "Content": content,
+                        "Type": "Chat"
+                    }); 
+                } else {
+                    ServerSend("ChatRoomChat", { 
+                        "Content": content, 
+                        "Type": "Whisper", 
+                        "Target": ChatRoomTargetMemberNumber
+                    });
+                    for (let C = 0; C < ChatRoomCharacter.length; C++)
+                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+		            TargetName = ChatRoomCharacter[C].Name;
+		            break;
+	                }
+	            ChatRoomMessage({ 
+                        Content: "Whisper to "+TargetName+": "+ content, 
+                        Type: "LocalMessage", 
+                        Sender: Player.MemberNumber 
+                    });
+		    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";	
+		    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                }                     
+                ElementValue("InputChat", "");		    		    
+            } if (this.Stutter2On == true) {
+                content = StutterTalk2(content);
+		if (ChatRoomTargetMemberNumber == null) {
+                    ServerSend("ChatRoomChat", {
+                        "Content": content,
+                        "Type": "Chat"
+                    }); 
+                } else {
+                    ServerSend("ChatRoomChat", { 
+                        "Content": content, 
+                        "Type": "Whisper", 
+                        "Target": ChatRoomTargetMemberNumber
+                    });
+                    for (let C = 0; C < ChatRoomCharacter.length; C++)
+                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+		            TargetName = ChatRoomCharacter[C].Name;
+		            break;
+	                }
+	            ChatRoomMessage({ 
+                        Content: "Whisper to "+TargetName+": "+ content, 
+                        Type: "LocalMessage", 
+                        Sender: Player.MemberNumber 
+                    });
+		    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";	
+		    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                }                     
+                ElementValue("InputChat", "");
+            } if (this.Stutter3On == true) {
+		content = StutterTalk3(content);
+		if (ChatRoomTargetMemberNumber == null) {
+                    ServerSend("ChatRoomChat", {
+                        "Content": content,
+                        "Type": "Chat"
+                    }); 
+                } else {
+                    ServerSend("ChatRoomChat", { 
+                        "Content": content, 
+                        "Type": "Whisper", 
+                        "Target": ChatRoomTargetMemberNumber
+                    });
+                    for (let C = 0; C < ChatRoomCharacter.length; C++)
+                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+		            TargetName = ChatRoomCharacter[C].Name;
+		            break;
+	                }
+	            ChatRoomMessage({ 
+                        Content: "Whisper to "+TargetName+": "+ content, 
+                        Type: "LocalMessage", 
+                        Sender: Player.MemberNumber 
+                    });
+		    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";	
+		    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                }                         
+                ElementValue("InputChat", "");
+            } if (this.Stutter4On == true) {
+                content = StutterTalk4(content);
+		if (ChatRoomTargetMemberNumber == null) {
+                    ServerSend("ChatRoomChat", {
+                        "Content": content,
+                        "Type": "Chat"
+                    }); 
+                } else {
+                    ServerSend("ChatRoomChat", { 
+                        "Content": content, 
+                        "Type": "Whisper", 
+                        "Target": ChatRoomTargetMemberNumber
+                    });
+                    for (let C = 0; C < ChatRoomCharacter.length; C++)
+                        if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) {
+		            TargetName = ChatRoomCharacter[C].Name;
+		            break;
+	                }
+	            ChatRoomMessage({ 
+                        Content: "Whisper to "+TargetName+": "+ content, 
+                        Type: "LocalMessage", 
+                        Sender: Player.MemberNumber 
+                    });
+		    document.querySelector('#TextAreaChatLog').lastChild.style.fontStyle = "italic";	
+		    document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
+                }                      
+                ElementValue("InputChat", "");    
+            } else {
+                OLDmenu()
+            }
+        }
+        ElementValue("InputChat", "");
     }
 }
+
+/**
+ * @param {string} original - The English message
+ * @param {Record<string, string>} [replacements] - The replacements
+ * @returns {string} - The translated message
+ */
+ function displayText(original, replacements = {}) {
+    /** @type {Readonly<Record<string, Record<string, string>>>} */
+    const translations = Object.freeze({
+        CN: {
+            "Automatic Arousal Expressions (Replaces Vanilla)":
+                "自动欲望表情 (替换原版)",
+            "Activity Expressions": "活动表示",
+            "Alternate Arousal (Replaces Vanilla, requires hybrid/locked arousal meter)":
+                "另一种欲望 (替换原版, 需要混合或锁定欲望条)",
+            "Alternative speech stutter": "另一种言语不清",
+            "Enable layering menus": "开启服装分层选项",
+            "Extended wardrobe slots (96)": "扩展衣柜保存槽 (96个)",
+            "Replace wardrobe list with character previews":
+                "使用角色预览替换衣柜保存列表",
+            "Clear Drawing Cache Hourly": "每小时清除绘图缓存",
+            "Instant messenger": "即时通讯",
+            "Chat Links and Embeds": "聊天链接和嵌入",
+            "Use Ctrl+Enter to OOC": "使用Ctrl+Enter进行OOC发言",
+            "Use italics for input when whispering": "悄悄话使用斜体字",
+            "Improve colors for readability": "改善颜色以提高可读性",
+            "Show friend presence notifications": "显示好友在线通知",
+            "Show friends going offline too (requires friend presence)":
+                "显示朋友离线通知 (需要启用好友在线通知)",
+            "Understand All Gagged and when Deafened":
+                "在被堵住嘴和被堵住耳朵时可以听懂所有发言",
+            "Reveal Lockpicking Order Based on Skill": "根据技能显示撬锁/开锁顺序",
+            "Allow layering menus while bound": "允许在捆绑时用分层菜单",
+            "Load BCX by Jomshir98 (requires refresh - no auto-update)":
+                "加载 BCX by Jomshir98 (需要刷新 - 无自动更新)",
+            "Load BCX beta (requires refresh - auto-updates, compatibility not guaranteed)":
+                "加载 BCX beta 测试版 (需要刷新 - 自动升级, 不保证兼容性)",
+            "Limited gag anti-cheat: cloth-gag equivalent garbling":
+                "有限的堵嘴反作弊: 和布堵嘴相同的乱码",
+            "Full gag anti-cheat: use equipped gags to determine garbling":
+                "完整的堵嘴反作弊: 使用当前装备的堵嘴来确定乱码",
+            "Extra gag anti-cheat: even more garbling for the most extreme gags":
+                "扩展的堵嘴反作弊: 对于使用最极端的堵嘴更加混乱",
+            "Require glasses to see": "需要眼镜才能看清",
+            "Check for updates": "检查更新",
+            "Automatic Relogin on Disconnect": "断线后自动重连",
+            "Show gag cheat and anti-cheat options in chat":
+                "在聊天室里显示堵嘴作弊和反作弊选项",
+            "Automatically ghost+blocklist unnaturally new users":
+                "自动对不自然的用户无视并添加黑名单",
+            "Use accurate timer inputs": "使用准确的计时器输入",
+            "Confirm leaving the game": "离开游戏前需要确认",
+            "Discreet mode (disable drawing)": "谨慎模式 (禁用绘图)",
+            "Keep tab active (requires refresh)":
+                "保持标签页处于活动状态 (需要刷新)",
+            "Show FPS counter": "显示 FPS 计数器",
+            "Limit FPS in background": "在后台时限制FPS",
+            "Limit FPS to ~15": "限制 FPS 最高为 ~15",
+            "Limit FPS to ~30": "限制 FPS 最高为 ~30",
+            "Limit FPS to ~60": "限制 FPS 最高为 ~60",
+            "Make automatic progress while struggling": "在挣扎时自动增加进度",
+            "Allow leashing without wearing a leashable item (requires leasher to have FBC too)":
+                "允许在不佩戴牵引绳的情况下也可以进行牵引（需要牵引者也安装有FBC）",
+            "Enable buttplug.io (requires refresh)":
+                "启用buttplug.io（需要刷新网页)",
+            "This page allows configuration of the synchronization of bluetooth connected toys.":
+                "此页面允许配置将BC震动器状态同步到蓝牙连接的玩具",
+            "Save & browse seen profiles (requires refresh)":
+                "保存并浏览已知的个人资料 (需要刷新)",
+            "Chat & Social": "聊天 & 社交",
+            "Activities & Arousal": "活动 & 欲望",
+            "Appearance & Wardrobe": "外观 & 衣柜",
+            "Immersion & Anti-Cheat": "沉浸体验 & 反作弊",
+            Performance: "表现",
+            Misc: "杂项",
+            Cheats: "作弊",
+            "Other Addons": "其他插件",
+            "Show nicknames": "修改你的昵称",
+            "Change your nickname": "修改你的昵称",
+            ah: "啊",
+            aah: "啊❤",
+            mnm: "唔姆",
+            nn: "嗯啊",
+            mnh: "嗯哈",
+            mngh: "唔啊",
+            haa: "哈啊",
+            nng: "嗯嗯❤",
+            mnng: "唔啊❤",
+        },
+    });
+
+    let text =
+        TranslationLanguage in translations &&
+        original in translations[TranslationLanguage]
+            ? translations[TranslationLanguage][original]
+            : original;
+    for (const [key, val] of Object.entries(replacements)) {
+        while (text.includes(key)) {
+            text = text.replace(key, val);
+        }
+    }
+    return text;
+}
+
 //if modified code above is not called, use original.
 var OLDmenu = ChatRoomSendChat;
 var ChatRoomSendChat = NEWmenu;
