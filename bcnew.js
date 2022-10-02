@@ -113,7 +113,7 @@ async function NEWmenu() {
                     "<b>/totalrelease</b> (target) = 移除所有绑定、项圈、安全带、贞操、玩具。\n" +
                     "<b>/unlock</b> (target) (locktype) = 删除所有锁或仅删除指定类型的锁。 更多信息 /help unl。</p>"
                 );
-	    } else if (content.includes("features")) {
+	        } else if (content.includes("features")) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 无需命令的自动功能：\n" +
 		            "<b>自动所有项目都是可手工制作的</b> 但对额外制作的物品的使用有限\n" +
@@ -137,7 +137,7 @@ async function NEWmenu() {
                     "<b>/superdice</b> (sides) = 掷出一个超级骰子。 边数可以在 2 到 999999999 之间。\n" +
 		            "<b>/visible</b> = back to visible state after using of an invisible command.</p>"
                 );
-	    } else if (content.includes("kd")) {
+	        } else if (content.includes("kd")) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: How to use the kd command:\n" +
                     "1 - Optionally, use <b>/kd devious</b> to toggle the Devious Challenge mode\n" +
@@ -194,7 +194,7 @@ async function NEWmenu() {
                     "<b>/relog</b> = 重新登录。\n" +
                     "<b>/unrestrict</b> =  removes all restrictions from game. Can use maid drink tray/other stuff. Using will give more info. Submissives should use /unrestrict soft.</p>"
                 );
-	    } else if (content.includes("new")) {
+	        } else if (content.includes("new")) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Main changes in v.1.7.0:\n" +
 		            "- New features: all items can be crafted, Import and Export buttons in wardrobe.\n" +
@@ -204,7 +204,7 @@ async function NEWmenu() {
                     "- QAM welcome message + green background for most local messages.</p>"
                 );   	    
             } else if (content.includes("talking")) {
-		ChatRoomSendLocal(
+		        ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 谈话命令 - * = 使用获得更多信息\n" +
                     "<b>/babytalk</b> (stuffhere) = 像婴儿一样说话。 也可以：/b\n" +
                     "<b>/gagcode</b> = 切换到解码/不解码闭塞的人说话。对耳聋也有效果。\n" +
@@ -1294,9 +1294,9 @@ async function NEWmenu() {
             LogAdd("ModifierLevel", "SkillModifier", 105);
             LogAdd("ModifierDuration", "SkillModifier", CurrentTime + 3600000);
             ChatRoomSendLocal(
-	        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: You feel your senses heightened(bondage/evasion). Can see change in information panel.</p>"
+	        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 你觉得你的技能提高了（束缚/逃避）。 可以在信息面板中看到变化。</p>"
 	    );
-        } else if (content.indexOf("/chess") == 0) {
+        } else if (content.indexOf("/chess") == 0) {  //开始国际象棋，必须先指定难度（1 容易 - 2 普通 - 3 困难）。
             CollegeChessGameEndALT = function() {
                 document.removeEventListener("chessOnMove", CollegeChessGameProgress);
                 MiniGameEnded = true;
@@ -1332,7 +1332,7 @@ async function NEWmenu() {
                 ChessOn = false;
                 CollegeChessGameEndALT();
             }
-        } else if (content.indexOf("/clothes") == 0) {
+        } else if (content.indexOf("/clothes") == 0) {//改变衣服。
             var targetname = content.substring(8).trim();
             if (targetname == undefined) {
                 targetname = Player.Name
@@ -1354,7 +1354,7 @@ async function NEWmenu() {
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "Magical lasers put random clothes on " + tgpname + " body."
+                        Text: "魔法激光使 " + tgpname + " 换装。"
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
@@ -1365,7 +1365,7 @@ async function NEWmenu() {
                 ChatRoomCharacterUpdate(target[0]);
 	        ChatRoomSetTarget(null);
             }
-        } else if (content.indexOf("/clubhelp") == 0) {
+        } else if (content.indexOf("/clubhelp") == 0) {//显示游戏的标准命令（以及可选的 BCE 命令）
             CommandPrintHelpFor(Commands);
         } else if ((content.indexOf("/collarremove") == 0) || (content.indexOf("/removecollar") == 0)) {
             ServerSend("ChatRoomChat", {
@@ -1380,7 +1380,7 @@ async function NEWmenu() {
             LogAdd("Released.Collar", "OwnerRule");
             InventoryRemove(Player, "ItemNeck");
             ChatRoomCharacterItemUpdate(Player, "ItemNeck");
-        } else if (content.indexOf("/college") == 0) {
+        } else if (content.indexOf("/college") == 0) {//进入大学，绕过要求。
             ChatRoomSetLastChatRoom("");
             ServerSend("ChatRoomLeave", "");
             OnlineGameName = "";
@@ -1398,11 +1398,11 @@ async function NEWmenu() {
             CollegeEntranceCanGoTeacher = function() {
                 return true;
             }
-        } else if (content.indexOf("/colorchanger") == 0) {
+        } else if (content.indexOf("/colorchanger") == 0) {//获得颜色变化的动画。 使用将提供更多信息。
 
             if (content.includes("custom") || content.includes("set") || content.includes("select")) {
                 ChatRoomSendLocal(
-		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.</p>"
+		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 您有 5 秒钟的时间点击目标，选择区域。 如果成功，将返回。 如果没有，请重试。</p>"
 		);
                 setTimeout(function() {
                     if (CurrentCharacter.FocusGroup.Name) {
@@ -1410,7 +1410,7 @@ async function NEWmenu() {
                         var ColorTargetNameCustom = CurrentCharacter;
                         if (ColorTargetNameCustom !== Player) {
                             ServerSend("ChatRoomChat", {
-                                Content: "Quick-Access Menu2: " + Player.Name + " has used colorchanger on you. If this is undesired, blacklist player.",
+                                Content: "Quick-Access Menu2: " + Player.Name + " 在你身上使用了换色器。 如果这是不希望的，将她列入黑名单。",
                                 Type: "Whisper",
                                 Target: ColorTargetNameCustom.MemberNumber
                             })
@@ -1491,7 +1491,7 @@ async function NEWmenu() {
                 }, 5000);
             } else if (content.includes("eyes")) {
                 ChatRoomSendLocal(
-		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.</p>"
+		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 您有 5 秒钟的时间点击目标，选择区域。 如果成功，将返回。 如果没有，请重试。</p>"
 		);
                 setTimeout(function() {
                     if (CurrentCharacter) {
@@ -1511,7 +1511,7 @@ async function NEWmenu() {
                         DialogLeave();
                         if (ColorTargetNameEyes !== Player) {
                             ServerSend("ChatRoomChat", {
-                                Content: "Quick-Access Menu2: " + Player.Name + " has used colorchanger on you. If this is undesired, blacklist player.",
+                                Content: "Quick-Access Menu2: " + Player.Name + " 在你身上使用了换色器。 如果这是不希望的，将她列入黑名单。",
                                 Type: "Whisper",
                                 Target: ColorTargetNameEyes.MemberNumber
                             })
@@ -1520,7 +1520,7 @@ async function NEWmenu() {
                 }, 5000);
             } else if (content.includes("hair")) {
                 ChatRoomSendLocal(
-		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: You have 5 seconds to click on target, select area. If successful, will be returned. If not, retry.</p>"
+		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 您有 5 秒钟的时间点击目标，选择区域。 如果成功，将返回。 如果没有，请重试。</p>"
 		);
                 setTimeout(function() {
                     if (CurrentCharacter) {
@@ -1540,7 +1540,7 @@ async function NEWmenu() {
                         DialogLeave();
                         if (ColorTargetNameHair !== Player) {
                             ServerSend("ChatRoomChat", {
-                                Content: "Quick-Access Menu2: " + Player.Name + " has used colorchanger on you. If this is undesired, blacklist player.",
+                                Content: "Quick-Access Menu2: " + Player.Name + " 在你身上使用了换色器。 如果这是不希望的，将她列入黑名单。",
                                 Type: "Whisper",
                                 Target: ColorTargetNameHair.MemberNumber
                             })
@@ -1564,18 +1564,18 @@ async function NEWmenu() {
                 this.ColorTargetNameCustom = undefined;
             } else if (content.endsWith("/colorchanger")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: The colorchanger command:\n" +
-                    "To preselect, two choices exist, type: <b>/colorchanger hair</b> or <b>/colorchanger eyes</b>\n" +
-                    "To manually select area, type: <b>/colorchanger set</b> or <b>/colorchanger select</b> or <b>/colorchanger custom</b>\n" +
-                    "Manual selection can only target 10 areas at a time,\n" +
-                    "then requires to be reset to reuse, type: <b>/colorchanger stop</b> or <b>/colorchanger reset</b>\n" +
-                    "Only 1 target can be active at a time</p>"
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 换色器命令：\n" +
+                    "要预先选择，存在两个选项，请键入： <b>/colorchanger hair</b> or <b>/colorchanger eyes</b>\n" +
+                    "要手动选择区域，请键入：<b>/colorchanger set</b> or <b>/colorchanger select</b> or <b>/colorchanger custom</b>\n" +
+                    "手动选择一次只能针对10个区域，\n" +
+                    "然后需要重置以重用，键入： <b>/colorchanger stop</b> or <b>/colorchanger reset</b>\n" +
+                    "一次只能激活 1 个目标</p>"
                 );
             }
-        } else if (content.indexOf("/cum") == 0) {
+        } else if (content.indexOf("/cum") == 0) {//引起高潮。
             ActivityOrgasmRuined = false;
             ActivityOrgasmStart(Player);
-        } else if (content.indexOf("/diaper") == 0) {
+        } else if (content.indexOf("/diaper") == 0) { //玩尿布（ABDL 游戏）。 使用将提供更多信息。
             if (content.includes("change1")) {
                 var stringChange1 = content;
                 var stringChange2 = stringChange1.split(/[ ,]+/);
@@ -1592,7 +1592,7 @@ async function NEWmenu() {
                 if (target[0] != null) {
                     if ((target[0].Name == Player.Name) == false) {
                         ServerSend("ChatRoomChat", {
-                            Content: "Quick-Access Menu2: " + tmpname + " will change your normal diapers and allows you to use the /diaper change1 command.",
+                            Content: "Quick-Access Menu2: " + tmpname + " 将更换您的普通尿布并允许您使用 /diaper change1 命令。",
                             Type: "Whisper",
                             Target: target[0].MemberNumber
                         })
@@ -1616,7 +1616,7 @@ async function NEWmenu() {
                 if (target[0] != null) {
                     if ((target[0].Name == Player.Name) == false) {
                         ServerSend("ChatRoomChat", {
-                            Content: "Quick-Access Menu2: " + tmpname + " will change your chastity diapers and allows you to use the /diaper change2 command.",
+                            Content: "Quick-Access Menu2: " + tmpname + " 将更换您的贞操尿布并允许您使用 /diaper change2 命令。",
                             Type: "Whisper",
                             Target: target[0].MemberNumber
                         })
@@ -1640,7 +1640,7 @@ async function NEWmenu() {
                 if (target[0] != null) {
                     if ((target[0].Name == Player.Name) == false) {
                         ServerSend("ChatRoomChat", {
-                            Content: "Quick-Access Menu2: " + tmpname + " will change all your diapers and allows you to use the /diaper change3 command.",
+                            Content: "Quick-Access Menu2: " + tmpname + " 将更换您所有的尿布，并允许您使用 /diaper change3 命令。",
                             Type: "Whisper",
                             Target: target[0].MemberNumber
                         })
@@ -1654,7 +1654,7 @@ async function NEWmenu() {
                 var setchange = stringSet2[2];
                 diaperDefaultValues.desperationLevel = setchange;
                 ChatRoomSendLocal(
-		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Your desperation level has been changed.</p>"
+		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 你的绝望程度已经改变。</p>"
 		);
             } else if (content.includes("setmesschance")) {
                 var stringSet1 = content;
@@ -1662,7 +1662,7 @@ async function NEWmenu() {
                 var setchange = stringSet2[2];
                 diaperDefaultValues.messChance = setchange;
                 ChatRoomSendLocal(
-		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Your chance to mess diapers has been changed.</p>"
+		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 你弄脏尿布的机会已经改变。</p>"
 		);
             } else if (content.includes("setmess1")) {
                 if (InventoryGet(Player, "Panties") != null) {
@@ -1673,7 +1673,7 @@ async function NEWmenu() {
                         if (setchange < diaperDefaultValues.wetLevelInner) {
                             diaperDefaultValues.messLevelInner = setchange;
                             ChatRoomSendLocal(
-			        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Your mess level for normal diapers has been changed.</p>"
+			        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 你正常尿布的脏乱程度已经改变了。</p>"
 			    );
                         }
                     }
@@ -1687,7 +1687,7 @@ async function NEWmenu() {
                         if (setchange < diaperDefaultValues.wetLevelOuter) {
                             diaperDefaultValues.messLevelOuter = setchange;
                             ChatRoomSendLocal(
-			        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Your mess level for chastity diapers has been changed.</p>"
+			        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 你对贞洁尿布的脏乱程度已经改变了。</p>"
 			    );
                         }
                     }
@@ -1698,7 +1698,7 @@ async function NEWmenu() {
                 var setchange = stringSet2[2];
                 diaperDefaultValues.regressionLevel = setchange;
                 ChatRoomSendLocal(
-		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Your regression level has been changed.</p>"
+		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 你的回归水平已经改变。</p>"
 		);
             } else if (content.includes("settimer")) {
                 var stringSet1 = content;
@@ -1706,7 +1706,7 @@ async function NEWmenu() {
                 var setchange = stringSet2[2];
                 diaperDefaultValues.baseTimer = setchange;
                 ChatRoomSendLocal(
-		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Your wet/mess timer has been changed.</p>"
+		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 您的湿/脏计时器已更改。</p>"
 		);
             } else if (content.includes("setwetchance")) {
                 var stringSet1 = content;
@@ -1714,7 +1714,7 @@ async function NEWmenu() {
                 var setchange = stringSet2[2];
                 diaperDefaultValues.wetChance = setchange;
                 ChatRoomSendLocal(
-		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Your chance to wet diapers has been changed.</p>"
+		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 您弄湿尿布的机会已更改。</p>"
 		);
             } else if (content.includes("setwet1")) {
                 if (InventoryGet(Player, "Panties") != null) {
@@ -1725,7 +1725,7 @@ async function NEWmenu() {
                         if (setchange > diaperDefaultValues.messLevelInner) {
                             diaperDefaultValues.wetLevelInner = setchange;
                             ChatRoomSendLocal(
-			        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Your wet level for normal diapers has been changed.</p>"
+			        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 你的普通纸尿裤的湿润度已更改。</p>"
 			    );
                         }
                     }
@@ -1739,7 +1739,7 @@ async function NEWmenu() {
                         if (setchange > diaperDefaultValues.messLevelOuter) {
                             diaperDefaultValues.wetLevelOuter = setchange;
                             ChatRoomSendLocal(
-			        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Your wet level for chastity diapers has been changed.</p>"
+			        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 你的贞操尿布的湿润度已经改变。</p>"
 			    );
                         }
                     }
@@ -1752,23 +1752,23 @@ async function NEWmenu() {
                 diaperTick();
             } else if (content.endsWith("/diaper")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: The diaper command must include an action.\n" +
-                    "You need to wear one or two layers of diapers (only bulky and poofy versions)\n" +
-                    "<b>/diaper start</b> to enable the script\n" +
-                    "<b>/diaper stop</b> to disable the script\n" +
-                    "<b>/diaper tick</b> to force a tick\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 尿布命令必须包含一个动作。\n" +
+                    "您需要穿一层或两层尿布（仅限笨重和蓬松版）\n" +
+                    "<b>/diaper start</b> 启用脚本\n" +
+                    "<b>/diaper stop</b> 禁用脚本\n" +
+                    "<b>/diaper tick</b> 强制勾选\n" +
                     " \n" +
-                    "To get new clean diapers:\n" +
-                    "<b>/diaper change1</b> (target) for normal diapers\n" +
-                    "<b>/diaper change2</b> (target) for chastity diapers\n" +
-                    "<b>/diaper change3</b> (target) for both diapers\n" +
+                    "要获得新的干净尿布：\n" +
+                    "<b>/diaper change1</b> (target) 普通纸尿裤\n" +
+                    "<b>/diaper change2</b> (target) 贞操尿布\n" +
+                    "<b>/diaper change3</b> (target) 两个尿布\n" +
                     " \n" +
-                    "Customisation (before using /diaper start):\n" +
-                    "Use <b>/diaper custom</b> for detailed info</p>"
+                    "自定义（在使用 /diaper start 之前）：\n" +
+                    "使用 <b>/diaper custom</b> 获取详细信息"
                 );
             } else if (content.includes("custom")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Diaper customisation (before using /diaper start):\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 尿布定制（在使用 /diaper start 之前）：\n" +
                     "<b>/diaper setdesperation</b> (value between 0 and 3) for desperation level, normally controlled by having a milk bottle used on you\n" +
                     "<b>/diaper setregression</b> (value between 0 and 3) for regression level, normally controlled by wearing Nursery Milk for an extended period of time\n" +
                     "<b>/diaper settimer</b> (minutes) to change the wet/mess timer\n" +
@@ -1780,7 +1780,7 @@ async function NEWmenu() {
                     "<b>/diaper setmess2</b> (value)* for mess level of chastity diapers - * = value between 0 and 2</p>"
                 );
             }
-        } else if (content.indexOf("/difficulty") == 0) {
+        } else if (content.indexOf("/difficulty") == 0) {//改变游戏难度。
             if (content.endsWith("/difficulty")) {
 		 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: The difficulty command must be followed by a number between 0 and 3.\n" +

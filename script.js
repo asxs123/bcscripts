@@ -1447,7 +1447,7 @@ async function NEWmenu() {
                     Type: "Action",
                     Dictionary: [{
                         Tag: "Beep",
-                        Text: "魔法激光使 " + target[0].Name + " 换装。"
+                        Text: "魔法激光使 " + tgpname + " 换装。"
                     }]
                 });
                 if ((target[0].Name == Player.Name) == false) {
