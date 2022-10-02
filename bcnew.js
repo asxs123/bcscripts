@@ -29,97 +29,97 @@ async function NEWmenu() {
             if (content.endsWith("/help")) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: QAM help is organized into categories. Use <b>/help</b> (category). List of categories:\n" +
-                    "<b>bondage</b> = commands related to bondage.\n" +
-                    "<b>character</b> = commands related to your character.\n" +
-                    "<b>chat</b> = commands with extra features in chat room.\n" +
-                    "<b>clothing</b> = commands related to the clothes.\n" +
-                    "<b>escape</b> = commands related to escape.\n" +
-		    "<b>features</b> = automatic features without command.\n" +
-                    "<b>fun</b> = commands related to fun, pain and pleasure.\n" +
-		    "<b>kd</b> = info about kd command (for Kinky Dungeon).\n" +
-                    "<b>misc</b> = special commands.\n" +
-                    "<b>talking</b> = commands related to talking.\n" +
-                    "<b>visual</b> = commands related to animations and background.\n" +
-                    "<b>zones</b> = commands related to game zones.\n" +
-		    "Several commands require to specify a target. It can be a real name or a member number.\n" +
-		    "Use <b>/help new</b> to get info about changes in current QAM version.\n" +
-		    "Visit also our <a href='https://github.com/tetris245/tetris245/wiki' target='_blank'>Wiki</a></p>"	
+                    "<b>bondage</b> = 与束缚有关的命令。\n" +
+                    "<b>character</b> = 与您的角色相关的命令。\n" +
+                    "<b>chat</b> = 在聊天室中具有额外功能的命令。\n" +
+                    "<b>clothing</b> = 与衣服有关的命令。\n" +
+                    "<b>escape</b> = 与逃生相关的命令。\n" +
+		            "<b>features</b> = 无需命令即可实现自动功能。\n" +
+                    "<b>fun</b> = 与乐趣、痛苦和快乐有关的命令。\n" +
+		            "<b>kd</b> = 关于kd命令的信息(用于淫魔地城)。\n" +
+                    "<b>misc</b> = 特殊命令。\n" +
+                    "<b>talking</b> = 与谈话有关的命令。\n" +
+                    "<b>visual</b> = 与动画和背景相关的命令。\n" +
+                    "<b>zones</b> = 与游戏区域相关的命令。\n" +
+		            "有几个命令需要指定目标。它可以是一个真实的名字，也可以是一个会员号码。\n" +
+		            "使用 <b>/help new</b> 获取有关当前 QAM 版本更改的信息。\n" +
+		            "也请访问我们的 <a href='https://github.com/tetris245/tetris245/wiki' target='_blank'>维基</a></p>"	
                 );
             } else if (content.includes("bondage")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Bondage commands:\n" +
-                    "<b>/lock</b> = adds locks on all lockable items. Use /help lock for more info.\n" +
-		    "<b>/outfit</b> = restores/saves/loads outfit (including restraints). Using will give more info.\n" +
-                    "<b>/pet</b> (target) = becomes a fully restrained pet girl.\n" +
-                    "<b>/randomize</b> (target) = naked + underwear + clothes + restrain commands.\n" +
-                    "<b>/restrain</b> (target) = adds random restraints.\n" +
-                    "<b>/solidity</b> (value) = changes the solidity of most current bindings. Value must be between 1 and 99. Use high values to make escape impossible!</p>"
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 束缚命令：\n" +
+                    "<b>/lock</b> = 在所有可锁定的项目上添加锁。 使用 /help lock 获取更多信息。\n" +
+		            "<b>/outfit</b> = 恢复/保存/加载装备(包括约束)。使用将提供更多信息。\n" +
+                    "<b>/pet</b> (target) = 变成一个完全约束宠物女孩。\n" +
+                    "<b>/randomize</b> (target) = 裸体 + 内衣 + 衣服 + 抑制命令。\n" +
+                    "<b>/restrain</b> (target) = 添加随机约束。\n" +
+                    "<b>/solidity</b> (value) = 改变大多数当前约束的可靠性。 值必须介于 1 和 99 之间。使用高值使逃生成为不可能！</p>"
                 );
             } else if (content.includes("character")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Character commands - * = more info when using\n" +
-                    "<b>/becomeownlover</b> = becomes your own lover.\n" +
-                    "<b>/becomeownowner</b> = becomes your own owner.\n" +
-                    "<b>/difficulty</b> (number) = changes game difficulty. *\n" +
-                    "<b>/giveeverything</b> = gives every item.\n" +
-                    "<b>/maxstatistics</b> = gives max statistics.\n" +
-                    "<b>/money</b> (value) = gives or takes money.\n" +
-                    "<b>/name</b> (newnamehere) = temporary new nickname. Without newname, real name is used.\n" +
-		    "<b>/npcpunish</b> = enables/disables NPC punishments.\n" +
-		    "<b>/permission</b> (number) = changes your item permission *\n" +
-                    "<b>/reputation</b> (reputation) (level) = changes a reputation. *\n" +
-                    "<b>/resetinventory</b> = erases your inventory. Will warn first.\n" +
-                    "<b>/roleplay</b> (rolehere) = starts a role. *\n" +
-                    "<b>/rolequit</b> (role or clubarea here) = ceases to play a role. *\n" +
-                    "<b>/savename</b> = definitive status to temporary nickname.\n" +
-                    "<b>/skill</b> (skill) (level) = changes a skill. *\n" +
-                    "<b>/title</b> (newtitlehere) = chooses a new title. *</p>"
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 角色命令 - * = 使用获得更多信息\n" +
+                    "<b>/becomeownlover</b> = 成为自己的爱人。\n" +
+                    "<b>/becomeownowner</b> = 成为你自己的主人。\n" +
+                    "<b>/difficulty</b> (number) = 改变游戏难度。 *\n" +
+                    "<b>/giveeverything</b> = 获得所有物品\n" +
+                    "<b>/maxstatistics</b> = 获得最大金钱声望技能。\n" +
+                    "<b>/money</b> (value) = 修改金钱数量。\n" +
+                    "<b>/name</b> (newnamehere) = 临时新昵称。如果没有新名称，则使用实名。\n" +
+		            "<b>/npcpunish</b> = enables/disables NPC punishments.\n" +
+		            "<b>/permission</b> (number) = changes your item permission *\n" +
+                    "<b>/reputation</b> (reputation) (level) = 改变声望。 *\n" +
+                    "<b>/resetinventory</b> = 清空你的库存。 会先发出警告。\n" +
+                    "<b>/roleplay</b> (rolehere) = 添加一个称号。 *\n" +
+                    "<b>/rolequit</b> (role or clubarea here) = 去掉一个称号。 *\n" +
+                    "<b>/savename</b> = 临时昵称的最终状态。\n" +
+                    "<b>/skill</b> (skill) (level) = 改变一个技能等级。 *\n" +
+                    "<b>/title</b> (newtitlehere) = 选择一个新标题。 *</p>"
                 );
             } else if (content.includes("chat")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Chat commands:\n" +
-		    "<b>/action</b> (stuffhere) = inserts an action. Can also: /a.\n" +
-                    "<b>/autokick</b> = toggles on auto kick for 0 day old accounts.\n" +
-		    "<b>/bio</b> (target) = gives direct access to the profile description of any player in the chat room.\n" +
-                    "<b>/erase</b> = erases chat.\n" +
-                    "<b>/font</b> (newfont) (size) = changes font in BC. Using will give more info.\n" +
-                    "<b>/frlist</b> = gives access to friendlist with clickable links to other rooms during 15 seconds.\n" +
-                    "<b>/hiddenmessages</b> = toggles on show hidden messages made by game.\n" +
-		    "<b>/poof</b> (action) = leaves the club very fast. Action is optional (default = poofs away).\n" +
-                    "<b>/search</b> (areaname) = opens room search, area is: club or asylum.\n" +
-                    "<b>/theme</b> (number) = changes chat color theme after automatic relog. Number must be between 0 and 3.</p>" 
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 聊天室命令：\n" +
+		            "<b>/action</b> (stuffhere) = 插入动作。也可以: /a.\n" +
+                    "<b>/autokick</b> = 自动踢出 0 天的帐户。\n" +
+		            "<b>/bio</b> (target) = 允许直接访问聊天室中任何玩家的个人资料描述。\n" +
+                    "<b>/erase</b> = 删除聊天记录。\n" +
+                    "<b>/font</b> (newfont) (size) = 更改 BC 中的字体。 使用将提供更多信息。\n" +
+                    "<b>/frlist</b> = 允许在 15 秒内访问好友列表，其中包含指向其他房间的可点击链接。\n" +
+                    "<b>/hiddenmessages</b> = 切换显示游戏隐藏的消息。\n" +
+		            "<b>/poof</b> (action) = 快速离开俱乐部。操作是可选的 (default = poofs away).\n" +
+                    "<b>/search</b> (areaname) = 打开房间搜索，区域是：俱乐部或庇护。\n" +
+                    "<b>/theme</b> (number) = 自动重新登录后更改聊天主题颜色。 数字必须介于 0 和 3 之间。</p>" 
                 );
             } else if (content.includes("clothing")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Clothing commands:\n" +
-                    "<b>/clothes</b> (target) = changes clothes.\n" +
-                    "<b>/diaper</b> (actionhere) (targetname or setvalue) = plays with diapers (ABDL game). Using will give more info.\n" +
-                    "<b>/naked</b> (target) = removes clothes.\n" +
-                    "<b>/outfit</b> = restores/saves/loads outfit (including restraints). Using will give more info.\n" +
-                    "<b>/underwear</b> (target) = changes underwear.\n" +
-                    "<b>/wardrobe</b> (target) = opens target wardrobe.</p>"
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 服装命令：\n" +
+                    "<b>/clothes</b> (target) = 随机衣服。\n" +
+                    "<b>/diaper</b> (actionhere) (targetname or setvalue) = 玩尿布（ABDL 游戏）。 使用将提供更多信息。\n" +
+                    "<b>/naked</b> (target) = 去除衣服。\n" +
+                    "<b>/outfit</b> = 恢复/保存/加载外观(包括约束)。使用将提供更多信息。\n" +
+                    "<b>/underwear</b> (target) = 改变内衣。\n" +
+                    "<b>/wardrobe</b> (target) = 打开目标衣柜。</p>"
                 );
             } else if (content.includes("escape")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Escape commands:\n" +
-                    "<b>/boost</b> = boosts skills, similar to maid quarters drink.\n" +
-                    "<b>/collarremove</b> = removes slave/owner collar. Can also be: /removecollar.\n" +
-                    "<b>/frlist</b> = gives access to friendlist with clickable links to other rooms during 15 seconds.\n" +
-                    "<b>/leave</b> = leaves room, even if prevented.\n" +
-                    "<b>/release</b> (target) = removes all bindings.\n" +
-                    "<b>/resetdifficulty</b> = resets difficulty, thereby quitting it. Will warn first.\n" +
-                    "<b>/safewordspecific</b> = removes specific item. More info when used.\n" +
-                    "<b>/solidity</b> (value) = changes the solidity of most current bindings. Use low values to escape! Value 1 allows to escape special devices.\n" +
-                    "<b>/totalrelease</b> (target) = removes all bindings, collar, harness, chastity, toys.\n" +
-                    "<b>/unlock</b> (target) (locktype) = removes all locks or only a specified type of lock. More info with /help unl.</p>"
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 逃生命令：\n" +
+                    "<b>/boost</b> = 提升技能，类似于女仆宿舍的咖啡。\n" +
+                    "<b>/collarremove</b> = 删除奴隶/所有者项圈。 也可以是：/removecollar。\n" +
+                    "<b>/frlist</b> = 允许在 15 秒内访问好友列表，其中包含指向其他房间的可点击链接。\n" +
+                    "<b>/leave</b> = 离开房间，即使被阻止。\n" +
+                    "<b>/release</b> (target) = 删除所有约束。\n" +
+                    "<b>/resetdifficulty</b> = 重新设置难度，从而逃离它。 会先发出警告。\n" +
+                    "<b>/safewordspecific</b> = 移除特定的项目。 使用时提供更多信息。\n" +
+                    "<b>/solidity</b> (value) = 改变大多数当前约束的可靠性。 使用低值来逃离！ 值 1 允许逃离未来的箱子。\n" +
+                    "<b>/totalrelease</b> (target) = 移除所有绑定、项圈、安全带、贞操、玩具。\n" +
+                    "<b>/unlock</b> (target) (locktype) = 删除所有锁或仅删除指定类型的锁。 更多信息 /help unl。</p>"
                 );
 	    } else if (content.includes("features")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Automatic features without command:\n" +
-		    "<b>Auto All Items Are Craftable</b> but limited using of the extra crafted items\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 无需命令的自动功能：\n" +
+		            "<b>自动所有项目都是可手工制作的</b> 但对额外制作的物品的使用有限\n" +
                     "<b>Auto-Disable NPC Punishments</b> - can be changed with the /npcpunish command\n" +
                     "<b>Auto-Disable Validation</b> only for yourself\n" +
-		    "<b>Auto Extra Buttons In Wardrobe</b>: Export (usable only if you come from a chat room) - Import for outfit + restraints\n" +
+		            "<b>Auto Extra Buttons In Wardrobe</b>: Export (usable only if you come from a chat room) - Import for outfit + restraints\n" +
                     "<b>Auto-Join</b> to enter a room as soon as possible\n" +
                     "<b>Auto More Characters For Nickname</b> \n" +
                     "<b>Auto Patreon Cheats</b> - can be changed with the /patreoncheats command\n" +
@@ -128,133 +128,133 @@ async function NEWmenu() {
                 );    
             } else if (content.includes("fun")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Fun commands:\n" +
-                    "<b>/cum</b> = causes an orgasm.\n" +
-		    "<b>/invisible1</b> = becomes invisible (anal hook must be allowed).\n" +
-		    "<b>/invisible2</b> = becomes invisible (glitter mask must be usable).\n" +
-                    "<b>/moaner</b> = moans when horny and stimulated. Using will give more info.\n" +
-		    "<b>/sleep</b> (target) = uses the sleeping pill on yourself or another player.\n" +
-                    "<b>/superdice</b> (sides) = rolls a superdice. Sides can be between 2 and 999999999.\n" +
-		    "<b>/visible</b> = back to visible state after using of an invisible command.</p>"
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 有趣的命令：\n" +
+                    "<b>/cum</b> = 引起高潮。\n" +
+		            "<b>/invisible1</b> = becomes invisible (anal hook must be allowed).\n" +
+		            "<b>/invisible2</b> = becomes invisible (glitter mask must be usable).\n" +
+                    "<b>/moaner</b> = 性欲和刺激时呻吟。 使用将提供更多信息。\n" +
+		            "<b>/sleep</b> (target) = uses the sleeping pill on yourself or another player.\n" +
+                    "<b>/superdice</b> (sides) = 掷出一个超级骰子。 边数可以在 2 到 999999999 之间。\n" +
+		            "<b>/visible</b> = back to visible state after using of an invisible command.</p>"
                 );
 	    } else if (content.includes("kd")) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: How to use the kd command:\n" +
                     "1 - Optionally, use <b>/kd devious</b> to toggle the Devious Challenge mode\n" +
                     "2 - Use <b>/kd</b> without any option to launch the game without cheat\n" +
-		    "3 -  After launching of the game, you can click on the Exit button to go back to the chatroom and use a command with cheat:\n" +
+		            "3 -  After launching of the game, you can click on the Exit button to go back to the chatroom and use a command with cheat:\n" +
                     "<b>/kd maxstats</b> to get high stats and many potions\n" +
                     "<b>/kd moreitems</b> to get all extra items\n" +
-		    "<b>/kd outfits</b> to get all outfits\n" +
-		    "<b>/kd restraints</b> to get all restraints\n" +
+		            "<b>/kd outfits</b> to get all outfits\n" +
+		            "<b>/kd restraints</b> to get all restraints\n" +
                     "<b>/kd spells</b> to get special spells for extra slots and improved stats\n" +
                     "<b>/kd weapons</b> to get all weapons\n" +
                     "4 - Check the cheat effect on the game before repeating step 3 for another cheat</p>"
                 );    
             } else if (content.includes("lock")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: The lock command has several syntaxes:\n" +
-                    "/lock (target) (locktype) for locks 1 to 8\n" +
-                    "/lock (target) (locktype) (r) for lock 9\n" +
-                    "/lock (target) (locktype) (code) for lock 10\n" +
-                    "/lock (target) (locktype) (password) (r) for locks 11 and 12\n" +
-                    "/lock (target) (locktype) (minutes) (h) (i) (r) for locks 13 to 15\n" +
-                    "/lock (target) (locktype) (password) (minutes) (h) (i) (r) for lock 16\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 锁命令的几种用法：\n" +
+                    "/lock (target) (locktype) 用于 1 到 8 号锁\n" +
+                    "/lock (target) (locktype) (r) 9号锁\n" +
+                    "/lock (target) (locktype) (code) 10号锁\n" +
+                    "/lock (target) (locktype) (password) (r) 用于 11 和 12号锁\n" +
+                    "/lock (target) (locktype) (minutes) (h) (i) (r) 用于 13 至 15 号锁\n" +
+                    "/lock (target) (locktype) (password) (minutes) (h) (i) (r) 16号锁\n" +
                     " \n" +
-                    "The lock types:\n" +
-                    "1 Metal - 2 Exclusive - 3 Intricate - 4 High Security\n" +
-                    "5 Pandora - 6 Mistress - 7 Lover - 8 Owner\n" +
-                    "9 Five Minutes - 10 Combination - 11 Safeword\n" +
-                    "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
-                    "15 Owner Timer - 16 Timer Password\n" +
-                    "Use <b>/help lpar</b> for info about other parameters</p>"
+                    "锁类型：\n" +
+                    "1 金属挂锁 - 2 专属挂锁 - 3 复杂的挂锁 - 4 高安全挂锁\n" +
+                    "5 潘多拉魔盒锁 - 6 女王锁 - 7 爱人锁 - 8 主人锁\n" +
+                    "9 五分钟计时锁 - 10 组合密码锁 - 11 安全词锁\n" +
+                    "12 密码锁 - 13 女王计时锁 - 14 爱人计时锁\n" +
+                    "15 主人计时锁 - 16 计时密码锁\n" +
+                    "使用 <b>/help lpar</b> 获取有关其他参数的信息</p>"
                 );
             } else if (content.includes("lpar")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Special parameters of lock command:\n" +
-                    "code must be between 0 and 9999.\n" +
-                    "password is limited to 8 characters.\n" +
-                    "maximum time = 240 minutes for locks 13 and 16,\n" +
-                    "10080 minutes for locks 14 and 15.\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 锁定命令的特殊参数：\n" +
+                    "code 必须介于 0 和 9999 之间。\n" +
+                    "password 限制为 8 个字符。\n" +
+                    "maximum time = 13 号和 16 号锁为 240 分钟，\n" +
+                    "14 号和 15 号锁为 10080 分钟。\n" +
                     " \n" +
-                    "Optional parameters:\n" +
-                    "h to hide the timer,\n" +
-                    "i to enable time input from other players,\n" +
-                    "r for item removal when correct password entered\n" +
-                    "or lock timer runs out.\n" +
+                    "可选参数：\n" +
+                    "h 隐藏计时器，\n" +
+                    "i 允许其他玩家输入时间，\n" +
+                    "r 输入正确密码时移除物品\n" +
+                    "or 锁定计时器耗尽。\n" +
                     " \n" +
-                    "Tip: replace h and/or i by another character when you need to skip them.</p>"
+                    "Tip: 当您需要跳过它们时，将 h 和/或 i 替换为另一个字符。</p>"
                 );
             } else if (content.includes("misc")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Misc commands:\n" +
-                    "<b>/clubhelp</b> = displays the standard commands of the game (and optionaly the BCE commands)\n" +
-                    "<b>/help</b> (category) = displays the QAM commands. Available categories: bondage, character, clothing, escape, fun, misc, pleasure, talking, visual, zones.\n" +
-                    "<b>/login</b> (accountname) (password) = logs in a new account.\n" +
-                    "<b>/relog</b> = relogs.\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 其他命令：\n" +
+                    "<b>/clubhelp</b> = 显示游戏的标准命令（以及可选的 BCE 命令）\n" +
+                    "<b>/help</b> (category) = 显示 QAM 命令。 可用类别：束缚、角色、服装、逃脱、乐趣、杂项、谈话、视觉、区域。\n" +
+                    "<b>/login</b> (accountname) (password) = 登录一个新帐户。\n" +
+                    "<b>/relog</b> = 重新登录。\n" +
                     "<b>/unrestrict</b> =  removes all restrictions from game. Can use maid drink tray/other stuff. Using will give more info. Submissives should use /unrestrict soft.</p>"
                 );
 	    } else if (content.includes("new")) {
                 ChatRoomSendLocal(
                     "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Main changes in v.1.7.0:\n" +
-		    "- New features: all items can be crafted, Import and Export buttons in wardrobe.\n" +
-		    "- New commands: invisible2, visible.\n" +
-		    "- Renamed commands: invisible -> invisible1, kinkydungeon -> kd, profile -> bio.\n" +
-	            "- Updated the kd command with modular cheat options. Use <b>/help kd</b> for more info.\n" +		
+		            "- New features: all items can be crafted, Import and Export buttons in wardrobe.\n" +
+		            "- New commands: invisible2, visible.\n" +
+		            "- Renamed commands: invisible -> invisible1, kinkydungeon -> kd, profile -> bio.\n" +
+	                "- Updated the kd command with modular cheat options. Use <b>/help kd</b> for more info.\n" +		
                     "- QAM welcome message + green background for most local messages.</p>"
                 );   	    
             } else if (content.includes("talking")) {
 		ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Talking commands - * = more info when using\n" +
-                    "<b>/babytalk</b> (stuffhere) = speaks once as a baby. Can also: /b.\n" +
-                    "<b>/gagcode</b> = toggle to decode/not decode gagged people talking. Also works against deafness.\n" +
-		    "<b>/gagtalk</b> (talkmode) (stuffhere) = speaks once in specified gag talk. *\n" +
-		    "<b>/hear</b> (hearmode) = forces a specific hearing mode. *\n" +
-                    "<b>/moaner</b> = moans when horny and stimulated. *\n" +
-                    "<b>/s1</b> (stuffhere) = speaks once in light stuttering mode.\n" +
-                    "<b>/s2</b> (stuffhere) = speaks once in normal stuttering mode.\n" +
-                    "<b>/s3</b> (stuffhere) = speaks once in heavy stuttering mode.\n" +
-                    "<b>/s4</b> (stuffhere) = speaks once in total stuttering mode.\n" +
-                   "<b>/stutter</b> (stuttermode) = forces a specific stuttering mode. *\n" +
-		    "<b>/talk</b> (talkmode) = changes your talk mode. *\n" +
-                    "<b>/whisper</b> (target) = sets whisper target.</p>"
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 谈话命令 - * = 使用获得更多信息\n" +
+                    "<b>/babytalk</b> (stuffhere) = 像婴儿一样说话。 也可以：/b\n" +
+                    "<b>/gagcode</b> = 切换到解码/不解码闭塞的人说话。对耳聋也有效果。\n" +
+		            "<b>/gagtalk</b> (talkmode) (stuffhere) = 在特定的封口令中说一次。 *\n" +
+		            "<b>/hear</b> (hearmode) = 强制使用特定的听证模式。 *\n" +
+                    "<b>/moaner</b> = 性欲和刺激时呻吟。 *\n" +
+                    "<b>/s1</b> (stuffhere) = 在轻微口吃模式下说话一次。\n" +
+                    "<b>/s2</b> (stuffhere) = 在正常结巴模式下说话一次。\n" +
+                    "<b>/s3</b> (stuffhere) = 在严重口吃模式下说话一次。\n" +
+                    "<b>/s4</b> (stuffhere) = 在完全结巴模式下说话一次。\n" +
+                    "<b>/stutter</b> (stuttermode) = 强制使用特定的卡顿模式。 *\n" +
+		            "<b>/talk</b> (talkmode) = 更改您的通话模式。 *\n" +
+                    "<b>/whisper</b> (target) = 设置悄悄话目标。</p>"
                 );
             } else if (content.includes("unl")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: The unlock command:\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 解锁命令：\n" +
                     "<b>/unlock</b> (target) (locktype).\n" +
-                    "All locks of any type will be removed if you don't specify the lock type.\n" +
+                    "如果您不指定锁类型，任何类型的所有锁都将被删除。\n" +
                     " \n" +
-                    "The lock types:\n" +
-                    "1 Metal - 2 Exclusive - 3 Intricate - 4 High Security\n" +
-                    "5 Pandora - 6 Mistress - 7 Lover - 8 Owner\n" +
-                    "9 Five Minutes - 10 Combination - 11 Safeword\n" +
-                    "12 Password - 13 Mistress Timer - 14 Lover Timer\n" +
-                    "15 Owner Timer - 16 Timer Password</p>"
+                    "锁类型：\n" +
+                    "1 金属挂锁 - 2 专属挂锁 - 3 复杂的挂锁 - 4 高安全挂锁\n" +
+                    "5 潘多拉魔盒锁 - 6 女王锁 - 7 爱人锁 - 8 主人锁\n" +
+                    "9 五分钟计时锁 - 10 组合密码锁 - 11 安全词锁\n" +
+                    "12 密码锁 - 13 女王计时锁 - 14 爱人计时锁\n" +
+                    "15 主人计时锁 - 16 计时密码锁</p>"
                 );
             } else if (content.includes("visual")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Visual commands:\n" +
-                    "<b>/anim2</b> (animhere) = changes your facial expression. Using will give more info.\n" +
-                    "<b>/bg1</b> = adds hidden backgrounds to the admin selection screen. Tip for BCX users: activate BCX before login.\n" +
-                    "<b>/colorchanger</b> (animhere) = gets an animation with color change. Using will give more info.\n" +
-                    "<b>/pose2</b> (posehere) (target) = changes the pose of any player. Using will give more info.\n" +
-		    "<b>/see</b> (visionmode) (blurlevel) = forces a specific vision mode. Using will give more info.\n" +
-                    "<b>/speak</b> = animates mouth when talking in chat. Can also: /mouth or /speech.</p>"
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 视觉命令：\n" +
+                    "<b>/anim2</b> (animhere) = 改变你的面部表情。 使用将提供更多信息。\n" +
+                    "<b>/bg1</b> = 添加隐藏聊天室背景。 BCX 用户提示：登录前激活 BCX。\n" +
+                    "<b>/colorchanger</b> (animhere) = 获得颜色变化的动画。 使用将提供更多信息。\n" +
+                    "<b>/pose2</b> (posehere) (target) = 改变任何玩家的姿势。 使用将提供更多信息。\n" +
+		            "<b>/see</b> (visionmode) (blurlevel) = forces a specific vision mode. Using will give more info.\n" +
+                    "<b>/speak</b> = 在聊天中说话时使嘴巴动起来。 也可以：/mouth 或 /speech。</p>"
                 );
             } else if (content.includes("zones")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: Zones commands:\n" +
-                    "<b>/asylum</b> (minutes) = enters asylum, bypasses requirements. Specify minutes if you are a patient.\n" +
-                    "<b>/chess</b> (difficulty) = starts chess, must specify difficulty first (1 easy - 2 normal - 3 hard).\n" +
-                    "<b>/college</b> = enters college, bypasses requirements.\n" +
-                    "<b>/game</b> (minigamehere) = launches a minigame. Using will give more info.\n" +
-                    "<b>/ggts</b> (minutes) (level) = enters ggts training in asylum for the specified time. Level must be between 1 and 6.\n" +
-                    "<b>/keydeposit</b> (hours) = keeps your keys safe in the vault.\n" +
-                    "<b>/patreoncheats</b> = changes settings of patreon cheats. All except college uniform, is auto toggled by default.\n" +
-                    "<b>/prison</b> (minutes) = stays in Pandora prison. More than 60 minutes is possible.\n" +
-                    "<b>/store</b> = leaves chatroom, goes to store. Shows hidden items.\n" +
-                    "<b>/timercell</b> (minutes) = stays in the isolation cell. More than 60 minutes is possible.</p>"
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 游戏区域命令：\n" +
+                    "<b>/asylum</b> (minutes) = 进入庇护所，绕过要求。 如果您是病人，请指定分钟。\n" +
+                    "<b>/chess</b> (difficulty) = 开始国际象棋，必须先指定难度（1 容易 - 2 普通 - 3 困难）。\n" +
+                    "<b>/college</b> = 进入大学，绕过要求。\n" +
+                    "<b>/game</b> (minigamehere) = 启动一个小游戏,会离开当前聊天室。 使用将提供更多信息。\n" +
+                    "<b>/ggts</b> (minutes) (level) = 在指定时间内进入 ggts 庇护培训。 级别必须在 1 到 6 之间。\n" +
+                    "<b>/keydeposit</b> (hours) = 将您的钥匙安全地保存在钥匙保管出中。\n" +
+                    "<b>/patreoncheats</b> = 更改作弊的设置。 除了大学制服外，所有的都是默认自动切换的。\n" +
+                    "<b>/prison</b> (minutes) = 进入潘多拉监狱。 超过 60 分钟是可能的。\n" +
+                    "<b>/store</b> = 离开聊天室，去商店。 显示隐藏的项目。\n" +
+                    "<b>/timercell</b> (minutes) = 留在隔离室。 超过 60 分钟是可能的。</p>"
                 );
             }
         } else if ((content.indexOf("/action ") == 0) || (content.indexOf("/a ") == 0)) {
@@ -277,7 +277,7 @@ async function NEWmenu() {
                     }]
                 });
             }
-        } else if (content.indexOf("/anim2") == 0) {
+        } else if (content.indexOf("/anim2") == 0) {  //改变你的面部表情。 使用将提供更多信息。
             CharacterResetFacialExpression(Player);
             CharacterResetFacialExpression(Player);
             if (content.includes("angry1")) {
@@ -758,7 +758,7 @@ async function NEWmenu() {
                 });
             } else if (content.endsWith("/anim2")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: The anim2 command must include an anim.\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 面部表情命令必须包含一个表情\n" +
                     " \n" +
                     "Available anims:\n" +
                     "angry1, angry2, blink, blush1, blush2, blush3, blush4,\n" +
@@ -770,7 +770,7 @@ async function NEWmenu() {
                     "smirk, spanked, wink, worried.</p>"
                 );
             }
-        } else if (content.indexOf("/asylum") == 0) {
+        } else if (content.indexOf("/asylum") == 0) {  //进入庇护，绕过要求。 如果您是病人，请指定分钟。
             var minutes = content.substring(7).trim();
             ChatRoomSetLastChatRoom("");
             ServerSend("ChatRoomLeave", "");
@@ -783,7 +783,7 @@ async function NEWmenu() {
             if (ReputationGet("Asylum") < 0) {
                 LogAdd("Committed", "Asylum", CurrentTime + 60000 * minutes);
             }
-        } else if (content.indexOf("/autokick") == 0) {
+        } else if (content.indexOf("/autokick") == 0) {  //自动踢出 0 天的帐户。
             if (this.AutoKickOn == false || this.AutoKickOn == undefined) {
                 ChatRoomSendLocal("AutoKick: Ready.");
                 AutoKickOn = true;
@@ -871,7 +871,7 @@ async function NEWmenu() {
 			document.querySelector('#TextAreaChatLog').lastChild.style.color = "silver";
                 }
             }
-        } else if (content.indexOf("/becomeownlover") == 0) {
+        } else if (content.indexOf("/becomeownlover") == 0) {  //成为自己的爱人。
             if (content.includes("yes")) {
                 ServerSend("AccountLovership", {
                     MemberNumber: Player.MemberNumber,
@@ -886,17 +886,18 @@ async function NEWmenu() {
                     Action: "CanBeginWedding" && "Accept"
                 });
                 ChatRoomSendLocal(
-		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Accomplished. Break-up is done via Club Management.</p>"
+		    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 完成。 分手是通过俱乐部管理完成的。</p>"
 		);
             } else {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Warning</b>: Uncomfirmed glitch might occur when removing self as lover, during which a random/real lover will be taken\n" +
-                    "Use with risk in mind. Confirm by typing: <b>/becomeownlover yes</b></p>"
+                    "<p style='background-color:#5fbd7a'><b>警告</b>: 删除自己作为情人时可能会出现未经确认的故障，在此期间将随机删除一个情人\n" +
+                    "使用时要考虑到风险。 键入以下内容进行确认： <b>/becomeownlover yes</b></p>"
                 );
             }
-        }
+            //ManagementBreakLover(L)删除第L个情人，从0开始
+        }//如果可能，考虑编写情人分手代码以弥补故障。
         //consider writing a lover break up code to compensate for glitch, if possible.
-        else if (content.indexOf("/becomeownowner") == 0) {
+        else if (content.indexOf("/becomeownowner") == 0) {   //成为你自己的主人。
             ServerSend("AccountOwnership", {
                 MemberNumber: Player.MemberNumber,
                 Action: "Propose" && "Accept"
@@ -910,12 +911,12 @@ async function NEWmenu() {
                 Action: "CanEndTrial" && "Accept"
             });
             ChatRoomSendLocal(
-                "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Accomplished. Break-up is done via Club Management.</p>"
+                "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 完成。 分手是通过俱乐部管理完成的。</p>"
 	    );
-        }
+        }//由于俱乐部的极端模式阻止但不允许所有者破坏，因此无法摆脱所有者。 愚蠢的...
         //can't end free from owner, due to club's extreme mode preventing yet not allowing owner to break. Stupid...
-        else if (content.indexOf("/bg1") == 0) {
-            var BackgroundsTagList = [
+        else if (content.indexOf("/bg1") == 0) {  //添加隐藏聊天室背景。
+            var BackgroundsTagList = [   //创建在线聊天室的所有标签列表
                 BackgroundsTagNone,
                 BackgroundsTagIndoor,
                 BackgroundsTagOutdoor,
@@ -928,7 +929,7 @@ async function NEWmenu() {
                 BackgroundsTagAsylum
             ];
             BackgroundsList.push({
-                Name: "Pandora/Ground/Entrance",
+                Name: "Pandora/Ground/Entrance",   //潘多拉地面入口
                 Tag: [BackgroundsTagIndoor]
             });
             BackgroundsList.push({
@@ -1269,7 +1270,7 @@ async function NEWmenu() {
             });
             ChatCreateBackgroundList = BackgroundsGenerateList(BackgroundsTagList);
             ChatRoomSendLocal(
-	        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: You can use more backgrounds now.</p>"
+	        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 您现在可以使用更多背景。</p>"
 	    );
 	} else if (content.indexOf("/bio") == 0) {
             var targetname = content.substring(4).trim();
@@ -1289,7 +1290,7 @@ async function NEWmenu() {
                 document.getElementById("TextAreaChatLog").style.display = "none";
                 CommonSetScreen("Character", "OnlineProfile");
             }	
-        } else if (content.indexOf("/boost") == 0) {
+        } else if (content.indexOf("/boost") == 0) {  //提升技能，类似于女仆宿舍酒。
             LogAdd("ModifierLevel", "SkillModifier", 105);
             LogAdd("ModifierDuration", "SkillModifier", CurrentTime + 3600000);
             ChatRoomSendLocal(
@@ -4682,15 +4683,15 @@ async function NEWmenu() {
                 DialogSetReputation("HouseMaiestas", 50);
             } else if (content.endsWith("/roleplay")) {
                 ChatRoomSendLocal(
-                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: The roleplay command must include a role.\n" +
-                    "You will be able to check the changes in your profile.\n" +
+                    "<p style='background-color:#5fbd7a'><b>Quick-AccessMenu2</b>: 命令必须包含一个称号\n" +
+                    "你将能够检查您的个人资料中的更改。\n" +
                     " \n" +
-                    "Available roles:\n" +
-                    "clubmistress, clubslave, doctor, escapedpatient,\n" +
-                    "headmaid, kidnapper, maid, magician, magus,\n" +
-                    "masterkidnapper, mistress, nurse, oracle, patient,\n" +
-                    "permanentpatient, sage, sorcerer, warlock, witch, wizard.\n" +
-                    "Be careful with clubslave, you will be forced to complete contract. Similar warning for escapedpatient.</p>"
+                    "可用称号：\n" +
+                    "clubmistress女主人, clubslave俱乐部奴隶, doctor医生, escapedpatient出逃患者,\n" +
+                    "headmaid女仆长, kidnapper绑匪, maid女仆, magician魔术师, magus魔战士,\n" +
+                    "masterkidnapper绑架大师, mistress女主人, nurse护士, oracle先知, patient患者,\n" +
+                    "permanentpatient永久患者, sage贤者, sorcerer术士, warlock邪术师, witch女巫, wizard法师.\n" +
+                    "小心俱乐部奴隶和出逃患者，你将被迫完成合同。</p>"
                 );
             }
         } else if (content.indexOf("/rolequit") == 0) {
