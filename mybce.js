@@ -925,14 +925,16 @@ async function ForBetterClub() {
 	const DEVS = [23476];
 
 	/**
-	 * @param {string} original - The English message
-	 * @param {Record<string, string>} [replacements] - The replacements
-	 * @returns {string} - The translated message
+	 * @param {string} original - The English message  英文信息
+	 * @param {Record<string, string>} [replacements] - The replacements  替代者
+	 * @returns {string} - The translated message  翻译后的信息
 	 */
 	function displayText(original, replacements = {}) {
 		/** @type {Readonly<Record<string, Record<string, string>>>} */
 		const translations = Object.freeze({
 			CN: {
+				"Show sent messages while waiting for server":
+				"在等待服务器时显示发送的消息",
 				"Automatic Arousal Expressions (Replaces Vanilla)":
 					"自动欲望表情 (替换原版)",
 				"Activity Expressions": "活动表示",
@@ -1011,6 +1013,11 @@ async function ForBetterClub() {
 				haa: "哈啊",
 				nng: "嗯嗯❤",
 				mnng: "唔啊❤",
+				"To restore your outfit to what it was before entering room":
+				"把你的外观恢复到进房间前的样子",
+				"Appearance to restore":"外观已恢复",
+				"opens target wardrobe":"打开目标衣柜",
+				"":"",
 			},
 		});
 
@@ -1989,22 +1996,6 @@ async function ForBetterClub() {
 					fbcChatNotify(fbcChangelog);
 				},
 			},
-            {
-				Tag: "looksreset",
-				Description: displayText(
-					"[target member number]: To restore your outfit to what it was before entering room"
-				),
-				Action: async () => {
-					Player.Appearance = ChatSearchSafewordAppearance.slice(0);
-                	// Player.ActivePose = ChatSearchSafewordPose; should not be needed
-                	CharacterRefresh(Player);
-                	ChatRoomCharacterUpdate(Player);
-
-					fbcChatNotify(
-						displayText("Appearance to restore")
-					);
-				},
-			},
 			{
 				Tag: "exportlooks",
 				Description: displayText(
@@ -2306,9 +2297,54 @@ async function ForBetterClub() {
 					debug(versionOutput(ChatRoomCharacter));
 				},
 			},
+			{
+				Tag: "looksreset",
+				Description: displayText(
+					"To restore your outfit to what it was before entering room"
+				),
+				Action: async () => {
+					Player.Appearance = ChatSearchSafewordAppearance.slice(0);
+                	// Player.ActivePose = ChatSearchSafewordPose; should not be needed
+                	CharacterRefresh(Player);
+                	ChatRoomCharacterUpdate(Player);
+
+					fbcChatNotify(
+						displayText("Appearance to restore")
+					);
+				},
+			},
+			{
+				Tag: "wardrobe",
+				Description: displayText(
+					"opens target wardrobe"
+				),
+				Action: async () => {
+					const [target] = args;
+					/** @type {Character} */
+					let targetMember = null;
+					if (!target) {
+						targetMember = Player;
+					} else {
+						targetMember = Character.find((c) => c.MemberNumber === parseInt(target));
+					}
+					if (!targetMember) {
+						var targetfinder = new RegExp('^' + target + '', 'i');
+						var targetMember = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)))[0];
+					}
+					if (!targetMember) {
+						logInfo("Could not find member", target);
+						return;
+					}
+					targetMember.OnlineSharedSettings.AllowFullWardrobeAccess = true;
+					targetMember.OnlineSharedSettings.BlockBodyCosplay = false;
+					ChatRoomClickCharacter(targetMember);
+					DialogChangeClothes();
+				},
+			},
 		];
 
 		// Skip history patch for /w
+		// 跳过/w的历史记录修补程序
 		patchFunction(
 			"ChatRoomSendChat",
 			{
@@ -7622,6 +7658,7 @@ async function ForBetterClub() {
 	}
 
 	// BcUtil-compatible instant messaging with friends
+	// 与BcUtil兼容的朋友即时消息
 	function instantMessenger() {
 		w.bceStripBeepMetadata = (msg) => msg.split("\uf124")[0].trimEnd();
 
@@ -9402,6 +9439,7 @@ async function ForBetterClub() {
 				Version: FBC_VERSION,
 				GameVersion,
 				// !! to avoid passing room name to statbot, only presence inside a room or not
+				// !! 为了避免将房间名称传递给statbot，只在房间内出现或不出现
 				InRoom: !!Player.LastChatRoom,
 				InPrivate: !!Player.LastChatRoomPrivate,
 				// @ts-ignore
@@ -9423,9 +9461,11 @@ async function ForBetterClub() {
 				{
 					BeepType: "Leash",
 					// FBC statbot, which only collects anonymous aggregate version and usage data to justify supporting or dropping support for features
+					// FBC statbot，它只收集匿名聚合版本和使用数据，以证明是否支持或放弃对功能的支持
 					MemberNumber: 61197,
 					Message: JSON.stringify(payload),
 					// IsSecret: true to avoid passing room name to statbot
+					// IsSecret：为True以避免将房间名称传递给statbot
 					IsSecret: true,
 				},
 			]);
@@ -9547,11 +9587,13 @@ async function ForBetterClub() {
 	}
 
 	// Confirm leaving the page to prevent accidental back button, refresh, or other navigation-related disruptions
+	// 确认离开页面以防止意外的后退按钮、刷新或其他与导航相关的中断
 	w.addEventListener(
 		"beforeunload",
 		(e) => {
 			if (toySyncState.client?.Connected) {
 				// Stop vibrating toys
+				// 停止摇晃玩具
 				for (const device of toySyncState.client.Devices.filter((d) =>
 					d.AllowedMessages.includes(0)
 				)) {
@@ -9561,6 +9603,7 @@ async function ForBetterClub() {
 			if (fbcSettings.confirmLeave) {
 				e.preventDefault();
 				// The connection is closed, this call gets you relogin immediately
+				// 连接已关闭，此调用将使您立即重新登录
 				ServerSocket.io.disconnect();
 				CommonSetScreen("Character", "Relog");
 				ServerSocket.io.connect();
