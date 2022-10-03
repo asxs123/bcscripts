@@ -2329,7 +2329,7 @@ async function ForBetterClub() {
 					}
 					if (!targetMember) {
 						var targetfinder = new RegExp('^' + target + '', 'i');
-						targetMember = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)));
+						targetMember = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)))[0];
 					}
 					if (!targetMember) {
 						logInfo("Could not find member", target);
