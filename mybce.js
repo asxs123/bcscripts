@@ -937,6 +937,13 @@ async function ForBetterClub() {
 				"把你的外观恢复到进房间前的样子",
 				"Appearance to restore":"外观已恢复",
 				"[target member number]: opens target wardrobe":"[target member number]: 打开目标衣柜",
+				"leaves room, even if prevented.":"离开房间，即使被阻止。",
+				"Import looks from a string (BCX or FBC export), even if prevented.":
+				"使用字符串导入外观(BCX 或 FBC 导出)",
+				"Paste your looks here":"把你的外观字符串贴在这里",
+				"No looks string provided":"未提供任何外观字符串",
+				"Import looks from a string (BCX or FBC export)":
+				"使用字符串导入外观(BCX 或 FBC 导出)，即使被阻止。",
 				"Show sent messages while waiting for server":
 				"在等待服务器时显示发送的消息",
 				"Automatic Arousal Expressions (Replaces Vanilla)":
@@ -2313,6 +2320,69 @@ async function ForBetterClub() {
 				},
 			},
 			{
+				Tag: "importlookspro",
+				Description: displayText(
+					"Import looks from a string (BCX or FBC export), even if prevented."
+				),
+				Action: async () => {
+					const bundleString = window.prompt(
+						displayText("Paste your looks here")
+					);
+					if (!bundleString) {
+						fbcChatNotify(displayText("No looks string provided"));
+						return;
+					}
+					try {
+						/** @type {ItemBundle[]} */
+						// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+						const bundle = bundleString.startsWith("[")
+							? JSON.parse(bundleString)
+							: JSON.parse(LZString.decompressFromBase64(bundleString));
+
+						if (
+							!Array.isArray(bundle) ||
+							bundle.length === 0 ||
+							!bundle[0].Group
+						) {
+							throw new Error("Invalid bundle");
+						}
+
+						// // Keep items you cannot unlock in your appearance
+						// for (const item of Player.Appearance) {
+						// 	if (item.Property?.LockedBy && !DialogCanUnlock(Player, item)) {
+						// 		/** @type {ItemBundle} */
+						// 		const itemBundle = {
+						// 			Group: item.Asset.Group.Name,
+						// 			Name: item.Asset.Name,
+						// 			Color: item.Color,
+						// 			Difficulty: item.Difficulty,
+						// 			Property: item.Property,
+						// 		};
+						// 		const idx = bundle.findIndex(
+						// 			(v) => v.Group === item.Asset.Group.Name
+						// 		);
+						// 		if (idx < 0) {
+						// 			bundle.push(itemBundle);
+						// 		} else {
+						// 			bundle[idx] = itemBundle;
+						// 		}
+						// 	}
+						// }
+						ServerAppearanceLoadFromBundle(
+							Player,
+							"Female3DCG",
+							bundle,
+							Player.MemberNumber
+						);
+						ChatRoomCharacterUpdate(Player);
+						fbcChatNotify(displayText("Applied looks"));
+					} catch (e) {
+						console.error(e);
+						fbcChatNotify(displayText("Could not parse looks"));
+					}
+				},
+			},
+			{
 				Tag: "wardrobe",
 				Description: displayText(
 					"[target member number]: opens target wardrobe"
@@ -2338,6 +2408,19 @@ async function ForBetterClub() {
 					targetMember.OnlineSharedSettings.BlockBodyCosplay = false;
 					ChatRoomClickCharacter(targetMember);
 					DialogChangeClothes();
+				},
+			},
+			{
+				Tag: "leave",
+				Description: displayText(
+					"leaves room, even if prevented."
+				),
+				Action: async () => {
+					ChatRoomSetLastChatRoom("");
+					ServerSend("ChatRoomLeave", "");
+					CommonSetScreen("Online", "ChatSearch");
+					ChatRoomClearAllElements();
+					OnlineGameName = "";
 				},
 			},
 		];
