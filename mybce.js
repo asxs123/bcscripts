@@ -936,7 +936,7 @@ async function ForBetterClub() {
 				"To restore your outfit to what it was before entering room":
 				"把你的外观恢复到进房间前的样子",
 				"Appearance to restore":"外观已恢复",
-				"opens target wardrobe":"打开目标衣柜",
+				"[target member number]: opens target wardrobe":"[target member number]: 打开目标衣柜",
 				"Show sent messages while waiting for server":
 				"在等待服务器时显示发送的消息",
 				"Automatic Arousal Expressions (Replaces Vanilla)":
