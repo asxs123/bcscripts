@@ -53,7 +53,7 @@ async function NEWmenu() {
                 CharacterRefresh(Player);
                 ChatRoomCharacterUpdate(Player);
             } else if (content.includes("导出")) {
-                var target = content.substring(4).trim();
+                var target = content.substring(6).trim();
                 if (!target) {
                     targetMember = Player;
                 } else {
@@ -114,6 +114,63 @@ async function NEWmenu() {
                     LZString.compressToBase64(JSON.stringify(looks))
                 );
             }
+        } else if (content.indexOf('@') == 0) {
+            ElementValue("InputChat", content.replace('@', "?"));
+            OLDmenu();
+            return;
+        } else if (tenorRe.test(ElementValue("InputChat"))) {
+            if (ChatRoomTargetMemberNumber == null) {
+                sendHiddenMessageAll(content);
+            } else {
+                sendHiddenMessageTarget('CheckMediaSupport', ChatRoomTargetMemberNumber);
+                sendHiddenMessageTarget('whisper ' + content, ChatRoomTargetMemberNumber);
+                var msg = createMessageElement();
+                getChatWindowElement().append(msg);
+                var senderName = document.createElement("div");
+                senderName.innerText = `Whisper to ${findCharacterInRoom(ChatRoomTargetMemberNumber).Name}:`;
+                senderName.classList.add("ChatMessage", "ChatMessageWhisper");
+                senderName.style.paddingLeft = "0";
+                var a = document.createElement("a");
+                a.target = '_blank';
+                a.href = `${content}`;
+                var img = createImgElement(content);
+                img.style.maxWidth = '40%';
+                img.style.maxHeight = '40%';
+                msg.append(senderName);
+                a.append(img);
+                msg.append(a);
+                img.addEventListener('load', () => {
+                    ElementScrollToEnd("TextAreaChatLog");
+                })
+            }
+            ElementRemove("InputChat");
+            return;
+        } else if (tubeRe.test(ElementValue("InputChat"))) {
+            if (ChatRoomTargetMemberNumber == null) {
+                sendHiddenMessageAll(content);
+            } else {
+                sendHiddenMessageTarget('CheckMediaSupport', ChatRoomTargetMemberNumber);
+                sendHiddenMessageTarget('whisper ' + content, ChatRoomTargetMemberNumber);
+                var videoCode = content.match(tubeRe)[5];
+                var msg = createMessageElement();
+                getChatWindowElement().append(msg);
+                var link = `https://www.youtube.com/embed/${videoCode}`;
+                var senderName = document.createElement("div");
+                senderName.innerText = `Whisper to ${findCharacterInRoom(ChatRoomTargetMemberNumber).Name}:`;
+                senderName.classList.add("ChatMessage", "ChatMessageWhisper");
+                senderName.style.paddingLeft = "0";
+                var iframe = document.createElement('iframe');
+                iframe.src = link;
+                iframe.style.width = '50%';
+                iframe.style.height = '8em';
+                msg.append(senderName);
+                msg.append(iframe);
+                iframe.addEventListener('load', () => {
+                    ElementScrollToEnd("TextAreaChatLog");
+                })
+            }
+            ElementRemove("InputChat");
+            return;
         }
 
         //	DO NOT add new commands past this point.
