@@ -63,6 +63,12 @@ async function NEWmenu() {
                     var targetfinder = new RegExp('^' + target + '', 'i');
                     var targetMember = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)))[0];
                 }
+                if (!targetMember) {
+                    ChatRoomSendLocal(
+                        "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: 没有找到目标用户</p>"
+                    );
+                    return;
+                }
 
                 const includeBinds = window.confirm(displayText("包括束缚?"));
                 const includeLocks = includeBinds && window.confirm(displayText("包括锁?"));
@@ -106,13 +112,14 @@ async function NEWmenu() {
                     };
                 });
 
-                const targetName = targetMember.IsPlayer()
-                    ? "yourself"
-                    : CharacterNickname(targetMember);
-
                 await navigator.clipboard.writeText(
                     LZString.compressToBase64(JSON.stringify(looks))
                 );
+
+                ChatRoomSendLocal(
+                    "<p style='background-color:#5fbd7a'>Quick-AccessMenu2: Appearance saved.</p>"
+                );
+                //DialogLeave();
             }
         } else if (content.indexOf('@') == 0) {
             ElementValue("InputChat", content.replace('@', "?"));
