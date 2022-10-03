@@ -2316,9 +2316,9 @@ async function ForBetterClub() {
 			{
 				Tag: "wardrobe",
 				Description: displayText(
-					"opens target wardrobe"
+					"[target member number]: opens target wardrobe"
 				),
-				Action: async () => {
+				Action: async (_, _command, args) => {
 					const [target] = args;
 					/** @type {Character} */
 					let targetMember = null;
