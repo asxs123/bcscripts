@@ -933,6 +933,10 @@ async function ForBetterClub() {
 		/** @type {Readonly<Record<string, Record<string, string>>>} */
 		const translations = Object.freeze({
 			CN: {
+				"To restore your outfit to what it was before entering room":
+				"把你的外观恢复到进房间前的样子",
+				"Appearance to restore":"外观已恢复",
+				"opens target wardrobe":"打开目标衣柜",
 				"Show sent messages while waiting for server":
 				"在等待服务器时显示发送的消息",
 				"Automatic Arousal Expressions (Replaces Vanilla)":
@@ -1013,11 +1017,6 @@ async function ForBetterClub() {
 				haa: "哈啊",
 				nng: "嗯嗯❤",
 				mnng: "唔啊❤",
-				"To restore your outfit to what it was before entering room":
-				"把你的外观恢复到进房间前的样子",
-				"Appearance to restore":"外观已恢复",
-				"opens target wardrobe":"打开目标衣柜",
-				"":"",
 			},
 		});
 
