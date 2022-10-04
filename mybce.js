@@ -939,11 +939,13 @@ async function ForBetterClub() {
 				"[target member number]: opens target wardrobe":"[target member number]: 打开目标衣柜",
 				"leaves room, even if prevented.":"离开房间，即使被阻止。",
 				"Import looks from a string (BCX or FBC export), even if prevented.":
-				"使用字符串导入外观(BCX 或 FBC 导出)",
+				"使用字符串导入外观(BCX 或 FBC 导出)，即使被阻止。",
 				"Paste your looks here":"把你的外观字符串贴在这里",
 				"No looks string provided":"未提供任何外观字符串",
 				"Import looks from a string (BCX or FBC export)":
-				"使用字符串导入外观(BCX 或 FBC 导出)，即使被阻止。",
+				"使用字符串导入外观(BCX 或 FBC 导出)",
+				"Applied looks":"外观已应用",
+				"Could not parse looks":"无法分析外观",
 				"Show sent messages while waiting for server":
 				"在等待服务器时显示发送的消息",
 				"Automatic Arousal Expressions (Replaces Vanilla)":
@@ -2324,7 +2326,25 @@ async function ForBetterClub() {
 				Description: displayText(
 					"Import looks from a string (BCX or FBC export), even if prevented."
 				),
-				Action: async () => {
+				//Action: async () => {
+				Action: async (_, _command, args) => {
+					const [target] = args;
+					/** @type {Character} */
+					let targetMember = null;
+					if (!target) {
+						targetMember = Player;
+					} else {
+						targetMember = Character.find((c) => c.MemberNumber === parseInt(target));
+					}
+					if (!targetMember) {
+						var targetfinder = new RegExp('^' + target + '', 'i');
+						targetMember = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)))[0];
+					}
+					if (!targetMember) {
+						logInfo("Could not find member", target);
+						return;
+					}
+
 					const bundleString = window.prompt(
 						displayText("Paste your looks here")
 					);
@@ -2347,39 +2367,124 @@ async function ForBetterClub() {
 							throw new Error("Invalid bundle");
 						}
 
-						// // Keep items you cannot unlock in your appearance
-						// for (const item of Player.Appearance) {
-						// 	if (item.Property?.LockedBy && !DialogCanUnlock(Player, item)) {
-						// 		/** @type {ItemBundle} */
-						// 		const itemBundle = {
-						// 			Group: item.Asset.Group.Name,
-						// 			Name: item.Asset.Name,
-						// 			Color: item.Color,
-						// 			Difficulty: item.Difficulty,
-						// 			Property: item.Property,
-						// 		};
-						// 		const idx = bundle.findIndex(
-						// 			(v) => v.Group === item.Asset.Group.Name
-						// 		);
-						// 		if (idx < 0) {
-						// 			bundle.push(itemBundle);
-						// 		} else {
-						// 			bundle[idx] = itemBundle;
-						// 		}
-						// 	}
-						// }
 						ServerAppearanceLoadFromBundle(
-							Player,
+							//Player,
+							targetMember,
 							"Female3DCG",
 							bundle,
 							Player.MemberNumber
 						);
-						ChatRoomCharacterUpdate(Player);
+						//ChatRoomCharacterUpdate(Player);
+						ChatRoomCharacterUpdate(targetMember);
 						fbcChatNotify(displayText("Applied looks"));
 					} catch (e) {
 						console.error(e);
 						fbcChatNotify(displayText("Could not parse looks"));
 					}
+				},
+			},
+			{
+				Tag: "pet",
+				Description: displayText(
+					"[target member number]: becomes a fully restrained pet girl."
+				),
+				Action: async (_, _command, args) => {
+					const [target] = args;
+					/** @type {Character} */
+					let targetMember = null;
+					if (!target) {
+						targetMember = Player;
+					} else {
+						targetMember = Character.find((c) => c.MemberNumber === parseInt(target));
+					}
+					if (!targetMember) {
+						var targetfinder = new RegExp('^' + target + '', 'i');
+						targetMember = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)))[0];
+					}
+					if (!targetMember) {
+						logInfo("Could not find member", target);
+						return;
+					}
+
+					CharacterNaked(targetMember);
+					InventoryWearRandom(targetMember, "ItemArms", 8, null, false, true, ["ArmbinderJacket", "BitchSuit", "BitchSuitExposed", "Bolero", "BoxTieArmbinder", "Chains", "FullLatexSuit", "HempRope", "InflatableStraightLeotard", "LatexBoxtieLeotard", "LatexButterflyLeotard", "LatexSleevelessLeotard", "LeatherStraitJacket", "StraitLeotard", "StrictLeatherPetCrawler"], true);
+					InventoryWearRandom(targetMember, "HairAccessory1", 8, null, false, true, ["Antennae", "BunnyEars1", "BunnyEars2", "CowHorns", "Ears1", "Ears2", "ElfEars", "FoxEars1", "FoxEars2", "FoxEars3", "KittenEars1", "KittenEars2", "MouseEars1", "MouseEars2", "PonyEars1", "PuppyEars1", "PuppyEars2", "RaccoonEars1", "WolfEars1", "WolfEars2"], true);
+					InventoryWearRandom(targetMember, "TailStraps", 8, null, false, true, ["CowtailStrap", "FoxTailsStrap", "FoxTailStrap1", "FoxTailStrap2", "HorseTailStrap", "HorseTailStrap1", "KittenTailStrap1", "KittenTailStrap2", "MouseTailStrap1", "MouseTailStrap2", "PuppyTailStrap", "PuppyTailStrap1", "RaccoonStrap", "WolfTailStrap1", "WolfTailStrap2", "WolfTailStrap3"], true);
+					if (InventoryGet(targetMember, "ItemMouth") == null) InventoryWearRandom(targetMember, "ItemMouth", 8);
+					if (InventoryGet(targetMember, "ItemNeck") == null) InventoryWearRandom(targetMember, "ItemNeck", 8);
+					if (InventoryGet(targetMember, "ItemNeckRestraints") == null) InventoryWear(targetMember, "ChainLeash", "ItemNeckRestraints", null, 8);
+					CharacterSetActivePose(targetMember, "Kneel", true);
+					CharacterRefresh(targetMember);
+					ChatRoomCharacterUpdate(targetMember);
+
+					fbcChatNotify(
+						displayText("Appearance to apply")
+					);
+				},
+			},
+			{
+				Tag: "randomize",
+				Description: displayText(
+					"[target member number]: naked + underwear + clothes + restrain commands."
+				),
+				Action: async (_, _command, args) => {
+					const [target] = args;
+					/** @type {Character} */
+					let targetMember = null;
+					if (!target) {
+						targetMember = Player;
+					} else {
+						targetMember = Character.find((c) => c.MemberNumber === parseInt(target));
+					}
+					if (!targetMember) {
+						var targetfinder = new RegExp('^' + target + '', 'i');
+						targetMember = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)))[0];
+					}
+					if (!targetMember) {
+						logInfo("Could not find member", target);
+						return;
+					}
+
+					CharacterNaked(targetMember);
+					CharacterRandomUnderwear(targetMember);
+					CharacterAppearanceFullRandom(targetMember, true);
+					CharacterFullRandomRestrain(targetMember, "ALL");
+					ChatRoomCharacterUpdate(targetMember);
+
+					fbcChatNotify(
+						displayText("Appearance to change")
+					);
+				},
+			},
+			{
+				Tag: "restrain",
+				Description: displayText(
+					"[target member number]: adds random restraints."
+				),
+				Action: async (_, _command, args) => {
+					const [target] = args;
+					/** @type {Character} */
+					let targetMember = null;
+					if (!target) {
+						targetMember = Player;
+					} else {
+						targetMember = Character.find((c) => c.MemberNumber === parseInt(target));
+					}
+					if (!targetMember) {
+						var targetfinder = new RegExp('^' + target + '', 'i');
+						targetMember = ChatRoomCharacter.filter(A => (A.Name.match(targetfinder)))[0];
+					}
+					if (!targetMember) {
+						logInfo("Could not find member", target);
+						return;
+					}
+
+					CharacterFullRandomRestrain(targetMember, "ALL");
+					ChatRoomCharacterUpdate(targetMember);
+
+					fbcChatNotify(
+						displayText("Appearance to change")
+					);
 				},
 			},
 			{
